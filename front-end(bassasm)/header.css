@@ -135,3 +135,22 @@ body {
   color: #fff !important;
   text-decoration: underline;
 }
+/* Style the dropdown trigger to look like a link */
+.dropdown-trigger {
+  display: block;
+  padding: 18px 0;
+  color: #285fa8;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.dropdown-trigger:hover,
+.dropdown-trigger:focus {
+  color: #1d406e;
+  text-decoration: underline;
+  background: #f0f4fa;
+}

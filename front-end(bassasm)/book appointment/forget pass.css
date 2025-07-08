@@ -1,0 +1,27 @@
+.forgot-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f7f7;
+}
+
+.forgot-form {
+  background: #fff;
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.forgot-form h2 {
+  color: #2a5d9f;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
