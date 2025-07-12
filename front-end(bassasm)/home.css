@@ -352,6 +352,178 @@ body {
     font-weight: 500;
 }
 
+/* Patient Testimonials Section */
+.testimonials-section {
+    padding: 100px 0;
+    background: var(--gradient-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(42, 93, 159, 0.05) 0%, rgba(29, 64, 110, 0.05) 100%);
+    pointer-events: none;
+}
+
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonials-header h2 {
+    color: var(--primary-color);
+    font-size: 2.8em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.testimonials-header p {
+    color: var(--text-secondary);
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial-card {
+    background: var(--background-color);
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 40px var(--shadow-color);
+    transition: all 0.4s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px var(--shadow-color);
+}
+
+.testimonial-content {
+    position: relative;
+}
+
+.quote-icon {
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2em;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.testimonial-text {
+    color: var(--text-secondary);
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.author-info h4 {
+    color: var(--primary-color);
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.author-title {
+    color: var(--text-light);
+    font-size: 0.95em;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.rating {
+    display: flex;
+    gap: 2px;
+}
+
+.rating i {
+    color: #ffd700;
+    font-size: 0.9em;
+}
+
+.testimonials-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonials-stats .stat-item {
+    background: var(--background-color);
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.testimonials-stats .stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px var(--shadow-color);
+}
+
+.testimonials-stats .stat-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.testimonials-stats .stat-label {
+    color: var(--text-secondary);
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
 /* CTA Section */
 .cta-section {
     padding: 80px 0;
@@ -385,6 +557,180 @@ body {
     flex-wrap: wrap;
 }
 
+/* Share Your Story Section */
+.share-story-section {
+    text-align: center;
+    margin-top: 60px;
+    padding: 40px;
+    background: var(--background-color);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    position: relative;
+    z-index: 2;
+}
+
+.share-story-content h3 {
+    color: var(--primary-color);
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.share-story-content p {
+    color: var(--text-secondary);
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.share-story-btn {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 18px 35px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+.share-story-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px var(--shadow-color);
+    color: white;
+}
+
+.share-story-btn i {
+    font-size: 1.2em;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.whatsapp-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn:hover::before {
+    opacity: 1;
+}
+
+.whatsapp-btn i {
+    font-size: 1.8em;
+    position: relative;
+    z-index: 2;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-tooltip {
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.whatsapp-tooltip::before {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 5px solid var(--primary-color);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+.whatsapp-btn:hover .whatsapp-tooltip {
+    opacity: 1;
+    visibility: visible;
+    left: 75px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Dark mode support for WhatsApp button */
+[data-theme="dark"] .whatsapp-btn {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+}
+
+[data-theme="dark"] .whatsapp-btn:hover {
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+}
+
+[data-theme="dark"] .whatsapp-tooltip {
+    background: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .whatsapp-tooltip::before {
+    border-left-color: var(--primary-color);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-content {
@@ -413,6 +759,33 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
     
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .testimonials-header h2 {
+        font-size: 2.2em;
+    }
+    
+    .testimonials-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .share-story-section {
+        margin-top: 40px;
+        padding: 30px 20px;
+    }
+    
+    .share-story-content h3 {
+        font-size: 1.6em;
+    }
+    
+    .share-story-content p {
+        font-size: 1em;
+    }
+    
     .cta-buttons {
         flex-direction: column;
         align-items: center;
@@ -422,6 +795,25 @@ body {
         width: 100%;
         max-width: 300px;
         justify-content: center;
+    }
+    
+    /* WhatsApp button mobile adjustments */
+    .whatsapp-float {
+        left: 20px;
+        bottom: 20px;
+    }
+    
+    .whatsapp-btn {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .whatsapp-btn i {
+        font-size: 1.6em;
+    }
+    
+    .whatsapp-tooltip {
+        display: none;
     }
 }
 
@@ -450,8 +842,70 @@ body {
         grid-template-columns: 1fr;
     }
     
+    .testimonials-section {
+        padding: 60px 0;
+    }
+    
+    .testimonials-header h2 {
+        font-size: 1.8em;
+    }
+    
+    .testimonials-header p {
+        font-size: 1em;
+    }
+    
+    .testimonial-card {
+        padding: 25px 20px;
+    }
+    
+    .testimonial-text {
+        font-size: 1em;
+    }
+    
+    .testimonials-stats {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .testimonials-stats .stat-item {
+        padding: 20px 15px;
+    }
+    
+    .share-story-section {
+        margin-top: 30px;
+        padding: 25px 15px;
+    }
+    
+    .share-story-content h3 {
+        font-size: 1.4em;
+    }
+    
+    .share-story-content p {
+        font-size: 0.95em;
+    }
+    
+    .share-story-btn {
+        padding: 15px 25px;
+        font-size: 1em;
+    }
+    
     .cta-content h2 {
         font-size: 2em;
+    }
+    
+    /* WhatsApp button small screen adjustments */
+    .whatsapp-float {
+        left: 15px;
+        bottom: 15px;
+    }
+    
+    .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .whatsapp-btn i {
+        font-size: 1.4em;
     }
 }
 

@@ -93,6 +93,19 @@ body {
     border-radius: 8px;
 }
 
+.navbar > li > a.active {
+    color: #fff !important;
+    background: var(--gradient-primary, linear-gradient(135deg, #285fa8 0%, #1d406e 100%));
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px var(--shadow-color, rgba(42, 93, 159, 0.15));
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    padding-left: 25px;
+    padding-right: 25px;
+    transition: all 0.3s cubic-bezier(.4,2,.6,1);
+}
+
 /* Dropdown styles */
 .dropdown-menu {
     display: none;
@@ -188,6 +201,19 @@ body {
     color: var(--secondary-color, #1d406e);
     text-decoration: underline;
     background: var(--surface-color, #f0f4fa);
+}
+
+.dropdown-trigger.active {
+    color: #fff !important;
+    background: var(--gradient-primary, linear-gradient(135deg, #285fa8 0%, #1d406e 100%));
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px var(--shadow-color, rgba(42, 93, 159, 0.15));
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    padding-left: 25px;
+    padding-right: 25px;
+    transition: all 0.3s cubic-bezier(.4,2,.6,1);
 }
 
 /* Theme toggle button positioning */

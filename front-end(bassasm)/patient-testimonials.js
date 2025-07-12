@@ -1,11 +1,11 @@
-// Professional Dark Mode and Interactive Features for AL-BOQAI Center Our Services Pages
+// Professional Patient Testimonials Page JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize dark mode functionality
     initializeDarkMode();
     
-    // Initialize interactive features
-    initializeInteractiveFeatures();
+    // Initialize form functionality
+    initializeFormFunctionality();
     
     // Initialize animations
     initializeAnimations();
@@ -99,85 +99,186 @@ function initializeDarkMode() {
     }
 }
 
-// Interactive Features
-function initializeInteractiveFeatures() {
-    // Enhanced hover effects for cards and sections
-    const interactiveElements = document.querySelectorAll('.technique-card, .element-card, .component-card, .benefit-item, .condition-category, .application-category, .detail-item, .image-container, .cta-card');
+// Form Functionality
+function initializeFormFunctionality() {
+    const form = document.getElementById('testimonialForm');
+    const testimonialText = document.getElementById('testimonialText');
+    const charCount = document.getElementById('charCount');
+    const submitBtn = document.querySelector('.submit-btn');
     
-    interactiveElements.forEach(element => {
-        element.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.02)';
-            this.style.boxShadow = '0 10px 30px var(--shadow-color, rgba(0, 0, 0, 0.15))';
+    // Character counter for testimonial text
+    if (testimonialText && charCount) {
+        testimonialText.addEventListener('input', function() {
+            const length = this.value.length;
+            charCount.textContent = length;
+            
+            // Change color based on character count
+            if (length > 900) {
+                charCount.style.color = '#e74c3c';
+            } else if (length > 800) {
+                charCount.style.color = '#f39c12';
+            } else {
+                charCount.style.color = 'var(--text-light)';
+            }
+            
+            // Prevent typing beyond 1000 characters
+            if (length >= 1000) {
+                this.value = this.value.substring(0, 1000);
+                charCount.textContent = 1000;
+            }
+        });
+    }
+    
+    // Form submission
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                submitForm();
+            }
+        });
+    }
+    
+    // Real-time form validation
+    const requiredFields = form.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+        field.addEventListener('blur', function() {
+            validateField(this);
         });
         
-        element.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '0 4px 20px var(--shadow-color, rgba(0, 0, 0, 0.08))';
-        });
-    });
-    
-    // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+        field.addEventListener('input', function() {
+            if (this.classList.contains('error')) {
+                validateField(this);
             }
         });
     });
+}
+
+// Form Validation
+function validateForm() {
+    const form = document.getElementById('testimonialForm');
+    const fields = form.querySelectorAll('[required]');
+    let isValid = true;
     
-    // Enhanced image hover effects
-    const images = document.querySelectorAll('.about-image');
-    images.forEach(img => {
-        img.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-            this.style.filter = 'brightness(1.1)';
-        });
+    fields.forEach(field => {
+        if (!validateField(field)) {
+            isValid = false;
+        }
+    });
+    
+    // Validate email format
+    const emailField = document.getElementById('patientEmail');
+    if (emailField && emailField.value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailField.value)) {
+            showFieldError(emailField, 'Please enter a valid email address');
+            isValid = false;
+        }
+    }
+    
+    // Validate testimonial length
+    const testimonialField = document.getElementById('testimonialText');
+    if (testimonialField && testimonialField.value.length < 50) {
+        showFieldError(testimonialField, 'Testimonial must be at least 50 characters long');
+        isValid = false;
+    }
+    
+    return isValid;
+}
+
+function validateField(field) {
+    const value = field.value.trim();
+    
+    if (field.hasAttribute('required') && !value) {
+        showFieldError(field, 'This field is required');
+        return false;
+    }
+    
+    // Remove error state
+    removeFieldError(field);
+    return true;
+}
+
+function showFieldError(field, message) {
+    removeFieldError(field);
+    
+    field.classList.add('error');
+    field.style.borderColor = '#e74c3c';
+    
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'field-error';
+    errorDiv.textContent = message;
+    errorDiv.style.cssText = `
+        color: #e74c3c;
+        font-size: 0.85em;
+        margin-top: 5px;
+        font-weight: 500;
+    `;
+    
+    field.parentNode.appendChild(errorDiv);
+}
+
+function removeFieldError(field) {
+    field.classList.remove('error');
+    field.style.borderColor = '';
+    
+    const errorDiv = field.parentNode.querySelector('.field-error');
+    if (errorDiv) {
+        errorDiv.remove();
+    }
+}
+
+// Form Submission
+function submitForm() {
+    const form = document.getElementById('testimonialForm');
+    const submitBtn = document.querySelector('.submit-btn');
+    
+    // Add loading state
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    
+    // Simulate form submission (replace with actual API call)
+    setTimeout(() => {
+        // Remove loading state
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Testimonial';
         
-        img.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-            this.style.filter = 'brightness(1)';
-        });
-    });
+        // Show success message
+        showSuccessMessage('Thank you! Your testimonial has been submitted successfully. We will review it and publish it soon.');
+        
+        // Reset form
+        form.reset();
+        document.getElementById('charCount').textContent = '0';
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+    }, 2000);
+}
+
+// Success Message Display
+function showSuccessMessage(message) {
+    const successDiv = document.createElement('div');
+    successDiv.className = 'success-message';
+    successDiv.textContent = message;
     
-    // CTA button enhancements
-    const ctaButtons = document.querySelectorAll('.cta-button');
-    ctaButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            // Add ripple effect
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(255, 255, 255, 0.3);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s linear;
-                pointer-events: none;
-            `;
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
+    document.body.appendChild(successDiv);
+    
+    // Animate in
+    setTimeout(() => {
+        successDiv.classList.add('show');
+    }, 100);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        successDiv.classList.remove('show');
+        setTimeout(() => {
+            successDiv.remove();
+        }, 300);
+    }, 5000);
 }
 
 // Animation System
@@ -199,7 +300,7 @@ function initializeAnimations() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.content-wrapper, .technique-card, .element-card, .component-card, .benefit-item, .condition-category, .application-category, .detail-item, .image-container, .cta-card');
+    const animateElements = document.querySelectorAll('.testimonial-card, .submit-form-container, .stat-item');
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -207,14 +308,14 @@ function initializeAnimations() {
         observer.observe(el);
     });
     
-    // Staggered animation for list items
-    const listItems = document.querySelectorAll('.technique-card, .element-card, .component-card, .benefit-item');
-    listItems.forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateX(-20px)';
-        item.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+    // Staggered animation for form groups
+    const formGroups = document.querySelectorAll('.form-group');
+    formGroups.forEach((group, index) => {
+        group.style.opacity = '0';
+        group.style.transform = 'translateX(-20px)';
+        group.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
         
-        const itemObserver = new IntersectionObserver((entries) => {
+        const groupObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -223,7 +324,7 @@ function initializeAnimations() {
             });
         }, { threshold: 0.1 });
         
-        itemObserver.observe(item);
+        groupObserver.observe(group);
     });
 }
 
@@ -240,21 +341,6 @@ function initializePerformanceOptimizations() {
             handleScrollEffects();
         }, 16);
     });
-    
-    // Lazy loading for images
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
     
     // Preload critical resources
     preloadCriticalResources();
@@ -282,8 +368,7 @@ function handleScrollEffects() {
 function preloadCriticalResources() {
     // Preload critical images
     const criticalImages = [
-        'https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png',
-        'https://alboqai.com/wp-content/uploads/2022/12/IMG_2767-750x500.jpg'
+        'https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png'
     ];
     
     criticalImages.forEach(src => {
@@ -323,8 +408,8 @@ window.addEventListener('error', function(e) {
 });
 
 // Console Welcome Message
-console.log('%cWelcome to AL-BOQAI Center Our Services! 🏥', 'color: #2a5d9f; font-size: 18px; font-weight: bold;');
-console.log('%cProfessional Dark Mode & Interactive Features Enabled', 'color: #666; font-size: 12px;');
+console.log('%cWelcome to AL-BOQAI Center Patient Testimonials! 🏥', 'color: #2a5d9f; font-size: 18px; font-weight: bold;');
+console.log('%cProfessional Testimonials System Enabled', 'color: #666; font-size: 12px;');
 console.log('%cPress Ctrl+T to toggle dark mode', 'color: #2a5d9f; font-size: 12px; font-style: italic;');
 
 // Export functions for potential external use
@@ -355,5 +440,11 @@ window.ALBOQAICenter = {
                 }
             }
         }
+    },
+    
+    submitTestimonial: function(formData) {
+        // This function can be used for external form submissions
+        console.log('Testimonial submitted:', formData);
+        showSuccessMessage('Testimonial submitted successfully!');
     }
 }; 
