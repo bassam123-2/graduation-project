@@ -6,6 +6,7 @@
     font-size: 0.98em;
     margin-top: 40px;
 }
+
 .footer-content {
     max-width: 1100px;
     margin: 0 auto;
@@ -14,35 +15,80 @@
     gap: 40px;
     justify-content: space-between;
 }
+
 .footer-section {
     flex: 1 1 180px;
     min-width: 160px;
     margin-bottom: 20px;
 }
+
 .footer-section h4 {
     color: #fff;
     margin-bottom: 10px;
     font-size: 1.1em;
 }
+
 .footer-section ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
 .footer-section ul li {
     margin-bottom: 6px;
     color: #d0d0d0;
 }
+
 .footer-section ul li a {
     color: #d0d0d0;
     text-decoration: none;
 }
+
 .footer-section ul li a:hover {
     text-decoration: underline;
 }
+
 .footer-bottom {
     text-align: center;
     color: #bbb;
     margin-top: 10px;
     font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        gap: 30px;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .footer-section {
+        flex: 1 1 200px;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 25px 0 10px 0;
+    }
+    
+    .footer-content {
+        gap: 25px;
+        padding: 0 15px;
+    }
+    
+    .footer-section {
+        flex: 1 1 100%;
+        min-width: auto;
+    }
+    
+    .footer-section h4 {
+        font-size: 1em;
+    }
+    
+    .footer-section ul li {
+        font-size: 0.9em;
+    }
 } 

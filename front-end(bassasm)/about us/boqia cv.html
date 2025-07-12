@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Elaji Center</title>
+    <title>Boqia CV | Elaji Center</title>
     <link rel="stylesheet" href="boqia cv.css">
     <link rel="stylesheet" href="../header.css">
-      <link rel="stylesheet" href="../footer.css">
+    <link rel="stylesheet" href="../footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<!--logo-->
 <body>
 <div class="header">
        <div class="logo">
@@ -18,7 +18,6 @@
   </a>
 </div>
 <!--header-->
-
 <ul class="navbar">
   <li><a href="../home.html">Home</a></li>
   <li><a href="success-stories.html">Success Stories</a></li>
@@ -40,11 +39,82 @@
   </li>
   <li><a href="../book appointment/book.html">Book Appointment</a></li>
   <li><a href="../book appointment/contact.html">Contact Us</a></li>
-  <li><a href="../book appointment/sign in.html " class="signin-link">Sign In</a></li>
+  <li><a href="../book appointment/sign in.html" class="signin-link">Sign In</a></li>
 </ul>
 
+<!-- Dark Mode Toggle -->
+<div class="theme-toggle">
+    <button id="theme-toggle-btn" class="theme-btn">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+</div>
+
+<!-- CV Content -->
+<div class="cv-container">
+    <div class="cv-header">
+        <h1>Dr. Mohammad Khaled Al-Tamimi</h1>
+        <p class="cv-subtitle">Founder & President - AL-BOQAI Center</p>
+        <p class="cv-description">Distinguished Specialist in Physical Therapy and Rehabilitation</p>
+    </div>
+    
+    <div class="cv-content">
+        <div class="profile-section">
+            <img src="https://alboqai.com/wp-content/uploads/2022/12/IMG_3089-750x500.jpg" alt="Dr. Mohammad Khaled Al-Tamimi">
+            <div class="profile-text">
+                <h2>Founder & President</h2>
+                <h3>Dr. Mohammad Khaled Al-Tamimi</h3>
+                <p>
+                    Dr. Mohammad Khaled Al-Tamimi is a distinguished specialist in physical therapy and rehabilitation, with a PhD in Physical Therapy. He is the founder and president of the Elaji Integrated Center, and a member of several international medical associations. Dr. Al-Tamimi has contributed to the development of modern rehabilitation protocols and has participated in numerous conferences and workshops. He is dedicated to providing the highest standards of care and innovation in the field.
+                </p>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <img src="https://alboqai.com/wp-content/uploads/2022/12/313259411_5763085970393457_1000904680271549706_n.jpg" alt="Rehabilitation Specialist">
+            <div class="profile-text">
+                <h2>In the Field of Rehabilitation & Treatment</h2>
+                <ul>
+                    <li>Specialist in advanced rehabilitation and physical therapy.</li>
+                    <li>Extensive experience in treating complex cases and developing personalized treatment plans.</li>
+                    <li>Focus on continuous learning and development.</li>
+                    <li>Active participant in scientific research and medical conferences.</li>
+                    <li>Trainer and lecturer in rehabilitation sciences at several academic institutions.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <img src="https://alboqai.com/wp-content/uploads/2023/01/IMG_3164-scaled.jpg" alt="Social Work">
+            <div class="profile-text">
+                <h2>In Social Work</h2>
+                <ul>
+                    <li>Active member in community service and awareness campaigns.</li>
+                    <li>Organizer of health seminars and workshops.</li>
+                    <li>Promotes social responsibility and volunteerism.</li>
+                    <li>Supports initiatives for people with special needs.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <img src="https://alboqai.com/wp-content/uploads/2022/12/CamScanner-%D9%A1%D9%A0-%D9%A0%D9%A1-%D9%A2%D9%A0%D9%A2%D9%A2-%D9%A1%D9%A3.%D9%A1%D9%A3_11-scaled.jpg" alt="Achievements">
+            <div class="profile-text">
+                <h2>Achievements</h2>
+                <h3>Physical Therapy Innovations and Awards</h3>
+                <ul class="check-list">
+                    <li>Developed new protocols for post-surgical rehabilitation.</li>
+                    <li>Received national awards for excellence in physical therapy.</li>
+                    <li>Published research in international medical journals.</li>
+                    <li>Led successful community health initiatives.</li>
+                    <li>Mentored young professionals in the field.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--footer-->
- <div class="footer">
+<div class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -76,4 +146,7 @@
             &copy; 2025 AL-BOQAI CENTER. All rights reserved.
         </div>
     </div>
+
+    <script src="about-us-dark-mode.js"></script>
+</body>
 </html>

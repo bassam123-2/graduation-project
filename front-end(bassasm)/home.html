@@ -3,46 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Elaji Center</title>
+    <title>AL-BOQAI Center | Professional Rehabilitation & Physical Therapy</title>
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="header.css">
-      <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<!--logo-->
 <body>
-<div class="header">
-       <div class="logo">
-  <a href="home.html" style="display: flex; align-items: center; text-decoration: none;">
-    <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
- 
-  </a>
-</div>
-<!--header-->
-<ul class="navbar">
-  <li><a href="home.html">Home</a></li>
-  <li><a href="success-stories.html">Success Stories</a></li>
-  <li class="dropdown">
-    <span class="dropdown-trigger">ABOUT US</span>
-    <ul class="dropdown-menu">
-      <li><a href="about us/aboutus.html">About us</a></li>
-      <li><a href="about us/boqia cv.html">Boqia cv</a></li>
-      <li><a href="about us/targeted group.html">Targeted People</a></li>
-    </ul>
-  </li>
-  <li class="dropdown">
-    <span class="dropdown-trigger">Our Services</span>
-    <ul class="dropdown-menu">
-      <li><a href="our services/manual therapy.html">Manual Therapy</a></li>
-      <li><a href="our services/physical therapy.html">Physical Therapy</a></li>
-      <li><a href="our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
-    </ul>
-  </li>
-  <li><a href="book appointment/book.html">Book Appointment</a></li>
-  <li><a href="contact.html">Contact Us</a></li>
-  <li><a href="book appointment/sign in.html" class="signin-link">Sign In</a></li>
-</ul>
-<!--footer -->
-     <div class="footer">
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <a href="home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+            </a>
+        </div>
+        
+        <!-- Navigation -->
+        <ul class="navbar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="success-stories.html">Success Stories</a></li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">ABOUT US</span>
+                <ul class="dropdown-menu">
+                    <li><a href="about us/aboutus.html">About us</a></li>
+                    <li><a href="about us/boqia cv.html">Boqia cv</a></li>
+                    <li><a href="about us/targeted group.html">Targeted People</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">Our Services</span>
+                <ul class="dropdown-menu">
+                    <li><a href="our services/manual therapy.html">Manual Therapy</a></li>
+                    <li><a href="our services/physical therapy.html">Physical Therapy</a></li>
+                    <li><a href="our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+                </ul>
+            </li>
+            <li><a href="book appointment/book.html">Book Appointment</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="book appointment/sign in.html" class="signin-link">Sign In</a></li>
+        </ul>
+        
+        <!-- Dark Mode Toggle -->
+        <div class="theme-toggle">
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Welcome to AL-BOQAI Center</h1>
+                <p class="hero-subtitle">Excellence in Rehabilitation & Physical Therapy Services</p>
+                <p class="hero-description">Leading the way in comprehensive rehabilitation care with cutting-edge technology and compassionate expertise. Our team of specialists is dedicated to helping you achieve optimal physical health and enhanced quality of life.</p>
+                <div class="hero-buttons">
+                    <a href="book appointment/book.html" class="btn btn-primary">Book Appointment</a>
+                    <a href="about us/aboutus.html" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://alboqai.com/wp-content/uploads/2022/12/IMG_2767-750x500.jpg" alt="AL-BOQAI Center">
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Services Section -->
+    <section class="quick-services">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <h3>Manual Therapy</h3>
+                    <p>Advanced hands-on treatment techniques for optimal recovery and pain relief.</p>
+                    <a href="our services/manual therapy.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Physical Therapy</h3>
+                    <p>Comprehensive rehabilitation programs designed to restore movement and function.</p>
+                    <a href="our services/physical therapy.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Body Engineering</h3>
+                    <p>Advanced biomechanical analysis and precision treatment for complex conditions.</p>
+                    <a href="our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h4>Expert Team</h4>
+                    <p>Highly qualified therapists with years of experience and specialized training.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>Available on Friday</h4>
+                    <p>Specialized expertise available on Fridays for your convenience and care.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h4>Online Booking</h4>
+                    <p>Easy online appointment booking through our website with simple steps.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h4>Comprehensive Care</h4>
+                    <p>Complete care journey for welcoming your newborn with various natural birth programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Patients Treated</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Care Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Recovery Journey?</h2>
+                <p>Book your consultation today and experience the benefits of professional rehabilitation care.</p>
+                <div class="cta-buttons">
+                    <a href="book appointment/book.html" class="btn btn-primary">Book Appointment</a>
+                    <a href="tel:+962775252444" class="btn btn-outline">Call Us: +962775252444</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -59,7 +198,7 @@
                 <ul>
                     <li>Email: alboqaiworld@gmail.com</li>
                     <li>Phone: +962775252444</li>
-                    <li>al-andlos road,Irbid </li>
+                    <li>al-andlos road, Irbid</li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -74,3 +213,7 @@
             &copy; 2025 AL-BOQAI CENTER. All rights reserved.
         </div>
     </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

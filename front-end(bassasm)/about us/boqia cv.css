@@ -1,0 +1,257 @@
+/* CV Page Styles with Dark Mode Support */
+
+/* CSS Variables for Theme Switching */
+:root {
+    /* Light Theme Colors */
+    --primary-color: #2a5d9f;
+    --secondary-color: #1d406e;
+    --background-color: #ffffff;
+    --surface-color: #f8f9fa;
+    --text-primary: #333333;
+    --text-secondary: #555555;
+    --text-light: #777777;
+    --border-color: #e1e8ed;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --gradient-primary: linear-gradient(135deg, #2a5d9f 0%, #1d406e 100%);
+    --gradient-secondary: linear-gradient(135deg, #f8f9fa 0%, #e8f2ff 100%);
+}
+
+[data-theme="dark"] {
+    /* Dark Theme Colors */
+    --primary-color: #4a7bb8;
+    --secondary-color: #2a5d9f;
+    --background-color: #1a1a1a;
+    --surface-color: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-light: #b0b0b0;
+    --border-color: #404040;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --gradient-primary: linear-gradient(135deg, #4a7bb8 0%, #2a5d9f 100%);
+    --gradient-secondary: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+}
+
+/* Smooth transitions for theme switching */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background-color: var(--background-color, #f7f7f7);
+    color: var(--text-primary, #333);
+    transition: all 0.3s ease;
+}
+
+.cv-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.cv-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 25px 0;
+    background: linear-gradient(135deg, #2a5d9f 0%, #1d406e 100%);
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(42, 93, 159, 0.15);
+}
+
+.cv-header h1 {
+    font-size: 2.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.cv-header .cv-subtitle {
+    font-size: 1.2em;
+    color: #e8f2ff;
+    margin: 8px 0;
+    font-weight: 500;
+}
+
+.cv-header .cv-description {
+    font-size: 1em;
+    color: #cce4ff;
+    margin: 0;
+    font-weight: 300;
+}
+
+.cv-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.profile-section {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    background: var(--background-color, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-color, rgba(0, 0, 0, 0.08));
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color, transparent);
+}
+
+.profile-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.profile-section:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.profile-section img {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(42, 93, 159, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.profile-section img:hover {
+    transform: scale(1.02);
+}
+
+.profile-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.profile-text h2 {
+    color: var(--primary-color, #2a5d9f);
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--surface-color, #e8f2ff);
+}
+
+.profile-text h3 {
+    color: var(--secondary-color, #1d406e);
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 15px 0 15px 0;
+}
+
+.profile-text p {
+    color: var(--text-secondary, #555);
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.profile-text ul {
+    color: var(--text-secondary, #555);
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.profile-text ul li {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.profile-text ul li:before {
+    content: "•";
+    color: var(--primary-color, #2a5d9f);
+    font-weight: bold;
+    position: absolute;
+    left: -20px;
+}
+
+.check-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.check-list li {
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.check-list li:before {
+    content: "✓";
+    color: var(--primary-color, #2a5d9f);
+    font-weight: bold;
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-section {
+        flex-direction: column !important;
+        gap: 25px;
+        padding: 25px;
+    }
+    
+    .profile-section img {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .cv-header h1 {
+        font-size: 1.8em;
+    }
+    
+    .cv-header .cv-subtitle {
+        font-size: 1.1em;
+    }
+    
+    .profile-text h2 {
+        font-size: 1.5em;
+    }
+    
+    .profile-text h3 {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .cv-container {
+        padding: 0 15px;
+        margin: 20px auto;
+    }
+    
+    .cv-header {
+        padding: 20px 15px;
+    }
+    
+    .cv-header h1 {
+        font-size: 1.6em;
+    }
+    
+    .cv-header .cv-subtitle {
+        font-size: 1em;
+    }
+    
+    .profile-section {
+        padding: 20px;
+    }
+    
+    .profile-text h2 {
+        font-size: 1.3em;
+    }
+    
+    .profile-text p,
+    .profile-text ul {
+        font-size: 1em;
+    }
+    
+    .profile-section img {
+        height: 180px;
+    }
+}
