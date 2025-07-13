@@ -208,8 +208,12 @@ function initializePerformanceOptimizations() {
             clearTimeout(scrollTimeout);
         }
         scrollTimeout = setTimeout(() => {
-            // Handle scroll-based animations or effects
-            handleScrollEffects();
+            const header = document.querySelector('.header');
+            if (header) {
+                header.style.background = 'linear-gradient(90deg, #7886e9 0%, #7b5fc9 100%)';
+                header.style.backdropFilter = 'none';
+                header.style.boxShadow = '0 2px 8px rgba(123, 95, 201, 0.07)';
+            }
         }, 16);
     });
     

@@ -126,9 +126,14 @@
 }
 
 body {
-    background-color: var(--background-color, #f7f7f7);
+    background: var(--gradient-secondary, linear-gradient(135deg, #f8f9fa 0%, #e8f2ff 100%));
     color: var(--text-primary, #333);
     transition: all 0.3s ease;
+}
+
+[data-theme="dark"] body {
+    background: var(--gradient-secondary, linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%));
+    color: #f1f1f1;
 }
 
 .about-container {

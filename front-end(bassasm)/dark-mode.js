@@ -47,21 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
     if (header) {
         let lastScrollTop = 0;
-        
         window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'var(--background-color)';
-                header.style.backdropFilter = 'none';
-                header.style.boxShadow = 'none';
-            }
-            
-            lastScrollTop = scrollTop;
+            // Always keep the gradient background
+            header.style.background = 'linear-gradient(90deg, #7886e9 0%, #7b5fc9 100%)';
+            header.style.backdropFilter = 'none';
+            header.style.boxShadow = '0 2px 8px rgba(123, 95, 201, 0.07)';
+            lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         });
     }
     

@@ -13,12 +13,14 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 18px 40px 0 40px;
-    background: var(--background-color, #fff);
+    background: linear-gradient(90deg, #7886e9 0%, #7b5fc9 100%);
+    box-shadow: 0 2px 8px rgba(123, 95, 201, 0.07);
     transition: all 0.3s ease;
 }
 
 .header {
-    background: var(--background-color, #fff);
+    background: linear-gradient(90deg, #7886e9 0%, #7b5fc9 100%);
+    color: #fff;
     padding: 20px 0 10px 0;
     border-bottom: 1px solid var(--border-color, #e0e0e0);
     text-align: left;
@@ -42,13 +44,16 @@ body {
     margin: 15px 0 0 30px;
 }
 
-.header nav a {
-    color: var(--primary-color, #2a5d9f);
-    text-decoration: none;
-    margin: 0 12px;
-    font-weight: bold;
-    font-size: 1em;
-    transition: all 0.3s ease;
+.header nav a, .navbar > li > a, .dropdown-trigger {
+    color: #222;
+    text-shadow: 0 1px 2px rgba(123, 95, 201, 0.10);
+}
+
+[data-theme="dark"] .header nav a,
+[data-theme="dark"] .navbar > li > a,
+[data-theme="dark"] .dropdown-trigger {
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(123, 95, 201, 0.15);
 }
 
 .header nav a:hover {
@@ -63,8 +68,8 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    background: var(--background-color, #fff);
-    border-bottom: 1px solid var(--border-color, #eee);
+    background: transparent;
+    border-bottom: none;
     gap: 60px;
     transition: all 0.3s ease;
 }
@@ -77,7 +82,7 @@ body {
 .navbar > li > a {
     display: block;
     padding: 18px 0;
-    color: var(--primary-color, #285fa8);
+    color: #fff;
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
@@ -87,10 +92,9 @@ body {
 
 .navbar > li > a:hover,
 .navbar > li > a:focus {
-    color: var(--secondary-color, #1d406e);
+    color: #ffe082;
     text-decoration: underline;
-    background: var(--surface-color, #f0f4fa);
-    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
 }
 
 .navbar > li > a.active {
@@ -187,7 +191,7 @@ body {
 .dropdown-trigger {
     display: block;
     padding: 18px 0;
-    color: var(--primary-color, #285fa8);
+    color: #fff;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -198,9 +202,9 @@ body {
 
 .dropdown-trigger:hover,
 .dropdown-trigger:focus {
-    color: var(--secondary-color, #1d406e);
+    color: #ffe082;
     text-decoration: underline;
-    background: var(--surface-color, #f0f4fa);
+    background: rgba(255,255,255,0.08);
 }
 
 .dropdown-trigger.active {
