@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | AL-BOQAI Center</title>
+    <link rel="stylesheet" href="book.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .contact-container {
+            max-width: 500px;
+            margin: 60px auto 40px auto;
+            background: var(--background-color, #fff);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px var(--shadow-color, rgba(42, 93, 159, 0.12));
+            padding: 40px 32px 32px 32px;
+            text-align: center;
+        }
+        .contact-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary-color, #2a5d9f);
+            margin-bottom: 18px;
+        }
+        .contact-phone {
+            font-size: 1.2em;
+            margin-bottom: 24px;
+            color: var(--text-primary, #333);
+            font-weight: 500;
+        }
+        .contact-socials {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+        .contact-socials a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--surface-color, #f0f4fa);
+            color: #2a5d9f;
+            font-size: 2em;
+            box-shadow: 0 2px 8px var(--shadow-color, rgba(42, 93, 159, 0.10));
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+        .contact-socials a:hover {
+            background: var(--gradient-primary, linear-gradient(135deg, #2a5d9f 0%, #1d406e 100%));
+            color: #fff;
+            transform: translateY(-4px) scale(1.08);
+        }
+        .contact-label {
+            font-size: 1em;
+            color: var(--text-secondary, #555);
+            margin-top: 8px;
+        }
+        .contact-location {
+            margin: 12px 0 24px 0;
+            color: var(--text-primary, #333);
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<div class="header">
+    <div class="logo">
+        <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
+            <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+        </a>
+    </div>
+    <ul class="navbar">
+        <li><a href="../home.html">Home</a></li>
+        <li><a href="../patient-testimonials.html">Success Stories</a></li>
+        <li class="dropdown">
+            <span class="dropdown-trigger">ABOUT US</span>
+            <ul class="dropdown-menu">
+                <li><a href="../about us/aboutus.html">About us</a></li>
+                <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
+                <li><a href="../about us/targeted group.html">Targeted People</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <span class="dropdown-trigger">Our Services</span>
+            <ul class="dropdown-menu">
+                <li><a href="../our services/manual therapy.html">Manual Therapy</a></li>
+                <li><a href="../our services/physical therapy.html">Physical Therapy</a></li>
+                <li><a href="../our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+            </ul>
+        </li>
+        <li><a href="book.html">Book Appointment</a></li>
+        <li><a href="contact.html" class="active">Contact Us</a></li>
+        <li><a href="sign in.html" class="signin-link">Sign In</a></li>
+    </ul>
+    <div class="theme-toggle">
+        <button id="theme-toggle-btn" class="theme-btn">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </div>
+</div>
+<!-- Contact Content -->
+<div class="contact-container animated">
+    <div class="contact-title">Contact Us</div>
+    <div class="contact-phone">
+        <i class="fas fa-phone-alt"></i> +1234567890
+    </div>
+    <div class="contact-label">Location:</div>
+    <div class="contact-location">
+        <i class="fas fa-map-marker-alt" style="color: #e53935; margin-right: 8px;"></i>
+        123 Main Street, City, Country
+        <br>
+        <a href="https://www.google.com/maps?q=123+Main+Street+City+Country" target="_blank" style="color: #2a5d9f; text-decoration: underline; font-size: 0.95em;">View on Google Maps</a>
+    </div>
+    <div class="contact-label">Connect with us:</div>
+    <div class="contact-socials">
+        <a href="https://wa.me/1234567890" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/yourprofile" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:yourcenter@gmail.com" target="_blank" title="Gmail"><i class="fas fa-envelope"></i></a>
+        <a href="https://x.com/yourprofile" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://youtube.com/yourchannel" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://facebook.com/yourpage" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+    </div>
+</div>
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../home.html">Home</a></li>
+                <li><a href="sign in.html">Sign In</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="../patient-testimonials.html">Success Stories</a></li>
+                <li><a href="book.html">Book Appointment</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <ul>
+                <li><a href="mailto:alboqaiworld@gmail.com" target="_blank">Email: alboqaiworld@gmail.com</a></li>
+                <li>Phone: +962775252444</li>
+                <li><a href="https://maps.app.goo.gl/8sPWu3tUFbbenmvd7?g_st=iw" target="_blank">al-andlos road, Irbid</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Working Hours</h4>
+            <ul>
+                <li>Saturday - Thursday: 8:00 - 16:00</li>
+                <li>Friday: Closed</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2025 AL-BOQAI CENTER. All rights reserved.
+    </div>
+</div>
+<script src="book-appointment-dark-mode.js"></script>
+</body>
+</html> 
