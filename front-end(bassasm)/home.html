@@ -21,7 +21,7 @@
         <!-- Navigation -->
         <ul class="navbar">
             <li><a href="home.html" class="active">Home</a></li>
-            <li><a href="#">Success Stories</a></li>
+            <li><a href="success-stories.html">Success Stories</a></li>
             <li class="dropdown">
                 <span class="dropdown-trigger">ABOUT US</span>
                 <ul class="dropdown-menu">
@@ -273,7 +273,7 @@
                 <div class="share-story-content">
                     <h3>Share Your Success Story</h3>
                     <p>Help others by sharing your recovery journey and experience at AL-BOQAI Center</p>
-                    <a href="patient-testimonials.html" class="btn btn-primary share-story-btn">
+                    <a href="success-stories.html" class="btn btn-primary share-story-btn">
                         <i class="fas fa-plus"></i>
                         Share Your Story
                     </a>
@@ -304,8 +304,8 @@
                 <ul>
                                 <li><a href="home.html">Home</a></li>
             <li><a href="book appointment/sign in.html">Sign In</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="patient-testimonials.html">Success Stories</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="success-stories.html">Success Stories</a></li>
             <li><a href="book appointment/book.html">Book Appointment</a></li>
                 </ul>
             </div>
@@ -344,15 +344,15 @@ const translations = {
     heroBtn1: 'حجز موعد',
     heroBtn2: 'اعرف المزيد',
     quickServices: 'خدماتنا السريعة',
-    serviceTitles: ['العلاج اليدوي', 'العلاج الطبيعي', 'هندسة الجسم'],
-    serviceDescs: ['...تقنيات علاجية متقدمة', '...برامج إعادة تأهيل شاملة', '...تحليل ميكانيكي متقدم'],
+    serviceTitles: ['العلاج اليدوي', 'العلاج الطبيعي', 'هندسة إعادة التأهيل'],
+    serviceDescs: ['تقنيات علاجية متقدمة باليد للشفاء الأمثل وتخفيف الألم.', 'برامج إعادة تأهيل شاملة مصممة لاستعادة الحركة والوظيفة.', 'تحليل ميكانيكي متقدم وعلاج دقيق للحالات المعقدة.'],
     features: ['فريق خبراء', 'متاح يوم الجمعة', 'حجز عبر الإنترنت', 'رعاية شاملة'],
-    featuresDesc: ['...معالجون مؤهلون', '...خبرة متخصصة', '...حجز سهل', '...رحلة رعاية كاملة'],
+    featuresDesc: ['معالجون مؤهلون تأهيلاً عالياً مع سنوات من الخبرة وتدريب متخصص.', 'خبرة متخصصة متاحة يوم الجمعة لراحتك ورعايتك.', 'حجز مواعيد سهل عبر الإنترنت من خلال موقعنا بخطوات بسيطة.', 'رحلة رعاية كاملة لاستقبال مولودك الجديد مع برامج الولادة الطبيعية المختلفة.'],
     stats: ['+500', '+15', '98%', '24/7'],
     statsLabels: ['مريض عولج', 'سنوات خبرة', 'نسبة النجاح', 'دعم متواصل'],
     testimonialsTitle: 'ماذا يقول مرضانا',
-    testimonialsDesc: 'قصص حقيقية من مرضى...',
-    testimonialText: '" "برنامج هندسة التأهيل في مركز البقاعي ساعدني في التعافي من إصابة رياضية شديدة. تقنياتهم المتقدمة ونهجهم المهني سرعا شفائي بما يتجاوز توقعاتي. الموظفون متعلمون ومهتمون بشكل لا يصدق."',
+    testimonialsDesc: 'قصص حقيقية من مرضى اختبروا شفاءً ملحوظاً في مركز البقاعي',
+    testimonialText: '"بعد حادث السيارة، اعتقدت أنني لن أمشي بشكل صحيح مرة أخرى. فريق مركز البقاعي عمل معجزات بتقنيات إعادة التأهيل المتقدمة. اليوم، عدت إلى أنشطتي الطبيعية بدون ألم. خبرتهم وتفانيهم لا مثيل لهما."',
     testimonialAuthor: 'أحمد الرشيد',
     testimonialRole: 'تعافي بعد حادث',
     footerQuick: 'روابط سريعة',
@@ -372,7 +372,7 @@ const translations = {
   },
   en: {
     header: [
-      'Home', 'Success Stories', 'About Us','About Us' , 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment', 'Contact Us', 'Sign In'
+      'Home', 'Success Stories', 'About Us', 'About us', 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment', 'Contact Us', 'Sign In'
     ],
     heroTitle: 'Welcome to AL-BOQAI Center',
     heroSubtitle: 'Excellence in Rehabilitation & Physical Therapy Services',
@@ -383,11 +383,11 @@ const translations = {
     serviceTitles: ['Manual Therapy', 'Physical Therapy', 'Body Engineering'],
     serviceDescs: ['Advanced hands-on treatment techniques for optimal recovery and pain relief.', 'Comprehensive rehabilitation programs designed to restore movement and function.', 'Advanced biomechanical analysis and precision treatment for complex conditions.'],
     features: ['Expert Team', 'Available on Friday', 'Online Booking', 'Comprehensive Care'],
-    featuresDesc: ['Highly qualified therapists...', 'Specialized expertise...', 'Easy online appointment...', 'Complete care journey...'],
+    featuresDesc: ['Highly qualified therapists with years of experience and specialized training.', 'Specialized expertise available on Fridays for your convenience and care.', 'Easy online appointment booking through our website with simple steps.', 'Complete care journey for welcoming your newborn with various natural birth programs.'],
     stats: ['500+', '15+', '98%', '24/7'],
     statsLabels: ['Patients Treated', 'Years Experience', 'Success Rate', 'Care Support'],
     testimonialsTitle: 'What Our Patients Say',
-    testimonialsDesc: 'Real stories from patients...',
+    testimonialsDesc: 'Real stories from patients who have experienced remarkable recovery at AL-BOQAI Center',
     testimonialText: '"After my car accident, I thought I would never walk properly again..."',
     testimonialAuthor: 'Ahmed Al-Rashid',
     testimonialRole: 'Post-Accident Recovery',
