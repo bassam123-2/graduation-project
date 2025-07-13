@@ -266,3 +266,25 @@ button[type="submit"]:active {
     font-size: 1em;
   }
 }
+
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.header-utils {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+[dir="rtl"] .header-flex {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .navbar {
+    justify-content: flex-start !important;
+    flex-direction: row-reverse !important;
+    text-align: right !important;
+    direction: rtl !important;
+}

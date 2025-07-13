@@ -136,6 +136,21 @@ body {
     color: #f1f1f1;
 }
 
+/* RTL: Make all text start from far right in Arabic mode */
+[dir="rtl"] body,
+[dir="rtl"] .about-container,
+[dir="rtl"] .about-header,
+[dir="rtl"] .about-content,
+[dir="rtl"] .about-text,
+[dir="rtl"] .about-header h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] p,
+[dir="rtl"] ul,
+[dir="rtl"] li {
+    text-align: right !important;
+}
+
 .about-container {
     max-width: 1200px;
     margin: 40px auto;
@@ -304,6 +319,21 @@ body {
     font-size: 0.9em;
     margin: 0;
     font-weight: 500;
+}
+
+/* RTL bullet alignment and text right-align for Arabic mode */
+[dir="rtl"] ul, [dir="rtl"] .check-list {
+    padding-left: 0 !important;
+    padding-right: 25px !important;
+    text-align: right !important;
+}
+[dir="rtl"] ul li, [dir="rtl"] .check-list li {
+    direction: rtl !important;
+    text-align: right !important;
+}
+[dir="rtl"] ul li:before, [dir="rtl"] .check-list li:before {
+    left: auto !important;
+    right: -20px !important;
 }
 
 /* Responsive Design */

@@ -12,42 +12,44 @@
 <!--logo-->
 <body>
 <div class="header">
-       <div class="logo">
-  <a href="../home.html.html" style="display: flex; align-items: center; text-decoration: none;">
-    <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
- 
-  </a>
-</div>
-<!--header-->
-<ul class="navbar">
-  <li><a href="../home.html">Home</a></li>
-  <li><a href="#">Success Stories</a></li>
-  <li class="dropdown">
-    <span class="dropdown-trigger">ABOUT US</span>
-    <ul class="dropdown-menu">
-      <li><a href="../about us/aboutus.html">About us</a></li>
-      <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
-      <li><a href="../about us/targeted group.html">Targeted People</a></li>
+  <div class="header-flex">
+    <div class="logo">
+      <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+      </a>
+    </div>
+    <ul class="navbar" id="main-navbar">
+      <li><a href="../home.html">Home</a></li>
+      <li><a href="#">Success Stories</a></li>
+      <li class="dropdown">
+        <span class="dropdown-trigger">ABOUT US</span>
+        <ul class="dropdown-menu">
+          <li><a href="../about us/aboutus.html">About us</a></li>
+          <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
+          <li><a href="../about us/targeted group.html">Targeted People</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <span class="dropdown-trigger">Our Services</span>
+        <ul class="dropdown-menu">
+          <li><a href="../our services/manual therapy.html">Manual Therapy</a></li>
+          <li><a href="../our services/physical therapy.html">Physical Therapy</a></li>
+          <li><a href="../our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+        </ul>
+      </li>
+      <li><a href="book.html">Book Appointment</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="sign in.html" class="signin-link">Sign In</a></li>
     </ul>
-  </li>
-  <li class="dropdown">
-    <span class="dropdown-trigger">Our Services</span>
-    <ul class="dropdown-menu">
-      <li><a href="../our services/manual therapy.html">Manual Therapy</a></li>
-      <li><a href="../our services/physical therapy.html">Physical Therapy</a></li>
-      <li><a href="../our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
-    </ul>
-  </li>
-  <li><a href="book.html">Book Appointment</a></li>
-  <li><a href="contact.html">Contact Us</a></li>
-  <li><a href="sign in.html" class="signin-link">Sign In</a></li>
-</ul>
-
-<!-- Dark Mode Toggle -->
-<div class="theme-toggle">
-    <button id="theme-toggle-btn" class="theme-btn">
+    <div class="header-utils">
+      <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+        <i class="fas fa-language"></i>
+      </button>
+      <button id="theme-toggle-btn" class="theme-btn">
         <i class="fas fa-moon" id="theme-icon"></i>
-    </button>
+      </button>
+    </div>
+  </div>
 </div>
 <!--register-->
 <div class="register-container">
@@ -155,4 +157,157 @@
     </div>
 
     <script src="book-appointment-dark-mode.js"></script>
+    <script>
+    // Language Toggle and Translation Logic
+    const translations = {
+      en: {
+        nav: [
+          "Home", "Success Stories", "About us", "Boqia cv", "Targeted People", "Our Services", "Manual Therapy", "Physical Therapy", "Rehabilitation Body Engineering", "Book Appointment", "Contact Us", "Sign In"
+        ],
+        register: {
+          h2: "Create Account",
+          username: "Username",
+          email: "Email",
+          password: "Password",
+          confirmPassword: "Confirm Password",
+          show: "Show",
+          hide: "Hide",
+          passwordsMatch: "Passwords match",
+          passwordsNotMatch: "Passwords do not match",
+          register: "Register",
+          haveAccount: "Already have an account?",
+          signIn: "Sign In"
+        },
+        footer: {
+          quick: "Quick Links",
+          quickLinks: ["Home", "Sign In", "Contact Us", "Success Stories", "Book Appointment"],
+          contact: "Contact",
+          email: "Email: alboqaiworld@gmail.com",
+          phone: "Phone: +962775252444",
+          address: "al-andlos road, Irbid",
+          hours: "Working Hours",
+          hoursList: ["Saturday - Thursday: 8:00 - 16:00", "Friday: Closed"],
+          copyright: "© 2025 AL-BOQAI CENTER. All rights reserved."
+        },
+        aboutDropdown: ["About us", "Boqia cv", "Targeted People"],
+        servicesDropdown: ["Manual Therapy", "Physical Therapy", "Rehabilitation Body Engineering"]
+      },
+      ar: {
+      nav: [
+      'الرئيسية', 'قصص النجاح', 'من نحن', 'الخدمات المقدمة', 'احجز موعد', 'تواصل معنا'
+    ],
+        servicesDropdown: ["العلاج اليدوي", "العلاج الفيزيائي", "هندسة إعادة التأهيل"],
+        aboutDropdown: ["من نحن", "السيرة الذاتية", "الفئات المسهدفة"],
+        register: {
+          h2: "إنشاء حساب",
+          username: "اسم المستخدم",
+          email: "البريد الإلكتروني",
+          password: "كلمة المرور",
+          confirmPassword: "تأكيد كلمة المرور",
+          show: "إظهار",
+          hide: "إخفاء",
+          passwordsMatch: "كلمات المرور متطابقة",
+          passwordsNotMatch: "كلمات المرور غير متطابقة",
+          register: "تسجيل",
+          haveAccount: "لديك حساب بالفعل؟",
+          signIn: "تسجيل الدخول"
+        },
+        footer: {
+          quick: "روابط سريعة",
+          quickLinks: ["الرئيسية", "تسجيل الدخول", "اتصل بنا", "قصص النجاح", "حجز موعد"],
+          contact: "تواصل معنا",
+          email: "البريد الإلكتروني: alboqaiworld@gmail.com",
+          phone: "الهاتف: +962775252444",
+          address: "شارع الأندلس، إربد",
+          hours: "ساعات العمل",
+          hoursList: ["السبت - الخميس: 8:00 - 16:00", "الجمعة: مغلق"],
+          copyright: "© 2025 مركز البقاعي. جميع الحقوق محفوظة."
+        }
+      }
+    };
+
+    function setLanguage(lang) {
+      // Set direction and language
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.body.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
+      // Navbar
+      const navLinks = document.querySelectorAll('.navbar > li > a, .navbar > li > span');
+      const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+      const nav = translations[lang].nav;
+      navLinks.forEach((el, i) => { if (nav[i]) el.textContent = nav[i]; });
+      // Dropdowns
+      dropdownMenus.forEach(menu => {
+        menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
+      });
+      // Dropdown menu translation
+      // About Us Dropdown
+      const aboutDropdownLinks = document.querySelectorAll('.navbar .dropdown:nth-child(3) .dropdown-menu li a');
+      const aboutDropdown = translations[lang].aboutDropdown;
+      aboutDropdownLinks.forEach((el, i) => { if (aboutDropdown[i]) el.textContent = aboutDropdown[i]; });
+      // Services Dropdown
+      const servicesDropdownLinks = document.querySelectorAll('.navbar .dropdown:nth-child(4) .dropdown-menu li a');
+      const servicesDropdown = translations[lang].servicesDropdown;
+      servicesDropdownLinks.forEach((el, i) => { if (servicesDropdown[i]) el.textContent = servicesDropdown[i]; });
+      // Nav alignment (updated for RTL)
+      const navbar = document.getElementById('main-navbar');
+      if (navbar) {
+        if (lang === 'ar') {
+          navbar.style.flexDirection = 'row-reverse';
+          navbar.style.textAlign = 'right';
+          navbar.style.direction = 'rtl';
+        } else {
+          navbar.style.flexDirection = 'row';
+          navbar.style.textAlign = 'left';
+          navbar.style.direction = 'ltr';
+        }
+      }
+      // Register form
+      const register = translations[lang].register;
+      document.querySelector('.register-form h2').textContent = register.h2;
+      document.querySelector('label[for="reg-username"]').textContent = register.username;
+      document.querySelector('label[for="reg-email"]').textContent = register.email;
+      document.querySelector('label[for="reg-password"]').textContent = register.password;
+      document.querySelector('label[for="reg-confirm-password"]').textContent = register.confirmPassword;
+      document.querySelector('.register-form button[type="submit"]').textContent = register.register;
+      document.querySelector('.signin-links span').innerHTML = register.haveAccount + ' <a href="sign in.html" class="register-link">' + register.signIn + '</a>';
+      // Update toggle password button texts
+      const toggleBtns = document.querySelectorAll('.toggle-password');
+      toggleBtns.forEach(btn => {
+        if (btn.textContent === 'Show' || btn.textContent === 'إظهار') {
+          btn.textContent = register.show;
+        } else if (btn.textContent === 'Hide' || btn.textContent === 'إخفاء') {
+          btn.textContent = register.hide;
+        }
+      });
+      // Footer
+      const footer = translations[lang].footer;
+      document.querySelector('.footer-section h4').textContent = footer.quick;
+      const quickLinks = document.querySelectorAll('.footer-section ul li a');
+      footer.quickLinks.forEach((txt, i) => { if (quickLinks[i]) quickLinks[i].textContent = txt; });
+      document.querySelectorAll('.footer-section h4')[1].textContent = footer.contact;
+      const contactLinks = document.querySelectorAll('.footer-section ul')[1].querySelectorAll('li');
+      contactLinks[0].querySelector('a').textContent = footer.email;
+      contactLinks[1].textContent = footer.phone;
+      contactLinks[2].querySelector('a').textContent = footer.address;
+      document.querySelectorAll('.footer-section h4')[2].textContent = footer.hours;
+      const hoursList = document.querySelectorAll('.footer-section ul')[2].querySelectorAll('li');
+      footer.hoursList.forEach((txt, i) => { hoursList[i].textContent = txt; });
+      document.querySelector('.footer-bottom').textContent = footer.copyright;
+      // Toggle button text
+      document.getElementById('lang-toggle-btn').textContent = lang === 'ar' ? 'English' : 'العربية';
+    }
+
+    // Language toggle event
+    document.getElementById('lang-toggle-btn').addEventListener('click', function() {
+      const currentLang = localStorage.getItem('lang') || 'en';
+      const newLang = currentLang === 'en' ? 'ar' : 'en';
+      localStorage.setItem('lang', newLang);
+      setLanguage(newLang);
+    });
+    // On load
+    const savedLang = localStorage.getItem('lang') || 'en';
+    setLanguage(savedLang);
+    </script>
+</body>
 </html>

@@ -47,6 +47,27 @@ body {
     color: #f1f1f1;
 }
 
+/* RTL: Make all text start from far right in Arabic mode */
+[dir="rtl"] body,
+[dir="rtl"] .cv-container,
+[dir="rtl"] .cv-header,
+[dir="rtl"] .cv-content,
+[dir="rtl"] .profile-text,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] p,
+[dir="rtl"] ul,
+[dir="rtl"] li {
+    text-align: right !important;
+}
+
+/* RTL: Hide left bullets completely in Arabic mode */
+[dir="rtl"] ul, [dir="rtl"] .check-list {
+    list-style-type: none !important;
+    list-style-position: inside !important;
+}
+
 .cv-container {
     max-width: 1200px;
     margin: 40px auto;
@@ -193,6 +214,16 @@ body {
     position: absolute;
     left: 0;
     top: -2px;
+}
+
+/* RTL bullet alignment for Arabic mode (all ul and .check-list) */
+[dir="rtl"] ul, [dir="rtl"] .check-list {
+    padding-left: 0 !important;
+    padding-right: 25px !important;
+}
+[dir="rtl"] ul li:before, [dir="rtl"] .check-list li:before {
+    left: auto !important;
+    right: -20px !important;
 }
 
 /* Responsive Design */

@@ -12,42 +12,42 @@
 <!--logo-->
 <body>
 <div class="header">
-       <div class="logo">
-  <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
-    <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
- 
-  </a>
-</div>
-<!--header-->
-<ul class="navbar">
-  <li><a href="../home.html">Home</a></li>
-  <li><a href="#">Success Stories</a></li>
-  <li class="dropdown">
-    <span class="dropdown-trigger">ABOUT US</span>
-    <ul class="dropdown-menu">
-      <li><a href="../about us/aboutus.html">About us</a></li>
-      <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
-      <li><a href="../about us/targeted group.html">Targeted People</a></li>
+    <div class="logo">
+        <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
+            <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+        </a>
+    </div>
+    <ul class="navbar">
+        <li><a href="../home.html">Home</a></li>
+        <li><a href="#">Success Stories</a></li>
+        <li class="dropdown">
+            <span class="dropdown-trigger">ABOUT US</span>
+            <ul class="dropdown-menu">
+                <li><a href="../about us/aboutus.html">About us</a></li>
+                <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
+                <li><a href="../about us/targeted group.html">Targeted People</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <span class="dropdown-trigger">Our Services</span>
+            <ul class="dropdown-menu">
+                <li><a href="manual therapy.html">Manual Therapy</a></li>
+                <li><a href="physical therapy.html">Physical Therapy</a></li>
+                <li><a href="Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+            </ul>
+        </li>
+        <li><a href="../book appointment/book.html">Book Appointment</a></li>
+        <li><a href="../contact.html">Contact Us</a></li>
+        <li><a href="../book appointment/sign in.html" class="signin-link">Sign In</a></li>
     </ul>
-  </li>
-  <li class="dropdown">
-    <span class="dropdown-trigger active">Our Services</span>
-    <ul class="dropdown-menu">
-      <li><a href="manual therapy.html">Manual Therapy</a></li>
-      <li><a href="physical therapy.html" class="active">Physical Therapy</a></li>
-      <li><a href="Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
-    </ul>
-  </li>
-  <li><a href="../book appointment/book.html">Book Appointment</a></li>
-  <li><a href="contact.html">Contact Us</a></li>
-  <li><a href="../book appointment/sign in.html" class="signin-link">Sign In</a></li>
-</ul>
-
-<!-- Dark Mode Toggle -->
-<div class="theme-toggle">
-    <button id="theme-toggle-btn" class="theme-btn">
-        <i class="fas fa-moon" id="theme-icon"></i>
-    </button>
+    <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+        <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+            <i class="fas fa-language"></i>
+        </button>
+        <button id="theme-toggle-btn" class="theme-btn">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </div>
 </div>
 
 <!-- Service Header -->
@@ -209,7 +209,7 @@
                 <ul>
                     <li><a href="../home.html">Home</a></li>
                     <li><a href="../book appointment/sign in.html">Sign In</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="../contact.html">Contact Us</a></li>
                     <li><a href="../patient-testimonials.html">Success Stories</a></li>
                     <li><a href="../book appointment/book.html">Book Appointment</a></li>
                 </ul>
@@ -236,5 +236,274 @@
     </div>
 
     <script src="our-services-dark-mode.js"></script>
+    <script>
+    // Language toggle logic for services page (matches home.html)
+    const translations = {
+      ar: {
+        header: [
+      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تواصل معنا '
+    ],
+        serviceHeader: {
+          h1: "العلاج الطبيعي",
+          subtitle: "تأهيل شامل لتحقيق الشفاء الأمثل",
+          desc: "خدمات علاج طبيعي مبنية على الأدلة العلمية مصممة لاستعادة الحركة، وتحسين الوظيفة، وتعزيز جودة الحياة من خلال برامج علاجية شخصية"
+        },
+        intro: {
+          h2: "ما هو العلاج الطبيعي؟",
+          p: "العلاج الطبيعي هو علم تأهيل شامل يهدف إلى استعادة الحركة، وتحسين الوظيفة البدنية، وتعزيز جودة الحياة العامة. مثالي للأفراد الذين يتعافون من الإصابات، أو العمليات الجراحية، أو الحالات المزمنة، أو القيود البدنية بسبب الشيخوخة أو الاضطرابات العصبية. نهجنا المبني على الأدلة يجمع بين التقنيات العلاجية المتقدمة وخطط الرعاية الشخصية لتحقيق النتائج المثلى"
+        },
+        elements: {
+          h2: "العناصر الأساسية للعلاج الطبيعي",
+          cards: [
+            ["برامج التمارين العلاجية", "تمارين شخصية مصممة لتحسين القوة والتحمل والمرونة والتنسيق. كل برنامج مخصص للاحتياجات الفردية وأهداف الشفاء"],
+            ["تمارين الإطالة والحركة", "حركات لطيفة وتقنيات إطالة لإطالة العضلات، وتحسين حركة المفاصل، واستعادة أنماط الحركة الوظيفية"],
+            ["إعادة التعليم العصبي العضلي", "تقنيات متقدمة لتحسين التوازن والتنسيق والوعي بالجسم، مفيدة بشكل خاص بعد الإصابات العصبية أو العمليات الجراحية"],
+            ["دمج العلاج اليدوي", "تقنيات يدوية مدمجة في العلاج الطبيعي لمساعدة شفاء الأنسجة الرخوة والمفاصل، وتعزيز فعالية العلاج العامة"],
+            ["الطرق الفيزيائية", "استخدام العلاج الحراري، والعلاج البارد، والتحفيز الكهربائي، والموجات فوق الصوتية، والعلاج بالليزر لتخفيف الألم وتعزيز الشفاء"],
+            ["تعليم المريض", "إرشادات شاملة حول ميكانيكا الجسم الصحيحة، وعلم الإنسان، واستراتيجيات الرعاية الذاتية لمنع الإصابات المستقبلية والحفاظ على التقدم"]
+          ]
+        },
+        benefits: {
+          h2: "الفوائد الشاملة",
+          items: [
+            ["تسريع الشفاء", "يسرع الشفاء بعد الإصابات أو العمليات الجراحية من خلال التدخلات العلاجية المستهدفة وبرامج التمارين التدريجية"],
+            ["تحسين الأداء", "يحسن القوة والمرونة والأداء البدني لكل من الأنشطة اليومية والرياضية"],
+            ["إدارة الألم", "يقلل الألم المزمن والالتهاب من خلال طرق العلاج المبينة على الأدلة"],
+            ["استعادة الوظيفة", "يستعيد الحركة والتنقل في الأنشطة اليومية، مما يحسن الاستقلالية وجودة الحياة"],
+            ["التوازن ومنع السقوط", "يحسن التوازن ويمنع السقوط، مفيد بشكل خاص لكبار السن وذوي مشاكل التوازن"],
+            ["منع الإصابات", "يوفر التعليم والتدريب لمنع الإصابات المستقبلية والحفاظ على الصحة البدنية طويلة الأمد"]
+          ]
+        },
+        conditions: {
+          h2: "الحالات التي نعالجها",
+          categories: [
+            {
+              title: "الحالات العظمية",
+              items: ["إصابات رياضية", "التأهيل بعد العمليات", "استبدال المفاصل", "الكسور والالتواءات"]
+            },
+            {
+              title: "الحالات العصبية",
+              items: ["تأهيل السكتة الدماغية", "التصلب المتعدد", "مرض باركنسون", "إصابات الحبل الشوكي"]
+            },
+            {
+              title: "الحالات المزمنة",
+              items: ["إدارة التهاب المفاصل", "متلازمات الألم المزمن", "الألم العضلي الليفي", "آلام الظهر والرقبة"]
+            }
+          ]
+        },
+        session: {
+          h2: "معلومات جلسة العلاج",
+          items: [
+            ["مدة الجلسة", "30-60 دقيقة لكل جلسة حسب تعقيد الحالة وأهداف العلاج"],
+            ["تكرار العلاج", "1-3 جلسات أسبوعياً حسب شدة الحالة والتقدم"],
+            ["التقييم والتخطيط", "تقييم أولي شامل مع تقييم مستمر للتقدم وتعديلات على الخطة"]
+          ]
+        },
+        images: [
+          "علاج طبيعي احترافي",
+          "برامج التمارين العلاجية"
+        ],
+        cta: {
+          h3: "ابدأ رحلة الشفاء",
+          p: "احجز استشارتك اليوم وابدأ مسارك نحو تحسين الحركة والوظيفة",
+          btn: "احجز موعد"
+        },
+        footer: {
+          quick: "روابط سريعة",
+          quickLinks: ["الرئيسية", "تسجيل الدخول", "اتصل بنا", "قصص النجاح", "حجز موعد"],
+          contact: "تواصل معنا",
+          email: "البريد الإلكتروني: alboqaiworld@gmail.com",
+          phone: "الهاتف: +962775252444",
+          address: "شارع الأندلس، إربد",
+          hours: "ساعات العمل",
+          hoursList: ["السبت - الخميس: 8:00 - 16:00", "الجمعة: مغلق"],
+          copyright: "© 2025 مركز البقاعي. جميع الحقوق محفوظة."
+        }
+      },
+      en: {
+ header: [
+      'Home', 'Success Stories', 'About Us','About Us' , 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment', 'Contact Us', 'Sign In'
+    ],
+        servicesDropdown: ["Manual Therapy", "Physical Therapy", "Rehabilitation Body Engineering"],
+        aboutDropdown: ["About us", "Boqia cv", "Targeted People"],
+        serviceHeader: {
+          h1: "Physical Therapy",
+          subtitle: "Comprehensive Rehabilitation for Optimal Recovery",
+          desc: "Evidence-based physical therapy services designed to restore movement, improve function, and enhance quality of life through personalized treatment programs."
+        },
+        intro: {
+          h2: "What is Physical Therapy?",
+          p: "Physical therapy is a comprehensive rehabilitation science that aims to restore movement, improve physical function, and enhance overall quality of life. It is ideal for individuals recovering from injuries, surgeries, chronic conditions, or physical limitations due to aging or neurological disorders. Our evidence-based approach combines advanced therapeutic techniques with personalized care plans to achieve optimal outcomes."
+        },
+        elements: {
+          h2: "Core Elements of Physical Therapy",
+          cards: [
+            ["Therapeutic Exercise Programs", "Personalized exercises designed to improve strength, endurance, flexibility, and coordination. Each program is tailored to individual needs and recovery goals."],
+            ["Stretching & Mobility Work", "Gentle movements and stretching techniques to lengthen muscles, improve joint mobility, and restore functional movement patterns."],
+            ["Neuromuscular Re-education", "Advanced techniques to improve balance, coordination, and body awareness, especially beneficial after neurological injuries or surgeries."],
+            ["Manual Therapy Integration", "Hands-on techniques integrated within physical therapy to assist in soft tissue and joint healing, enhancing overall treatment effectiveness."],
+            ["Physical Modalities", "Utilization of heat therapy, cold therapy, electrical stimulation, ultrasound, and laser therapy to relieve pain and promote healing."],
+            ["Patient Education", "Comprehensive guidance on proper body mechanics, ergonomics, and self-care strategies to prevent future injuries and maintain progress."]
+          ]
+        },
+        benefits: {
+          h2: "Comprehensive Benefits",
+          items: [
+            ["Accelerated Recovery", "Speeds up recovery after injuries or surgery through targeted therapeutic interventions and progressive exercise programs."],
+            ["Enhanced Performance", "Improves strength, flexibility, and physical performance for both daily activities and athletic pursuits."],
+            ["Pain Management", "Reduces chronic pain and inflammation through evidence-based treatment approaches and modalities."],
+            ["Functional Restoration", "Restores movement and mobility in daily activities, improving independence and quality of life."],
+            ["Balance & Fall Prevention", "Enhances balance and prevents falls, particularly beneficial for elderly individuals and those with balance issues."],
+            ["Injury Prevention", "Provides education and training to prevent future injuries and maintain long-term physical health."]
+          ]
+        },
+        conditions: {
+          h2: "Conditions We Treat",
+          categories: [
+            {
+              title: "Orthopedic Conditions",
+              items: ["Sports injuries", "Post-surgical rehabilitation", "Joint replacements", "Fractures and sprains"]
+            },
+            {
+              title: "Neurological Conditions",
+              items: ["Stroke rehabilitation", "Multiple sclerosis", "Parkinson's disease", "Spinal cord injuries"]
+            },
+            {
+              title: "Chronic Conditions",
+              items: ["Arthritis management", "Chronic pain syndromes", "Fibromyalgia", "Back and neck pain"]
+            }
+          ]
+        },
+        session: {
+          h2: "Treatment Session Information",
+          items: [
+            ["Session Duration", "30-60 minutes per session, depending on condition complexity and treatment goals"],
+            ["Treatment Frequency", "1-3 sessions per week, adjusted based on condition severity and progress"],
+            ["Assessment & Planning", "Comprehensive initial assessment with ongoing progress evaluation and plan adjustments"]
+          ]
+        },
+        images: [
+          "Professional Physical Therapy Treatment",
+          "Therapeutic Exercise Programs"
+        ],
+        cta: {
+          h3: "Start Your Recovery Journey",
+          p: "Book your consultation today and begin your path to improved mobility and function.",
+          btn: "Book Appointment"
+        },
+        footer: {
+          quick: "Quick Links",
+          quickLinks: ["Home", "Sign In", "Contact Us", "Success Stories", "Book Appointment"],
+          contact: "Contact",
+          email: "Email: alboqaiworld@gmail.com",
+          phone: "Phone: +962775252444",
+          address: "al-andlos road, Irbid",
+          hours: "Working Hours",
+          hoursList: ["Saturday - Thursday: 8:00 - 16:00", "Friday: Closed"],
+          copyright: "© 2025 AL-BOQAI CENTER. All rights reserved."
+        }
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      localStorage.setItem('lang', lang);
+      // Header
+      const navLinks = document.querySelectorAll('.navbar > li > a, .dropdown-menu > li > a, .dropdown-trigger');
+      const t = translations[lang];
+      const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11];
+      navLinks.forEach((el, i) => { if (t.header[navOrder[i]]) el.innerHTML = t.header[navOrder[i]]; });
+      // Nav alignment
+      const navbar = document.querySelector('.navbar');
+      if (navbar) {
+        if (lang === 'ar') {
+          navbar.style.flexDirection = 'row-reverse';
+          navbar.style.textAlign = 'right';
+        } else {
+          navbar.style.flexDirection = 'row';
+          navbar.style.textAlign = 'left';
+        }
+      }
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
+      });
+      // Dropdowns alignment
+      const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+      dropdownMenus.forEach(menu => {
+        menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
+      });
+      // Header
+      document.querySelector('.service-header h1').textContent = translations[lang].serviceHeader.h1;
+      document.querySelector('.service-header .service-subtitle').textContent = translations[lang].serviceHeader.subtitle;
+      document.querySelector('.service-header .service-description').textContent = translations[lang].serviceHeader.desc;
+      // Intro
+      document.querySelector('.service-intro h2').textContent = translations[lang].intro.h2;
+      document.querySelector('.service-intro p').textContent = translations[lang].intro.p;
+      // Elements
+      document.querySelector('.core-elements-section h2').textContent = translations[lang].elements.h2;
+      const elementCards = document.querySelectorAll('.element-card');
+      translations[lang].elements.cards.forEach((arr, i) => {
+        elementCards[i].querySelector('h3').textContent = arr[0];
+        elementCards[i].querySelector('p').textContent = arr[1];
+      });
+      // Benefits
+      document.querySelector('.benefits-section h2').textContent = translations[lang].benefits.h2;
+      const benefitItems = document.querySelectorAll('.benefit-item');
+      translations[lang].benefits.items.forEach((arr, i) => {
+        benefitItems[i].querySelector('h4').textContent = arr[0];
+        benefitItems[i].querySelector('p').textContent = arr[1];
+      });
+      // Conditions
+      document.querySelector('.conditions-section h2').textContent = translations[lang].conditions.h2;
+      const conditionCategories = document.querySelectorAll('.condition-category');
+      translations[lang].conditions.categories.forEach((cat, i) => {
+        conditionCategories[i].querySelector('h4').textContent = cat.title;
+        const items = conditionCategories[i].querySelectorAll('li');
+        cat.items.forEach((item, j) => { if (items[j]) items[j].textContent = item; });
+      });
+      // Session Info
+      document.querySelector('.session-info h2').textContent = translations[lang].session.h2;
+      const sessionItems = document.querySelectorAll('.session-details .detail-item');
+      translations[lang].session.items.forEach((arr, i) => {
+        sessionItems[i].querySelector('h4').textContent = arr[0];
+        sessionItems[i].querySelector('p').textContent = arr[1];
+      });
+      // Images captions
+      const imgCaps = document.querySelectorAll('.image-caption');
+      translations[lang].images.forEach((txt, i) => { imgCaps[i].textContent = txt; });
+      // CTA
+      document.querySelector('.cta-card h3').textContent = translations[lang].cta.h3;
+      document.querySelector('.cta-card p').textContent = translations[lang].cta.p;
+      document.querySelector('.cta-card .cta-button').textContent = translations[lang].cta.btn;
+      // Footer
+      const footer = translations[lang].footer;
+      document.querySelector('.footer-section h4').textContent = footer.quick;
+      const quickLinks = document.querySelectorAll('.footer-section ul li a');
+      footer.quickLinks.forEach((txt, i) => { if (quickLinks[i]) quickLinks[i].textContent = txt; });
+      document.querySelectorAll('.footer-section h4')[1].textContent = footer.contact;
+      const contactLinks = document.querySelectorAll('.footer-section ul')[1].querySelectorAll('li');
+      contactLinks[0].querySelector('a').textContent = footer.email;
+      contactLinks[1].textContent = footer.phone;
+      contactLinks[2].querySelector('a').textContent = footer.address;
+      document.querySelectorAll('.footer-section h4')[2].textContent = footer.hours;
+      const hoursList = document.querySelectorAll('.footer-section ul')[2].querySelectorAll('li');
+      footer.hoursList.forEach((txt, i) => { hoursList[i].textContent = txt; });
+      document.querySelector('.footer-bottom').textContent = footer.copyright;
+      // Toggle button text
+      document.getElementById('lang-toggle-btn').textContent = lang === 'ar' ? 'English' : 'العربية';
+    }
+
+    // Language toggle event
+    document.getElementById('lang-toggle-btn').addEventListener('click', function() {
+      const currentLang = localStorage.getItem('lang') || 'en';
+      const newLang = currentLang === 'en' ? 'ar' : 'en';
+      localStorage.setItem('lang', newLang);
+      setLanguage(newLang);
+    });
+    // On load
+    const savedLang = localStorage.getItem('lang') || 'en';
+    setLanguage(savedLang);
+    </script>
 </body>
 </html>

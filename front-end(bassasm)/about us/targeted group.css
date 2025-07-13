@@ -189,6 +189,17 @@ body {
     text-align: justify;
 }
 
+/* RTL bullet alignment for Arabic mode (all ul and .check-list) */
+[dir="rtl"] ul {
+    padding-left: 0 !important;
+    padding-right: 25px !important;
+    text-align: right !important;
+}
+[dir="rtl"] ul li:before {
+    left: auto !important;
+    right: -20px !important;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .target-content {

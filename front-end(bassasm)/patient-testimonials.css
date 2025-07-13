@@ -557,3 +557,10 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 } 
+
+.header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    background: linear-gradient(90deg, #7886e9 0%, #7b5fc9 100%) !important;
+} 

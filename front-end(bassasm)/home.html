@@ -44,7 +44,10 @@
         </ul>
         
         <!-- Dark Mode Toggle -->
-        <div class="theme-toggle">
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
             <button id="theme-toggle-btn" class="theme-btn">
                 <i class="fas fa-moon" id="theme-icon"></i>
             </button>
@@ -328,5 +331,167 @@
     </div>
 
     <script src="home.js"></script>
+    <script>
+// Language toggle logic for home page
+const translations = {
+  ar: {
+    header: [
+      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تواصل معنا '
+    ],
+    heroTitle: 'مرحبًا بكم في مركز البقاعي',
+    heroSubtitle: 'التميز في خدمات إعادة التأهيل والعلاج الطبيعي',
+    heroDescription: 'نتصدر مجال رعاية إعادة التأهيل الشاملة، باستخدام أحدث التقنيات وخبرة واسعة. فريقنا من المتخصصين ملتزم بمساعدتكم على تحقيق صحة بدنية مثالية وتحسين جودة حياتكم.',
+    heroBtn1: 'حجز موعد',
+    heroBtn2: 'اعرف المزيد',
+    quickServices: 'خدماتنا السريعة',
+    serviceTitles: ['العلاج اليدوي', 'العلاج الطبيعي', 'هندسة الجسم'],
+    serviceDescs: ['...تقنيات علاجية متقدمة', '...برامج إعادة تأهيل شاملة', '...تحليل ميكانيكي متقدم'],
+    features: ['فريق خبراء', 'متاح يوم الجمعة', 'حجز عبر الإنترنت', 'رعاية شاملة'],
+    featuresDesc: ['...معالجون مؤهلون', '...خبرة متخصصة', '...حجز سهل', '...رحلة رعاية كاملة'],
+    stats: ['+500', '+15', '98%', '24/7'],
+    statsLabels: ['مريض عولج', 'سنوات خبرة', 'نسبة النجاح', 'دعم متواصل'],
+    testimonialsTitle: 'ماذا يقول مرضانا',
+    testimonialsDesc: 'قصص حقيقية من مرضى...',
+    testimonialText: '" "برنامج هندسة التأهيل في مركز البقاعي ساعدني في التعافي من إصابة رياضية شديدة. تقنياتهم المتقدمة ونهجهم المهني سرعا شفائي بما يتجاوز توقعاتي. الموظفون متعلمون ومهتمون بشكل لا يصدق."',
+    testimonialAuthor: 'أحمد الرشيد',
+    testimonialRole: 'تعافي بعد حادث',
+    footerQuick: 'روابط سريعة',
+    footerContact: 'تواصل',
+    footerHours: 'ساعات العمل',
+    quickLinks: ['الرئيسية', 'تسجيل الدخول', 'تواصل معنا', 'قصص النجاح', 'حجز موعد'],
+    contactLinks: ['البريد الإلكتروني: alboqaiworld@gmail.com', 'الهاتف: +962775252444', 'شارع الأندلس، إربد'],
+    workingHours: ['السبت - الخميس: 8:00 - 16:00', 'الجمعة: مغلق'],
+    copyright: 'جميع الحقوق محفوظة © 2025 مركز البقاعي.',
+    shareStoryTitle: 'شارك قصة نجاحك',
+    shareStoryDesc: 'ساعد الآخرين بمشاركة رحلة شفائك وتجربتك في مركز البقاعي',
+    shareStoryBtn: 'شارك قصتك',
+    ctaTitle: 'جاهز لبدء رحلة شفائك؟',
+    ctaDesc: 'احجز استشارتك اليوم واختبر فوائد الرعاية التأهيلية الاحترافية.',
+    ctaBook: 'احجز موعد',
+    ctaCall: 'اتصل بنا: +962775252444'
+  },
+  en: {
+    header: [
+      'Home', 'Success Stories', 'About Us','About Us' , 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment', 'Contact Us', 'Sign In'
+    ],
+    heroTitle: 'Welcome to AL-BOQAI Center',
+    heroSubtitle: 'Excellence in Rehabilitation & Physical Therapy Services',
+    heroDescription: 'Leading the way in comprehensive rehabilitation care with cutting-edge technology and compassionate expertise. Our team of specialists is dedicated to helping you achieve optimal physical health and enhanced quality of life.',
+    heroBtn1: 'Book Appointment',
+    heroBtn2: 'Learn More',
+    quickServices: 'Quick Services',
+    serviceTitles: ['Manual Therapy', 'Physical Therapy', 'Body Engineering'],
+    serviceDescs: ['Advanced hands-on treatment techniques for optimal recovery and pain relief.', 'Comprehensive rehabilitation programs designed to restore movement and function.', 'Advanced biomechanical analysis and precision treatment for complex conditions.'],
+    features: ['Expert Team', 'Available on Friday', 'Online Booking', 'Comprehensive Care'],
+    featuresDesc: ['Highly qualified therapists...', 'Specialized expertise...', 'Easy online appointment...', 'Complete care journey...'],
+    stats: ['500+', '15+', '98%', '24/7'],
+    statsLabels: ['Patients Treated', 'Years Experience', 'Success Rate', 'Care Support'],
+    testimonialsTitle: 'What Our Patients Say',
+    testimonialsDesc: 'Real stories from patients...',
+    testimonialText: '"After my car accident, I thought I would never walk properly again..."',
+    testimonialAuthor: 'Ahmed Al-Rashid',
+    testimonialRole: 'Post-Accident Recovery',
+    footerQuick: 'Quick Links',
+    footerContact: 'Contact',
+    footerHours: 'Working Hours',
+    quickLinks: ['Home', 'Sign In', 'Contact Us', 'Success Stories', 'Book Appointment'],
+    contactLinks: ['Email: alboqaiworld@gmail.com', 'Phone: +962775252444', 'al-andlos road, Irbid'],
+    workingHours: ['Saturday - Thursday: 8:00 - 16:00', 'Friday: Closed'],
+    copyright: '&copy; 2025 AL-BOQAI CENTER. All rights reserved.',
+    shareStoryTitle: 'Share Your Success Story',
+    shareStoryDesc: 'Help others by sharing your recovery journey and experience at AL-BOQAI Center',
+    shareStoryBtn: 'Share Your Story',
+    ctaTitle: 'Ready to Start Your Recovery Journey?',
+    ctaDesc: 'Book your consultation today and experience the benefits of professional rehabilitation care.',
+    ctaBook: 'Book Appointment',
+    ctaCall: 'Call Us: +962775252444'
+  }
+};
+
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
+  document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  localStorage.setItem('lang', lang);
+  // Header
+  const navLinks = document.querySelectorAll('.navbar > li > a, .dropdown-menu > li > a, .dropdown-trigger');
+  const t = translations[lang];
+  const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11];
+  navLinks.forEach((el, i) => { if (t.header[navOrder[i]]) el.innerHTML = t.header[navOrder[i]]; });
+  // Nav alignment
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    if (lang === 'ar') {
+      navbar.style.flexDirection = 'row-reverse';
+      navbar.style.textAlign = 'right';
+    } else {
+      navbar.style.flexDirection = 'row';
+      navbar.style.textAlign = 'left';
+    }
+  }
+  document.querySelectorAll('.dropdown-menu').forEach(menu => {
+    menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
+  });
+  // Hero section
+  document.querySelector('.hero-title').innerHTML = t.heroTitle;
+  document.querySelector('.hero-subtitle').innerHTML = t.heroSubtitle;
+  document.querySelector('.hero-description').innerHTML = t.heroDescription;
+  document.querySelectorAll('.hero-buttons a')[0].innerHTML = t.heroBtn1;
+  document.querySelectorAll('.hero-buttons a')[1].innerHTML = t.heroBtn2;
+  // Quick Services
+  document.querySelector('.quick-services h3').innerHTML = t.quickServices;
+  const serviceTitles = document.querySelectorAll('.service-card h3');
+  t.serviceTitles.forEach((txt, i) => { if (serviceTitles[i]) serviceTitles[i].innerHTML = txt; });
+  const serviceDescs = document.querySelectorAll('.service-card p');
+  t.serviceDescs.forEach((txt, i) => { if (serviceDescs[i]) serviceDescs[i].innerHTML = txt; });
+  // Features
+  const features = document.querySelectorAll('.feature-item h4');
+  t.features.forEach((txt, i) => { if (features[i]) features[i].innerHTML = txt; });
+  const featuresDesc = document.querySelectorAll('.feature-item p');
+  t.featuresDesc.forEach((txt, i) => { if (featuresDesc[i]) featuresDesc[i].innerHTML = txt; });
+  // Stats
+  const stats = document.querySelectorAll('.stat-number');
+  t.stats.forEach((txt, i) => { if (stats[i]) stats[i].innerHTML = txt; });
+  const statsLabels = document.querySelectorAll('.stat-label');
+  t.statsLabels.forEach((txt, i) => { if (statsLabels[i]) statsLabels[i].innerHTML = txt; });
+  // Testimonials
+  document.querySelector('.testimonials-header h2').innerHTML = t.testimonialsTitle;
+  document.querySelector('.testimonials-header p').innerHTML = t.testimonialsDesc;
+  document.querySelector('.testimonial-text').innerHTML = t.testimonialText;
+  document.querySelector('.author-info h4').innerHTML = t.testimonialAuthor;
+  document.querySelector('.author-title').innerHTML = t.testimonialRole;
+  // Footer
+  document.querySelector('.footer-section h4').innerHTML = t.footerQuick;
+  document.querySelectorAll('.footer-section h4')[1].innerHTML = t.footerContact;
+  document.querySelectorAll('.footer-section h4')[2].innerHTML = t.footerHours;
+  // Footer quick links
+  const quickLinks = document.querySelectorAll('.footer-section ul')[0].querySelectorAll('li a, li');
+  t.quickLinks.forEach((txt, i) => { if (quickLinks[i]) quickLinks[i].innerHTML = txt; });
+  // Footer contact links
+  const contactLinks = document.querySelectorAll('.footer-section ul')[1].querySelectorAll('li, a');
+  t.contactLinks.forEach((txt, i) => { if (contactLinks[i]) contactLinks[i].innerHTML = txt; });
+  // Footer working hours
+  const workingHours = document.querySelectorAll('.footer-section ul')[2].querySelectorAll('li');
+  t.workingHours.forEach((txt, i) => { if (workingHours[i]) workingHours[i].innerHTML = txt; });
+  // Share Your Success Story section
+  document.querySelector('.share-story-section h3').innerHTML = t.shareStoryTitle;
+  document.querySelector('.share-story-section p').innerHTML = t.shareStoryDesc;
+  document.querySelector('.share-story-btn').innerHTML = `<i class="fas fa-plus"></i> ${t.shareStoryBtn}`;
+  // CTA section
+  document.querySelector('.cta-content h2').innerHTML = t.ctaTitle;
+  document.querySelector('.cta-content p').innerHTML = t.ctaDesc;
+  document.querySelector('.cta-buttons a.btn-primary').innerHTML = t.ctaBook;
+  document.querySelector('.cta-buttons a.btn-outline').innerHTML = t.ctaCall;
+  // Copyright
+  document.querySelector('.footer-bottom').innerHTML = t.copyright;
+}
+
+const langBtn = document.getElementById('lang-toggle-btn');
+let lang = localStorage.getItem('lang') || 'en';
+setLanguage(lang);
+langBtn.addEventListener('click', function() {
+  lang = lang === 'en' ? 'ar' : 'en';
+  setLanguage(lang);
+});
+</script>
 </body>
 </html>
