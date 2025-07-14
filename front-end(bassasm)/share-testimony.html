@@ -18,8 +18,6 @@
                 <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
             </a>
         </div>
-        
-        <!-- Navigation -->
         <ul class="navbar">
             <li><a href="home.html">Home</a></li>
             <li><a href="success-stories.html">Success Stories</a></li>
@@ -43,8 +41,6 @@
             <li><a href="book appointment/contact us.html">Contact Us</a></li>
             <li><a href="book appointment/sign in.html" class="signin-link">Sign In</a></li>
         </ul>
-        
-        <!-- Dark Mode Toggle -->
         <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
             <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
                 <i class="fas fa-language"></i>
@@ -77,8 +73,7 @@
                     <h2>Tell Us Your Story</h2>
                     <p>Help us understand your journey and inspire others with your experience</p>
                 </div>
-                
-                <form class="testimonial-form" id="testimonialForm">
+                <form class="testimonial-form" id="testimonialForm" enctype="multipart/form-data">
                     <!-- Personal Information -->
                     <div class="form-section">
                         <h3><i class="fas fa-user"></i> Personal Information</h3>
@@ -100,8 +95,12 @@
                                 <input type="tel" id="phone" name="phone" placeholder="+966 50 123 4567">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="mediaUpload">Upload Photo or Video (optional)</label>
+                            <input type="file" id="mediaUpload" name="mediaUpload" accept="image/*,video/*">
+                            <div id="mediaPreview" style="margin-top:10px;"></div>
+                        </div>
                     </div>
-
                     <!-- Medical Information -->
                     <div class="form-section">
                         <h3><i class="fas fa-stethoscope"></i> Medical Information</h3>
@@ -138,7 +137,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Treatment Experience -->
                     <div class="form-section">
                         <h3><i class="fas fa-clipboard-check"></i> Treatment Experience</h3>
@@ -151,7 +149,6 @@
                             <textarea id="results" name="results" rows="4" required placeholder="Describe the results you achieved, improvements in your condition, and how it has impacted your life"></textarea>
                         </div>
                     </div>
-
                     <!-- Testimonial Content -->
                     <div class="form-section">
                         <h3><i class="fas fa-quote-left"></i> Your Testimonial</h3>
@@ -163,7 +160,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Rating and Recommendation -->
                     <div class="form-section">
                         <h3><i class="fas fa-star"></i> Rating & Recommendation</h3>
@@ -199,7 +195,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Additional Information -->
                     <div class="form-section">
                         <h3><i class="fas fa-info-circle"></i> Additional Information</h3>
@@ -212,7 +207,6 @@
                             <textarea id="additionalComments" name="additionalComments" rows="3" placeholder="Any other thoughts, suggestions, or comments you'd like to share"></textarea>
                         </div>
                     </div>
-
                     <!-- Privacy and Consent -->
                     <div class="form-section">
                         <h3><i class="fas fa-shield-alt"></i> Privacy & Consent</h3>
@@ -238,7 +232,6 @@
                             </label>
                         </div>
                     </div>
-
                     <!-- Submit Button -->
                     <div class="form-actions">
                         <button type="submit" class="submit-btn">
@@ -249,48 +242,15 @@
                             <i class="fas fa-eye"></i>
                             Preview
                         </button>
+                        <button type="button" class="draft-btn" id="saveDraftBtn">
+                            <i class="fas fa-save"></i>
+                            Save as Draft
+                        </button>
+                    </div>
+                    <div id="draftMessage" style="display:none; color: var(--success-color); margin-top: 10px; text-align:center; font-weight:600;">
+                        Draft saved successfully!
                     </div>
                 </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Share Section -->
-    <section class="why-share-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Share Your Story?</h2>
-                <p>Your experience can make a profound impact on others</p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Inspire Hope</h3>
-                    <p>Your success story can give hope to others who are struggling with similar conditions</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Help Others</h3>
-                    <p>Your experience can guide others in making informed decisions about their treatment</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Build Community</h3>
-                    <p>Connect with others who have gone through similar experiences</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Recognition</h3>
-                    <p>Your story will be featured on our website and social media platforms</p>
-                </div>
             </div>
         </div>
     </section>
@@ -324,43 +284,7 @@
         </div>
     </footer>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <i class="fas fa-check-circle success-icon"></i>
-                <h2>Thank You!</h2>
-            </div>
-            <div class="modal-body">
-                <p>Your testimonial has been submitted successfully. We appreciate you taking the time to share your story.</p>
-                <p>Our team will review your submission and may contact you if we need any clarification.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" onclick="closeModal()">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Preview Modal -->
-    <div id="previewModal" class="modal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h2>Preview Your Testimonial</h2>
-                <button class="close-btn" onclick="closePreviewModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="previewContent" class="preview-content">
-                    <!-- Preview content will be inserted here -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closePreviewModal()">Close</button>
-                <button class="btn btn-primary" onclick="submitForm()">Submit Testimonial</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="share-testimony.js"></script>
-    <script src="dark-mode.js"></script>
+  <!--  <script src="share-testimony.js"></script>
+    <script src="dark-mode.js"></script> -->
 </body>
 </html> 

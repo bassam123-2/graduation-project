@@ -1,12 +1,18 @@
 // Professional Share Testimony Page JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initializeForm();
-    initializeCharacterCounter();
-    initializeRatingSystem();
-    initializePreview();
-    initializeAnimations();
+    try {
+        // Initialize all functionality
+        initializeForm();
+        initializeCharacterCounter();
+        initializeRatingSystem();
+        initializePreview();
+        initializeAnimations();
+        initializeMediaUpload();
+        initializeDraftButton();
+    } catch (e) {
+        document.body.innerHTML = '<div style="color:red;text-align:center;margin-top:50px;font-size:1.5em;">An error occurred loading the form. Please refresh the page or contact support.<br><br>' + e.message + '</div>';
+    }
 });
 
 // Form initialization and validation
@@ -361,39 +367,48 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Form auto-save functionality (optional)
-function autoSaveForm() {
-    const form = document.getElementById('testimonialForm');
-    const formData = new FormData(form);
-    const data = {};
-    
-    for (let [key, value] of formData.entries()) {
-        data[key] = value;
-    }
-    
-    localStorage.setItem('testimonialDraft', JSON.stringify(data));
+// File upload preview
+function initializeMediaUpload() {
+    const mediaInput = document.getElementById('mediaUpload');
+    const preview = document.getElementById('mediaPreview');
+    if (!mediaInput || !preview) return;
+    mediaInput.addEventListener('change', function() {
+        preview.innerHTML = '';
+        const file = this.files[0];
+        if (!file) return;
+        if (file.type.startsWith('image/')) {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.style.maxWidth = '200px';
+            img.style.maxHeight = '200px';
+            img.style.display = 'block';
+            img.style.margin = '10px auto';
+            preview.appendChild(img);
+        } else if (file.type.startsWith('video/')) {
+            const video = document.createElement('video');
+            video.src = URL.createObjectURL(file);
+            video.controls = true;
+            video.style.maxWidth = '300px';
+            video.style.maxHeight = '200px';
+            video.style.display = 'block';
+            video.style.margin = '10px auto';
+            preview.appendChild(video);
+        } else {
+            preview.textContent = 'Unsupported file type.';
+        }
+    });
 }
 
-// Load auto-saved form data
-function loadAutoSavedData() {
-    const savedData = localStorage.getItem('testimonialDraft');
-    if (savedData) {
-        const data = JSON.parse(savedData);
-        const form = document.getElementById('testimonialForm');
-        
-        Object.keys(data).forEach(key => {
-            const field = form.querySelector(`[name="${key}"]`);
-            if (field) {
-                field.value = data[key];
-                
-                // Trigger character counter update
-                if (key === 'testimonialText') {
-                    const event = new Event('input');
-                    field.dispatchEvent(event);
-                }
-            }
-        });
-    }
+// Save as Draft button logic
+function initializeDraftButton() {
+    const saveDraftBtn = document.getElementById('saveDraftBtn');
+    const draftMessage = document.getElementById('draftMessage');
+    if (!saveDraftBtn || !draftMessage) return;
+    saveDraftBtn.addEventListener('click', function() {
+        autoSaveForm();
+        draftMessage.style.display = 'block';
+        setTimeout(() => { draftMessage.style.display = 'none'; }, 2000);
+    });
 }
 
 // Auto-save form data every 30 seconds
