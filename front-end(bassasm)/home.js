@@ -366,4 +366,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('❌ Theme icon not found!');
     }
+
+    // Removed translation-related code for footer quick links. Translation is now handled in home.html only.
 }); 

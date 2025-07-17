@@ -302,10 +302,10 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="home.html">Home</a></li>
+                        <li><a href="home.html">Home</a></li>
                     <li><a href="book appointment/sign in.html">Sign In</a></li>
-                    <li><a href="book appointment/contact us.html">Contact Us</a></li>
-                    <li><a href="success-stories.html">Success Stories</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="patient-testimonials.html">Success Stories</a></li>
                     <li><a href="book appointment/book.html">Book Appointment</a></li>
                 </ul>
             </div>
@@ -337,7 +337,7 @@
 const translations = {
   ar: {
     header: [
-      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تواصل معنا '
+      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تواصل معنا ', 'تسجيل الدخول'
     ],
     heroTitle: 'مرحبًا بكم في مركز البقاعي',
     heroSubtitle: 'التميز في خدمات إعادة التأهيل والعلاج الطبيعي',
@@ -359,7 +359,7 @@ const translations = {
     footerQuick: 'روابط سريعة',
     footerContact: 'تواصل',
     footerHours: 'ساعات العمل',
-    quickLinks: ['الرئيسية', 'تسجيل الدخول', 'تواصل معنا', 'قصص النجاح', 'حجز موعد'],
+    quickLinks: ["الرئيسية", "تسجيل الدخول", "تواصل معنا", "قصص النجاح", "حجز موعد"],
     contactLinks: ['البريد الإلكتروني: alboqaiworld@gmail.com', 'الهاتف: +962775252444', 'شارع الأندلس، إربد'],
     workingHours: ['السبت - الخميس: 8:00 - 16:00', 'الجمعة: مغلق'],
     copyright: 'جميع الحقوق محفوظة © 2025 مركز البقاعي.',
@@ -416,7 +416,7 @@ function setLanguage(lang) {
   // Header
   const navLinks = document.querySelectorAll('.navbar > li > a, .dropdown-menu > li > a, .dropdown-trigger');
   const t = translations[lang];
-  const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11];
+  const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11,12];
   navLinks.forEach((el, i) => { if (t.header[navOrder[i]]) el.innerHTML = t.header[navOrder[i]]; });
   // Nav alignment
   const navbar = document.querySelector('.navbar');
@@ -439,21 +439,14 @@ function setLanguage(lang) {
   document.querySelectorAll('.hero-buttons a')[0].innerHTML = t.heroBtn1;
   document.querySelectorAll('.hero-buttons a')[1].innerHTML = t.heroBtn2;
   // Quick Services
-  document.querySelector('.quick-services h3').innerHTML = t.quickServices;
-  const serviceTitles = document.querySelectorAll('.service-card h3');
-  t.serviceTitles.forEach((txt, i) => { if (serviceTitles[i]) serviceTitles[i].innerHTML = txt; });
-  const serviceDescs = document.querySelectorAll('.service-card p');
-  t.serviceDescs.forEach((txt, i) => { if (serviceDescs[i]) serviceDescs[i].innerHTML = txt; });
+  document.querySelectorAll('.service-card h3').forEach((el, i) => { if (t.serviceTitles[i]) el.innerHTML = t.serviceTitles[i]; });
+  document.querySelectorAll('.service-card p').forEach((el, i) => { if (t.serviceDescs[i]) el.innerHTML = t.serviceDescs[i]; });
   // Features
-  const features = document.querySelectorAll('.feature-item h4');
-  t.features.forEach((txt, i) => { if (features[i]) features[i].innerHTML = txt; });
-  const featuresDesc = document.querySelectorAll('.feature-item p');
-  t.featuresDesc.forEach((txt, i) => { if (featuresDesc[i]) featuresDesc[i].innerHTML = txt; });
+  document.querySelectorAll('.feature-item h4').forEach((el, i) => { if (t.features[i]) el.innerHTML = t.features[i]; });
+  document.querySelectorAll('.feature-item p').forEach((el, i) => { if (t.featuresDesc[i]) el.innerHTML = t.featuresDesc[i]; });
   // Stats
-  const stats = document.querySelectorAll('.stat-number');
-  t.stats.forEach((txt, i) => { if (stats[i]) stats[i].innerHTML = txt; });
-  const statsLabels = document.querySelectorAll('.stat-label');
-  t.statsLabels.forEach((txt, i) => { if (statsLabels[i]) statsLabels[i].innerHTML = txt; });
+  document.querySelectorAll('.stat-number').forEach((el, i) => { if (t.stats[i]) el.innerHTML = t.stats[i]; });
+  document.querySelectorAll('.stat-label').forEach((el, i) => { if (t.statsLabels[i]) el.innerHTML = t.statsLabels[i]; });
   // Testimonials
   document.querySelector('.testimonials-header h2').innerHTML = t.testimonialsTitle;
   document.querySelector('.testimonials-header p').innerHTML = t.testimonialsDesc;
@@ -461,29 +454,35 @@ function setLanguage(lang) {
   document.querySelector('.author-info h4').innerHTML = t.testimonialAuthor;
   document.querySelector('.author-title').innerHTML = t.testimonialRole;
   // Footer
-  document.querySelector('.footer-section h4').innerHTML = t.footerQuick;
-  document.querySelectorAll('.footer-section h4')[1].innerHTML = t.footerContact;
-  document.querySelectorAll('.footer-section h4')[2].innerHTML = t.footerHours;
-  // Footer quick links
+  document.querySelectorAll('.footer-section h4')[0].textContent = t.footerQuick;
   const quickLinks = document.querySelectorAll('.footer-section ul')[0].querySelectorAll('li a, li');
-  t.quickLinks.forEach((txt, i) => { if (quickLinks[i]) quickLinks[i].innerHTML = txt; });
-  // Footer contact links
-  const contactLinks = document.querySelectorAll('.footer-section ul')[1].querySelectorAll('li, a');
-  t.contactLinks.forEach((txt, i) => { if (contactLinks[i]) contactLinks[i].innerHTML = txt; });
-  // Footer working hours
-  const workingHours = document.querySelectorAll('.footer-section ul')[2].querySelectorAll('li');
-  t.workingHours.forEach((txt, i) => { if (workingHours[i]) workingHours[i].innerHTML = txt; });
-  // Share Your Success Story section
-  document.querySelector('.share-story-section h3').innerHTML = t.shareStoryTitle;
-  document.querySelector('.share-story-section p').innerHTML = t.shareStoryDesc;
-  document.querySelector('.share-story-btn').innerHTML = `<i class="fas fa-plus"></i> ${t.shareStoryBtn}`;
-  // CTA section
-  document.querySelector('.cta-content h2').innerHTML = t.ctaTitle;
-  document.querySelector('.cta-content p').innerHTML = t.ctaDesc;
-  document.querySelector('.cta-buttons a.btn-primary').innerHTML = t.ctaBook;
-  document.querySelector('.cta-buttons a.btn-outline').innerHTML = t.ctaCall;
-  // Copyright
+  t.quickLinks.forEach((txt, i) => { if (quickLinks[i]) quickLinks[i].textContent = txt; });
+
+  document.querySelectorAll('.footer-section h4')[1].textContent = t.footerContact;
+  const contactLinks = document.querySelectorAll('.footer-section ul')[1].querySelectorAll('li');
+  contactLinks[0].querySelector('a').textContent = t.contactLinks[0];
+  contactLinks[1].textContent = t.contactLinks[1];
+  contactLinks[2].querySelector('a').textContent = t.contactLinks[2];
+
+  document.querySelectorAll('.footer-section h4')[2].textContent = t.footerHours;
+  const hoursList = document.querySelectorAll('.footer-section ul')[2].querySelectorAll('li');
+  t.workingHours.forEach((txt, i) => { if (hoursList[i]) hoursList[i].textContent = txt; });
+
   document.querySelector('.footer-bottom').innerHTML = t.copyright;
+
+  // Share Your Success Story section
+  if (document.querySelector('.share-story-section h3')) {
+    document.querySelector('.share-story-section h3').innerHTML = t.shareStoryTitle;
+    document.querySelector('.share-story-section p').innerHTML = t.shareStoryDesc;
+    document.querySelector('.share-story-btn').innerHTML = `<i class="fas fa-plus"></i> ${t.shareStoryBtn}`;
+  }
+  // CTA section
+  if (document.querySelector('.cta-content h2')) {
+    document.querySelector('.cta-content h2').innerHTML = t.ctaTitle;
+    document.querySelector('.cta-content p').innerHTML = t.ctaDesc;
+    document.querySelector('.cta-buttons a.btn-primary').innerHTML = t.ctaBook;
+    document.querySelector('.cta-buttons a.btn-outline').innerHTML = t.ctaCall;
+  }
 }
 
 const langBtn = document.getElementById('lang-toggle-btn');
@@ -493,6 +492,6 @@ langBtn.addEventListener('click', function() {
   lang = lang === 'en' ? 'ar' : 'en';
   setLanguage(lang);
 });
-</script>
-</body>
+    </script>
+  </body>
 </html>
