@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Story | AL-BOQAI Center</title>
+    <link rel="stylesheet" href="share-testimony.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <a href="home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+            </a>
+        </div>
+        <ul class="navbar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="success-stories.html">Success Stories</a></li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">ABOUT US</span>
+                <ul class="dropdown-menu">
+                    <li><a href="about us/aboutus.html">About us</a></li>
+                    <li><a href="about us/boqia cv.html">Boqia cv</a></li>
+                    <li><a href="about us/targeted group.html">Targeted People</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">Our Services</span>
+                <ul class="dropdown-menu">
+                    <li><a href="our services/manual therapy.html">Manual Therapy</a></li>
+                    <li><a href="our services/physical therapy.html">Physical Therapy</a></li>
+                    <li><a href="our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+                </ul>
+            </li>
+            <li><a href="book appointment/book.html">Book Appointment</a></li>
+            <li><a href="book appointment/contact us.html">Contact Us</a></li>
+            <li><a href="book appointment/sign in.html" class="signin-link">Sign In</a></li>
+        </ul>
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h1>Share Your Recovery Journey</h1>
+                <p class="hero-subtitle">Inspire Others with Your Success Story</p>
+                <p class="hero-description">Your experience can make a difference in someone else's life. Share your journey of recovery and transformation to help others find hope and motivation on their path to healing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Form Section -->
+    <section class="testimonial-form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Tell Us Your Story</h2>
+                    <p>Help us understand your journey and inspire others with your experience</p>
+                </div>
+                <form class="testimonial-form" id="testimonialForm" enctype="multipart/form-data">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" name="age" min="1" max="120" placeholder="Your age">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+966 50 123 4567">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mediaUpload">Upload Photo or Video (optional)</label>
+                            <input type="file" id="mediaUpload" name="mediaUpload" accept="image/*,video/*">
+                            <div id="mediaPreview" style="margin-top:10px;"></div>
+                        </div>
+                    </div>
+                    <!-- Medical Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-stethoscope"></i> Medical Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="condition">Primary Condition Treated *</label>
+                                <input type="text" id="condition" name="condition" required placeholder="e.g., Back pain, Sports injury, Post-surgery recovery">
+                            </div>
+                            <div class="form-group">
+                                <label for="treatmentType">Type of Treatment Received *</label>
+                                <select id="treatmentType" name="treatmentType" required>
+                                    <option value="">Select Treatment Type</option>
+                                    <option value="manual-therapy">Manual Therapy</option>
+                                    <option value="physical-therapy">Physical Therapy</option>
+                                    <option value="body-engineering">Rehabilitation Body Engineering</option>
+                                    <option value="multiple">Multiple Treatments</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="treatmentDuration">Treatment Duration</label>
+                                <select id="treatmentDuration" name="treatmentDuration">
+                                    <option value="">Select Duration</option>
+                                    <option value="1-2-weeks">1-2 weeks</option>
+                                    <option value="1-month">1 month</option>
+                                    <option value="2-3-months">2-3 months</option>
+                                    <option value="3-6-months">3-6 months</option>
+                                    <option value="6-months-plus">6+ months</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="beforeCondition">Condition Before Treatment *</label>
+                                <textarea id="beforeCondition" name="beforeCondition" rows="3" required placeholder="Describe your condition and symptoms before treatment"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Treatment Experience -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-clipboard-check"></i> Treatment Experience</h3>
+                        <div class="form-group">
+                            <label for="treatmentExperience">Your Treatment Experience *</label>
+                            <textarea id="treatmentExperience" name="treatmentExperience" rows="4" required placeholder="Describe your treatment experience, the care you received, and how the staff made you feel"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="results">Results and Improvements *</label>
+                            <textarea id="results" name="results" rows="4" required placeholder="Describe the results you achieved, improvements in your condition, and how it has impacted your life"></textarea>
+                        </div>
+                    </div>
+                    <!-- Testimonial Content -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-quote-left"></i> Your Testimonial</h3>
+                        <div class="form-group">
+                            <label for="testimonialText">Your Story *</label>
+                            <textarea id="testimonialText" name="testimonialText" rows="6" required placeholder="Share your complete story in your own words. Include what brought you to AL-BOQAI Center, your treatment journey, and the positive outcomes you experienced. Your story can inspire others on their recovery journey."></textarea>
+                            <div class="char-counter">
+                                <span id="charCount">0</span> / 1500 characters
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rating and Recommendation -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-star"></i> Rating & Recommendation</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="overallRating">Overall Rating *</label>
+                                <div class="rating-container">
+                                    <div class="rating-stars">
+                                        <input type="radio" id="star5" name="rating" value="5" required>
+                                        <label for="star5"><i class="fas fa-star"></i></label>
+                                        <input type="radio" id="star4" name="rating" value="4">
+                                        <label for="star4"><i class="fas fa-star"></i></label>
+                                        <input type="radio" id="star3" name="rating" value="3">
+                                        <label for="star3"><i class="fas fa-star"></i></label>
+                                        <input type="radio" id="star2" name="rating" value="2">
+                                        <label for="star2"><i class="fas fa-star"></i></label>
+                                        <input type="radio" id="star1" name="rating" value="1">
+                                        <label for="star1"><i class="fas fa-star"></i></label>
+                                    </div>
+                                    <span class="rating-label">Click to rate</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="recommend">Would you recommend AL-BOQAI Center? *</label>
+                                <select id="recommend" name="recommend" required>
+                                    <option value="">Select option</option>
+                                    <option value="definitely">Definitely Yes</option>
+                                    <option value="probably">Probably Yes</option>
+                                    <option value="maybe">Maybe</option>
+                                    <option value="probably-not">Probably Not</option>
+                                    <option value="definitely-not">Definitely Not</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Additional Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-info-circle"></i> Additional Information</h3>
+                        <div class="form-group">
+                            <label for="specialist">Did you work with a specific specialist?</label>
+                            <input type="text" id="specialist" name="specialist" placeholder="Name of specialist (optional)">
+                        </div>
+                        <div class="form-group">
+                            <label for="additionalComments">Any Additional Comments</label>
+                            <textarea id="additionalComments" name="additionalComments" rows="3" placeholder="Any other thoughts, suggestions, or comments you'd like to share"></textarea>
+                        </div>
+                    </div>
+                    <!-- Privacy and Consent -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-shield-alt"></i> Privacy & Consent</h3>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="consent" name="consent" required>
+                                <span class="checkmark"></span>
+                                I consent to AL-BOQAI Center using my testimonial on their website and marketing materials. I understand that my name may be displayed publicly.
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="anonymous" name="anonymous">
+                                <span class="checkmark"></span>
+                                I prefer to remain anonymous (only initials will be displayed)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="contactPermission" name="contactPermission">
+                                <span class="checkmark"></span>
+                                I give permission for AL-BOQAI Center to contact me for follow-up or clarification if needed
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Your Story
+                        </button>
+                        <button type="button" class="preview-btn" id="previewBtn">
+                            <i class="fas fa-eye"></i>
+                            Preview
+                        </button>
+                        <button type="button" class="draft-btn" id="saveDraftBtn">
+                            <i class="fas fa-save"></i>
+                            Save as Draft
+                        </button>
+                    </div>
+                    <div id="draftMessage" style="display:none; color: var(--success-color); margin-top: 10px; text-align:center; font-weight:600;">
+                        Draft saved successfully!
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="book appointment/sign in.html">Sign In</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="patient-testimonials.html">Success Stories</a></li>
+                    <li><a href="book appointment/book.html">Book Appointment</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:alboqaiworld@gmail.com" target="_blank">Email: alboqaiworld@gmail.com</a></li>
+                    <li>Phone: +962775252444</li>
+                    <li><a href="https://maps.app.goo.gl/8sPWu3tUFbbenmvd7?g_st=iw" target="_blank">al-andlos road, Irbid</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Saturday - Thursday: 8:00 - 16:00</li>
+                    <li>Friday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 AL-BOQAI CENTER. All rights reserved.
+        </div>
+    </div>
+
+  <!--  <script src="share-testimony.js"></script>
+    <script src="dark-mode.js"></script> -->
+</body>
+</html> 

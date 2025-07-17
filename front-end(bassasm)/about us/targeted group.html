@@ -20,7 +20,7 @@
 <!--header-->
 <ul class="navbar">
   <li><a href="../home.html">Home</a></li>
-  <li><a href="#">Success Stories</a></li>
+  <li><a href="../success-stories.html">Success Stories</a></li>
   <li class="dropdown">
     <span class="dropdown-trigger active">ABOUT US</span>
     <ul class="dropdown-menu">
@@ -38,12 +38,15 @@
     </ul>
   </li>
   <li><a href="../book appointment/book.html">Book Appointment</a></li>
-  <li><a href="../book appointment/contact.html">Contact Us</a></li>
+  <li><a href="../book appointment/contact us.html">Contact Us</a></li>
   <li><a href="../book appointment/sign in.html" class="signin-link">Sign In</a></li>
 </ul>
 
 <!-- Dark Mode Toggle -->
-<div class="theme-toggle">
+<div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+    <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+        <i class="fas fa-language"></i>
+    </button>
     <button id="theme-toggle-btn" class="theme-btn">
         <i class="fas fa-moon" id="theme-icon"></i>
     </button>
@@ -99,9 +102,9 @@
                 <ul>
                     <li><a href="../home.html">Home</a></li>
                     <li><a href="../book appointment/sign in.html">Sign In</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="../patient-testimonials.html">Success Stories</a></li>
-                    <li><a href="../book appointment/sign in.html">Book Appointment</a></li>
+                    <li><a href="../book appointment/contact us.html">Contact Us</a></li>
+                    <li><a href="../success-stories.html">Success Stories</a></li>
+                    <li><a href="../book appointment/book.html">Book Appointment</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -126,5 +129,145 @@
     </div>
 
     <script src="about-us-dark-mode.js"></script>
+    <script>
+const translations = {
+  ar: {
+   header: [
+      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'تواصل معنا', 'احجز موعد'
+    ],
+    targetHeader: 'الفئات المستهدفة',
+    targetSubtitle: 'خدمات إعادة تأهيل شاملة لمجموعة واسعة من الحالات الطبية',
+    targetDescription: 'في مركز البقاعي، نقدم خدمات إعادة التأهيل والعلاج الطبيعي المتخصصة لمجموعة واسعة من الحالات الطبية والفئات المستهدفة. فريقنا الخبير مجهز للتعامل مع الحالات المعقدة وتقديم خطط علاجية فردية لكل مريض',
+    targetGroupsTitle: 'الفئات المستهدفة',
+    targetGroupsList: [
+      'نقص الأكسجين، الشلل الدماغي وجميع أنواع الشلل',
+      'إصابات ما بعد الحوادث',
+      'جميع أنواع الجلطات',
+      'جميع أنواع الضمور',
+      'التصلب اللويحي',
+      'جميع الإعاقات التي تؤثر على حياة الشخص الطبيعي. (أي مشكلة تعيق حياة الشخص الطبيعي)',
+      'الحالات التي تم تشخيصها بأنها غير قابلة للعلاج',
+      'مشاكل المفاصل والعمود الفقري',
+      'الصداع النصفي، الصداع، الإمساك (مشاكل الأنسجة الرخوة)',
+      'إصابات الحبل الشوكي',
+      'جميع أنواع الخلع الولادي',
+      'الصرع',
+      'مشاكل الجهاز العضلي الهيكلي'
+    ],
+    approachTitle: 'نهجنا',
+    approachText: 'نؤمن بأن كل مريض يستحق رعاية واهتمامًا فرديًا. يجمع نهجنا الشامل بين التقنيات العلاجية المتقدمة والرعاية الرحيمة لمساعدة المرضى على تحقيق أقصى إمكاناتهم في التعافي وتحسين جودة حياتهم',
+    careTitle: 'رعاية متخصصة',
+    careText: 'يختص فريقنا من المعالجين ذوي الخبرة في علاج الحالات الطبية المعقدة ويعمل عن كثب مع المرضى وعائلاتهم لتطوير خطط علاج فعالة تلبي الاحتياجات الجسدية والعاطفية',
+    footerQuick: 'روابط سريعة',
+    footerContact: 'تواصل',
+    footerHours: 'ساعات العمل',
+    quickLinks: ['الرئيسية', 'تسجيل الدخول', 'تواصل معنا', 'قصص النجاح', 'حجز موعد'],
+    contactLinks: ['البريد الإلكتروني: alboqaiworld@gmail.com', 'الهاتف: +962775252444', 'شارع الأندلس، إربد'],
+    workingHours: ['السبت - الخميس: 8:00 - 16:00', 'الجمعة: مغلق'],
+    copyright: 'جميع الحقوق محفوظة © 2025 مركز البقاعي.'
+  },
+  en: {
+ header: [
+      'Home', 'Success Stories', 'About Us','About Us' , 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment', 'Contact Us', 'Sign In'
+    ],
+    targetHeader: 'Our Target Groups',
+    targetSubtitle: 'Comprehensive Rehabilitation Services for Various Medical Conditions',
+    targetDescription: 'At AL-BOQAI Center, we provide specialized rehabilitation and physical therapy services for a wide range of medical conditions and patient groups. Our expert team is equipped to handle complex cases and provide personalized treatment plans for each individual.',
+    targetGroupsTitle: 'Target Groups',
+    targetGroupsList: [
+      'Oxygen deficiency, cerebral palsy, and all types of paralysis.',
+      'Post-accident injuries.',
+      'All types of strokes.',
+      'All types of dystrophy.',
+      'Multiple sclerosis.',
+      'All disabilities that affect a normal person\'s life. Here, disability means any problem that hinders the life of a normal person.',
+      'Cases that have been diagnosed as incurable.',
+      'Joint and spinal problems.',
+      'Migraine, headache, constipation (soft tissue problems).',
+      'Spinal cord injuries.',
+      'All types of birth dislocations.',
+      'Epilepsy.',
+      'Musculoskeletal system problems.'
+    ],
+    approachTitle: 'Our Approach',
+    approachText: 'We believe that every patient deserves personalized care and attention. Our comprehensive approach combines advanced therapeutic techniques with compassionate care to help patients achieve their maximum potential for recovery and improved quality of life.',
+    careTitle: 'Specialized Care',
+    careText: 'Our team of experienced therapists specializes in treating complex medical conditions and works closely with patients and their families to develop effective treatment plans that address both physical and emotional needs.',
+    footerQuick: 'Quick Links',
+    footerContact: 'Contact',
+    footerHours: 'Working Hours',
+    quickLinks: ['Home', 'Sign In', 'Contact Us', 'Success Stories', 'Book Appointment'],
+    contactLinks: ['Email: alboqaiworld@gmail.com', 'Phone: +962775252444', 'al-andlos road, Irbid'],
+    workingHours: ['Saturday - Thursday: 8:00 - 16:00', 'Friday: Closed'],
+    copyright: '&copy; 2025 AL-BOQAI CENTER. All rights reserved.'
+  }
+};
+
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
+  document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  localStorage.setItem('lang', lang);
+  // Header
+  const navLinks = document.querySelectorAll('.navbar > li > a, .dropdown-menu > li > a, .dropdown-trigger');
+  const t = translations[lang];
+  const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11];
+  navLinks.forEach((el, i) => { if (t.header[navOrder[i]]) el.innerHTML = t.header[navOrder[i]]; });
+  // Nav alignment
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    if (lang === 'ar') {
+      navbar.style.flexDirection = 'row-reverse';
+      navbar.style.textAlign = 'right';
+    } else {
+      navbar.style.flexDirection = 'row';
+      navbar.style.textAlign = 'left';
+    }
+  }
+  document.querySelectorAll('.dropdown-menu').forEach(menu => {
+    menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
+  });
+  // Target header
+  document.querySelector('.target-header h1').innerHTML = t.targetHeader;
+  document.querySelector('.target-header .target-subtitle').innerHTML = t.targetSubtitle;
+  document.querySelector('.target-header .target-description').innerHTML = t.targetDescription;
+  // Target groups
+  document.querySelector('.target-section h2').innerHTML = t.targetGroupsTitle;
+  const targetList = document.querySelector('.target-list');
+  targetList.innerHTML = '';
+  t.targetGroupsList.forEach(item => {
+    const li = document.createElement('li');
+    li.innerHTML = item;
+    targetList.appendChild(li);
+  });
+  // Info cards
+  document.querySelectorAll('.info-card h3')[0].innerHTML = t.approachTitle;
+  document.querySelectorAll('.info-card p')[0].innerHTML = t.approachText;
+  document.querySelectorAll('.info-card h3')[1].innerHTML = t.careTitle;
+  document.querySelectorAll('.info-card p')[1].innerHTML = t.careText;
+  // Footer
+  document.querySelector('.footer-section h4').innerHTML = t.footerQuick;
+  document.querySelectorAll('.footer-section h4')[1].innerHTML = t.footerContact;
+  document.querySelectorAll('.footer-section h4')[2].innerHTML = t.footerHours;
+  // Footer quick links
+  const quickLinks = document.querySelectorAll('.footer-section ul')[0].querySelectorAll('li a, li');
+  t.quickLinks.forEach((txt, i) => { if (quickLinks[i]) quickLinks[i].innerHTML = txt; });
+  // Footer contact links
+  const contactLinks = document.querySelectorAll('.footer-section ul')[1].querySelectorAll('li, a');
+  t.contactLinks.forEach((txt, i) => { if (contactLinks[i]) contactLinks[i].innerHTML = txt; });
+  // Footer working hours
+  const workingHours = document.querySelectorAll('.footer-section ul')[2].querySelectorAll('li');
+  t.workingHours.forEach((txt, i) => { if (workingHours[i]) workingHours[i].innerHTML = txt; });
+  // Copyright
+  document.querySelector('.footer-bottom').innerHTML = t.copyright;
+}
+
+const langBtn = document.getElementById('lang-toggle-btn');
+let lang = localStorage.getItem('lang') || 'en';
+setLanguage(lang);
+langBtn.addEventListener('click', function() {
+  lang = lang === 'en' ? 'ar' : 'en';
+  setLanguage(lang);
+});
+</script>
 </body>
 </html>

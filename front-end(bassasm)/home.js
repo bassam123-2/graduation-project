@@ -332,6 +332,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', debouncedScrollHandler);
     
+    // Highlight current page in navbar (Arabic and English)
+    function highlightCurrentNav() {
+        const path = window.location.pathname.split('/').pop();
+        const navLinks = document.querySelectorAll('.navbar > li > a');
+        navLinks.forEach(link => {
+            // Remove any existing active class
+            link.classList.remove('active');
+            // Normalize href for comparison
+            const href = link.getAttribute('href') ? link.getAttribute('href').split('?')[0] : '';
+            if (href && (href === path || (href === 'home.html' && (path === '' || path === 'index.html')))) {
+                link.classList.add('active');
+            }
+        });
+    }
+    highlightCurrentNav();
+    
     // Console welcome message
     console.log('%cWelcome to AL-BOQAI Center! 🏥', 'color: #2a5d9f; font-size: 20px; font-weight: bold;');
     console.log('%cProfessional Rehabilitation & Physical Therapy Services', 'color: #666; font-size: 14px;');

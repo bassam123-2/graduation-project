@@ -62,7 +62,7 @@ body {
 }
 
 .navbar {
-    display: flex;
+    display: flex !important;
     justify-content: flex-start;
     align-items: center;
     list-style: none;

@@ -3,87 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Elaji Center</title>
+    <title>AL-BOQAI Center | Book Appointment</title>
     <link rel="stylesheet" href="book.css">
     <link rel="stylesheet" href="../header.css">
     <link rel="stylesheet" href="../footer.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<!--logo-->
 <body>
-<div class="header">
-       <div class="logo">
-  <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
-    <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
- 
-  </a>
-</div>
-<!--header-->
-<ul class="navbar">
-  <li><a href="../home.html">Home</a></li>
-  <li><a href="#">Success Stories</a></li>
-  <li class="dropdown">
-    <span class="dropdown-trigger">ABOUT US</span>
-    <ul class="dropdown-menu">
-      <li><a href="../about us/aboutus.html">About us</a></li>
-      <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
-      <li><a href="../about us/targeted group.html">Targeted People</a></li>
-    </ul>
-  </li>
-  <li class="dropdown">
-    <span class="dropdown-trigger">Our Services</span>
-    <ul class="dropdown-menu">
-      <li><a href="../our services/manual therapy.html">Manual Therapy</a></li>
-      <li><a href="../our services/physical therapy.html">Physical Therapy</a></li>
-      <li><a href="../our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
-    </ul>
-  </li>
-  <li><a href="book.html" class="active">Book Appointment</a></li>
-  <li><a href="contact.html">Contact Us</a></li>
-  <li><a href="sign in.html" class="signin-link">Sign In</a></li>
-</ul>
-
-<!-- Dark Mode Toggle -->
-<div class="theme-toggle">
-    <button id="theme-toggle-btn" class="theme-btn">
-        <i class="fas fa-moon" id="theme-icon"></i>
-    </button>
-</div>
-<!--body-->
-   <div class="booking-container">
-  <form class="booking-form">
-    <h2>Book an Appointment</h2>
-    <div class="form-group">
-      <label for="service">Select Service</label>
-      <select id="service" name="service" required>
-        <option value="">-- Please choose a service --</option>
-        <option value="general">General Physiotherapy</option>
-        <option value="rehab">Rehabilitation Therapy</option>
-        <option value="sports">Sports Injury Treatment</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="date">Choose Date</label>
-      <input type="date" id="date" name="date" required>
-    </div>
-    <div class="form-group">
-      <label for="time">Choose Time</label>
-      <input type="time" id="time" name="time" required>
-    </div>
-    <button type="submit">Book Now</button>
-  </form>
-</div> 
+    <!-- Header (copied and adapted from home.html) -->
+    <div class="header">
+        <div class="logo">
+            <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+            </a>
         </div>
-<!--footer -->
-   <div class="footer">
+        <!-- Navigation -->
+        <ul class="navbar">
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../success-stories.html">Success Stories</a></li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">ABOUT US</span>
+                <ul class="dropdown-menu">
+                    <li><a href="../about us/aboutus.html">About us</a></li>
+                    <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
+                    <li><a href="../about us/targeted group.html">Targeted People</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">Our Services</span>
+                <ul class="dropdown-menu">
+                    <li><a href="../our services/manual therapy.html">Manual Therapy</a></li>
+                    <li><a href="../our services/physical therapy.html">Physical Therapy</a></li>
+                    <li><a href="../our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+                </ul>
+            </li>
+            <li><a href="book.html" class="active">Book Appointment</a></li>
+            <li><a href="contact us.html">Contact Us</a></li>
+            <li><a href="sign in.html" class="signin-link">Sign In</a></li>
+        </ul>
+        <!-- Dark Mode & Language Toggle -->
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button (optional, can be added for consistency) -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/962775252444" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        </a>
+    </div>
+
+    <!--body-->
+    <div class="booking-container">
+        <form class="booking-form">
+            <h2>Book an Appointment</h2>
+            <div class="form-group">
+                <label for="service">Select Service</label>
+                <select id="service" name="service" required>
+                    <option value="">-- Please choose a service --</option>
+                    <option value="general">General Physiotherapy</option>
+                    <option value="rehab">Rehabilitation Therapy</option>
+                    <option value="sports">Sports Injury Treatment</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Choose Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Choose Time</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+
+    <!--footer -->
+    <div class="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="../home.html">Home</a></li>
                     <li><a href="sign in.html">Sign In</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="../patient-testimonials.html">Success Stories</a></li>
+                    <li><a href="contact us.html">Contact Us</a></li>
+                    <li><a href="../success-stories.html">Success Stories</a></li>
                     <li><a href="book.html">Book Appointment</a></li>
                 </ul>
             </div>
@@ -109,4 +120,128 @@
     </div>
 
     <script src="book-appointment-dark-mode.js"></script>
+    <script>
+// Language toggle logic (copied and adapted from home.html)
+const translations = {
+  ar: {
+    header: [
+      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تواصل معنا '
+    ],
+    booking: {
+      h2: "احجز موعد",
+      service: "اختر الخدمة",
+      chooseService: "-- يرجى اختيار خدمة --",
+      general: "العلاج الطبيعي العام",
+      rehab: "علاج الفيزيائي",
+      sports: "هندسة اعادة التأهيل",
+      date: "اختر التاريخ",
+      time: "اختر الوقت",
+      bookNow: "احجز الآن"
+    },
+    servicesDropdown: ["العلاج اليدوي", "العلاج الفيزيائي", "هندسة إعادة التأهيل"],
+    aboutDropdown: ["من نحن", "السيرة الذاتية", "الفئات المسهدفة"],
+    footer: {
+      quick: "روابط سريعة",
+      quickLinks: ["الرئيسية", "تسجيل الدخول", "اتصل بنا", "قصص النجاح", "حجز موعد"],
+      contact: "تواصل معنا",
+      email: "البريد الإلكتروني: alboqaiworld@gmail.com",
+      phone: "الهاتف: +962775252444",
+      address: "شارع الأندلس، إربد",
+      hours: "ساعات العمل",
+      hoursList: ["السبت - الخميس: 8:00 - 16:00", "الجمعة: مغلق"],
+      copyright: "© 2025 مركز البقاعي. جميع الحقوق محفوظة."
+    }
+  },
+  en: {
+ header: [
+      'Home', 'Success Stories', 'About Us','About Us' , 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment', 'Contact Us', 'Sign In'
+    ],
+    booking: {
+      h2: "Book an Appointment",
+      service: "Select Service",
+      chooseService: "-- Please choose a service --",
+      general: "General Physiotherapy",
+      rehab: "Rehabilitation Therapy",
+      sports: "Sports Injury Treatment",
+      date: "Choose Date",
+      time: "Choose Time",
+      bookNow: "Book Now"
+    },
+    servicesDropdown: ["Manual Therapy", "Physical Therapy", "Rehabilitation Body Engineering"],
+    aboutDropdown: ["About us", "Boqia cv", "Targeted People"],
+    footer: {
+      quick: "Quick Links",
+      quickLinks: ["Home", "Sign In", "Contact Us", "Success Stories", "Book Appointment"],
+      contact: "Contact",
+      email: "Email: alboqaiworld@gmail.com",
+      phone: "Phone: +962775252444",
+      address: "al-andlos road, Irbid",
+      hours: "Working Hours",
+      hoursList: ["Saturday - Thursday: 8:00 - 16:00", "Friday: Closed"],
+      copyright: "© 2025 AL-BOQAI CENTER. All rights reserved."
+    }
+  }
+};
+
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
+  document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  localStorage.setItem('lang', lang);
+  // Header
+  const navLinks = document.querySelectorAll('.navbar > li > a, .dropdown-menu > li > a, .dropdown-trigger');
+  const t = translations[lang];
+  const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11];
+  navLinks.forEach((el, i) => { if (t.header[navOrder[i]]) el.innerHTML = t.header[navOrder[i]]; });
+  // Nav alignment
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    if (lang === 'ar') {
+      navbar.style.flexDirection = 'row-reverse';
+      navbar.style.textAlign = 'right';
+    } else {
+      navbar.style.flexDirection = 'row';
+      navbar.style.textAlign = 'left';
+    }
+  }
+  document.querySelectorAll('.dropdown-menu').forEach(menu => {
+    menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
+  });
+  // Booking form
+  const booking = t.booking;
+  document.querySelector('.booking-form h2').textContent = booking.h2;
+  document.querySelector('label[for="service"]').textContent = booking.service;
+  document.querySelector('label[for="date"]').textContent = booking.date;
+  document.querySelector('label[for="time"]').textContent = booking.time;
+  document.querySelector('.booking-form button').textContent = booking.bookNow;
+  // Service options
+  const serviceSelect = document.getElementById('service');
+  serviceSelect.options[0].text = booking.chooseService;
+  serviceSelect.options[1].text = booking.general;
+  serviceSelect.options[2].text = booking.rehab;
+  serviceSelect.options[3].text = booking.sports;
+  // Footer
+  const footer = t.footer;
+  document.querySelector('.footer-section h4').textContent = footer.quick;
+  const quickLinks = document.querySelectorAll('.footer-section ul li a');
+  footer.quickLinks.forEach((txt, i) => { if (quickLinks[i]) quickLinks[i].textContent = txt; });
+  document.querySelectorAll('.footer-section h4')[1].textContent = footer.contact;
+  const contactLinks = document.querySelectorAll('.footer-section ul')[1].querySelectorAll('li');
+  contactLinks[0].querySelector('a').textContent = footer.email;
+  contactLinks[1].textContent = footer.phone;
+  contactLinks[2].querySelector('a').textContent = footer.address;
+  document.querySelectorAll('.footer-section h4')[2].textContent = footer.hours;
+  const hoursList = document.querySelectorAll('.footer-section ul')[2].querySelectorAll('li');
+  footer.hoursList.forEach((txt, i) => { hoursList[i].textContent = txt; });
+  document.querySelector('.footer-bottom').textContent = footer.copyright;
+}
+
+const langBtn = document.getElementById('lang-toggle-btn');
+let lang = localStorage.getItem('lang') || 'en';
+setLanguage(lang);
+langBtn.addEventListener('click', function() {
+  lang = lang === 'en' ? 'ar' : 'en';
+  setLanguage(lang);
+});
+    </script>
+</body>
 </html>

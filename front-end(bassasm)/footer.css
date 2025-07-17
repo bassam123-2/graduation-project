@@ -42,9 +42,23 @@
 .footer-section ul li a {
     color: #d0d0d0;
     text-decoration: none;
+    pointer-events: auto !important;
+    z-index: 2;
+    position: relative;
 }
 
 .footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-section a {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.footer-section a:hover {
+    color: var(--primary-color, #2a5d9f);
     text-decoration: underline;
 }
 

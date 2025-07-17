@@ -12,42 +12,42 @@
 <!--logo-->
 <body>
 <div class="header">
-       <div class="logo">
-  <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
-    <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
- 
-  </a>
-</div>
-<!--header-->
-<ul class="navbar">
-  <li><a href="../home.html">Home</a></li>
-  <li><a href="#">Success Stories</a></li>
-  <li class="dropdown">
-    <span class="dropdown-trigger">ABOUT US</span>
-    <ul class="dropdown-menu">
-      <li><a href="../about us/aboutus.html">About us</a></li>
-      <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
-      <li><a href="../about us/targeted group.html">Targeted People</a></li>
+    <div class="logo">
+        <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
+            <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+        </a>
+    </div>
+    <ul class="navbar">
+        <li><a href="../home.html">Home</a></li>
+        <li><a href="../success-stories.html">Success Stories</a></li>
+        <li class="dropdown">
+            <span class="dropdown-trigger">ABOUT US</span>
+            <ul class="dropdown-menu">
+                <li><a href="../about us/aboutus.html">About us</a></li>
+                <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
+                <li><a href="../about us/targeted group.html">Targeted People</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <span class="dropdown-trigger">Our Services</span>
+            <ul class="dropdown-menu">
+                <li><a href="manual therapy.html">Manual Therapy</a></li>
+                <li><a href="physical therapy.html">Physical Therapy</a></li>
+                <li><a href="Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+            </ul>
+        </li>
+        <li><a href="../book appointment/book.html">Book Appointment</a></li>
+        <li><a href="../book appointment/contact us.html">Contact Us</a></li>
+        <li><a href="../book appointment/sign in.html" class="signin-link">Sign In</a></li>
     </ul>
-  </li>
-  <li class="dropdown">
-    <span class="dropdown-trigger active">Our Services</span>
-    <ul class="dropdown-menu">
-      <li><a href="manual therapy.html">Manual Therapy</a></li>
-      <li><a href="physical therapy.html">Physical Therapy</a></li>
-      <li><a href="Rehabilitation Body Engineering for Manual Therapy Sciences.html" class="active">Rehabilitation Body Engineering</a></li>
-    </ul>
-  </li>
-  <li><a href="../book appointment/book.html">Book Appointment</a></li>
-  <li><a href="contact.html">Contact Us</a></li>
-  <li><a href="../book appointment/sign in.html" class="signin-link">Sign In</a></li>
-</ul>
-
-<!-- Dark Mode Toggle -->
-<div class="theme-toggle">
-    <button id="theme-toggle-btn" class="theme-btn">
-        <i class="fas fa-moon" id="theme-icon"></i>
-    </button>
+    <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+        <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+            <i class="fas fa-language"></i>
+        </button>
+        <button id="theme-toggle-btn" class="theme-btn">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </div>
 </div>
 
 <!-- Service Header -->
@@ -185,7 +185,7 @@
         
         <div class="side-images">
             <div class="image-container">
-                <img src="https://tyromotion.com/wp-content/uploads/2022/07/TYR_KokonStills_14_komprimiert-1700x956.jpg alt="Body Engineering Analysis">
+                <img src="https://tyromotion.com/wp-content/uploads/2022/07/TYR_KokonStills_14_komprimiert-1700x956.jpg" alt="Body Engineering Analysis">
                 <p class="image-caption">Advanced Biomechanical Analysis</p>
             </div>
             <div class="image-container">
@@ -209,8 +209,8 @@
                 <ul>
                     <li><a href="../home.html">Home</a></li>
                     <li><a href="../book appointment/sign in.html">Sign In</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="../patient-testimonials.html">Patient Testimonials</a></li>
+                    <li><a href="../book appointment/contact us.html">Contact Us</a></li>
+                    <li><a href="../success-stories.html">Success Stories</a></li>
                     <li><a href="../book appointment/book.html">Book Appointment</a></li>
                 </ul>
             </div>
@@ -236,5 +236,275 @@
     </div>
 
     <script src="our-services-dark-mode.js"></script>
+    <script>
+    // Language toggle logic for services page (matches home.html)
+    const translations = {
+      ar: {
+          header: [
+      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تواصل معنا '
+    ],
+        servicesDropdown: ["العلاج اليدوي", "العلاج الفيزيائي", "هندسة إعادة التأهيل"],
+        aboutDropdown: ["من نحن", "السيرة الذاتية", "الفئات المسهدفة"],
+        serviceHeader: {
+          h1: "هندسة التأهيل للعلاج اليدوي",
+          subtitle: "تحليل بيوميكانيكي متقدم وعلاج دقيق",
+          desc: "علم تأهيل متطور يجمع بين البيوميكانيكا، وتحليل الحركة، ومبادئ الهندسة الشخصية لتحسين الوظيفة البدنية والأداء"
+        },
+        intro: {
+          h2: "ما هي هندسة التأهيل للعلاج اليدوي؟",
+          p: "هندسة التأهيل للعلاج اليدوي هي برنامج تأهيل متقدم ومتكامل يجمع بين مبادئ العلاج اليدوي والبيوميكانيكا وتحليل الحركة الشخصية. هذا النوع المتخصص من العلاج مصمم للأفراد الذين يحتاجون إلى نهج أكثر دقة وتخصيصاً للشفاء والتحسين البدني. منهجيتنا الشاملة تعالج الأسباب الجذرية لخلل الحركة وتوفر حلولاً طويلة الأمد للحالات العضلية الهيكلية المعقدة"
+        },
+        components: {
+          h2: "المكونات الرئيسية لهندسة الجسم",
+          cards: [
+            ["التحليل البيوميكانيكي", "تقييم شامل للقوام، وأنماط المشي، ومحاذاة الجسم، وكفاءة الحركة باستخدام أدوات متخصصة وملاحظة متقدمة من المعالج. هذا التحليل يحدد خلل الحركة الدقيق الذي قد يساهم في الألم والخلل الوظيفي"],
+            ["تصحيح القوام", "تحديد وتصحيح منهجي لعادات القوام السيئة واختلالات العضلات التي يمكن أن تؤدي إلى مشاكل طويلة الأمد. نهجنا يركز على استعادة المحاذاة المثلى ومنع المشاكل المستقبلية"],
+            ["العلاج اليدوي المتقدم", "تقنيات يدوية متخصصة للغاية تستهدف قيود المفاصل العميقة، وخلل الأنسجة الرخوة، واحتباس الأعصاب. هذه الطرق المتقدمة توفر علاجاً دقيقاً للحالات المعقدة"],
+            ["خطط التأهيل المخصصة", "برامج تمارين مصممة خصيصاً لتحسين الحركة، وتحسين توازن العضلات، وتصحيح أنماط الحركة الخاطئة. كل خطة فريدة لاحتياجات وأهداف الفرد المحددة"],
+            ["التدريب الوظيفي", "تدريب مركز لتحسين قدرة الجسم على أداء الأنشطة اليومية والحركات الرياضية بكفاءة وأمان أكبر. يشمل هذا التأهيل الرياضي المحدد وتعزيز الأداء"],
+            ["تحليل أنماط الحركة", "تحليل متقدم لأنماط الحركة لتحديد التعويضات وعدم الكفاءة التي قد تساهم في الألم أو انخفاض الأداء. هذا التحليل يوجه تخطيط العلاج ومراقبة التقدم"]
+          ]
+        },
+        benefits: {
+          h2: "الفوائد الشاملة",
+          items: [
+            ["التحسين الهيكلي", "يحسن بشكل عميق القوام والمحاذاة الهيكلية ودقة الحركة لتحسين الأداء البدني وتقليل مخاطر الإصابات"],
+            ["الحلول طويلة الأمد", "يوفر حلولاً دائمة للحالات العضلية الهيكلية المزمنة من خلال تحليل السبب الجذري والتدخلات المستهدفة"],
+            ["منع الإصابات", "يقلل من مخاطر الإصابات المستقبلية والانتكاسات من خلال تحليل الحركة الشامل والاستراتيجيات الوقائية"],
+            ["تعزيز الأداء", "يحسن ميكانيكا الجسم لكل من الحياة اليومية والأداء الرياضي، مما يحسن الكفاءة ويقلل من استهلاك الطاقة"],
+            ["تسريع الشفاء", "يسرع التأهيل للحالات البدنية المعقدة أو طويلة الأمد من خلال التدخلات المستهدفة المبينة على الأدلة"],
+            ["الرعاية الشخصية", "يوفر خطط علاج فردية للغاية بناءً على التقييم الشامل والتقييم المستمر للتقدم"]
+          ]
+        },
+        applications: {
+          h2: "التطبيقات والمؤشرات",
+          categories: [
+            {
+              title: "الأداء الرياضي",
+              items: ["تأهيل الإصابات الرياضية", "تحسين الأداء", "تصحيح أنماط الحركة", "التدريب الرياضي المحدد"]
+            },
+            {
+              title: "الحالات المزمنة",
+              items: ["متلازمات الألم طويلة الأمد", "خلل القوام", "اضطرابات أنماط الحركة", "المشاكل العضلية الهيكلية المعقدة"]
+            },
+            {
+              title: "التأهيل بعد العمليات",
+              items: ["الرعاية المتقدمة بعد العمليات", "استعادة الحركة", "الشفاء الوظيفي", "تحسين الأداء"]
+            }
+          ]
+        },
+        session: {
+          h2: "معلومات جلسة العلاج",
+          items: [
+            ["مدة الجلسة", "45-75 دقيقة لكل جلسة بسبب متطلبات التقييم والعلاج الشاملة"],
+            ["عملية التقييم", "تقييم أولي شامل مع مراقبة مستمرة للتقدم وتعديلات على الخطة"],
+            ["تكرار العلاج", "1-2 جلسة أسبوعياً مع برامج تمارين منزلية وتتبع التقدم"]
+          ]
+        },
+        images: [
+          "تحليل بيوميكانيكي متقدم",
+          "تقنيات العلاج الدقيق"
+        ],
+        cta: {
+          h3: "اختبر التأهيل المتقدم",
+          p: "احجز استشارتك اليوم واكتشف فوائد تأهيل هندسة الجسم الدقيق",
+          btn: "احجز موعد"
+        },
+        footer: {
+          quick: "روابط سريعة",
+          quickLinks: ["الرئيسية", "تسجيل الدخول", "اتصل بنا", "قصص النجاح", "حجز موعد"],
+          contact: "تواصل معنا",
+          email: "البريد الإلكتروني: alboqaiworld@gmail.com",
+          phone: "الهاتف: +962775252444",
+          address: "شارع الأندلس، إربد",
+          hours: "ساعات العمل",
+          hoursList: ["السبت - الخميس: 8:00 - 16:00", "الجمعة: مغلق"],
+          copyright: "© 2025 مركز البقاعي. جميع الحقوق محفوظة."
+        }
+      },
+      en: {
+    header: [
+      'Home', 'Success Stories', 'About Us','About Us' , 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment', 'Contact Us', 'Sign In'
+    ],
+        servicesDropdown: ["Manual Therapy", "Physical Therapy", "Rehabilitation Body Engineering"],
+        aboutDropdown: ["About us", "Boqia cv", "Targeted People"],
+        serviceHeader: {
+          h1: "Rehabilitation Body Engineering",
+          subtitle: "Advanced Biomechanical Analysis & Precision Treatment",
+          desc: "Cutting-edge rehabilitation science that combines biomechanics, movement analysis, and personalized engineering principles to optimize physical function and performance."
+        },
+        intro: {
+          h2: "What is Rehabilitation Body Engineering?",
+          p: "Rehabilitation Body Engineering is an advanced, integrated rehabilitation program that blends the principles of manual therapy, biomechanics, and personalized movement analysis. This specialized form of therapy is designed for individuals who require a more precise and tailored approach to recovery and physical optimization. Our comprehensive methodology addresses the root causes of movement dysfunction and provides long-term solutions for complex musculoskeletal conditions."
+        },
+        components: {
+          h2: "Key Components of Body Engineering",
+          cards: [
+            ["Biomechanical Analysis", "Comprehensive assessment of posture, walking patterns, body alignment, and movement efficiency using specialized tools and advanced therapist observation. This analysis identifies subtle movement dysfunctions that may contribute to pain and dysfunction."],
+            ["Postural Correction", "Systematic identification and correction of poor postural habits and muscle imbalances that can lead to long-term issues. Our approach focuses on restoring optimal alignment and preventing future problems."],
+            ["Advanced Manual Therapy", "Highly specialized hands-on techniques targeting deep joint restrictions, soft tissue dysfunctions, and nerve entrapments. These advanced methods provide precise treatment for complex conditions."],
+            ["Customized Rehabilitation Plans", "Tailored exercise programs specifically designed to optimize movement, improve muscle balance, and correct faulty movement patterns. Each plan is unique to the individual's specific needs and goals."],
+            ["Functional Training", "Focused training to improve the body's ability to perform everyday activities and athletic movements more efficiently and safely. This includes sport-specific rehabilitation and performance enhancement."],
+            ["Movement Pattern Analysis", "Advanced analysis of movement patterns to identify compensations and inefficiencies that may contribute to pain or reduced performance. This analysis guides treatment planning and progress monitoring."]
+          ]
+        },
+        benefits: {
+          h2: "Comprehensive Benefits",
+          items: [
+            ["Structural Optimization", "Deeply improves posture, structural alignment, and movement precision for enhanced physical performance and reduced injury risk."],
+            ["Long-term Solutions", "Provides lasting solutions for chronic musculoskeletal conditions through root cause analysis and targeted interventions."],
+            ["Injury Prevention", "Reduces the risk of future injuries and relapses through comprehensive movement analysis and preventive strategies."],
+            ["Performance Enhancement", "Optimizes body mechanics for both everyday life and sports performance, improving efficiency and reducing energy expenditure."],
+            ["Accelerated Recovery", "Speeds up rehabilitation for complex or long-standing physical conditions through targeted, evidence-based interventions."],
+            ["Personalized Care", "Offers highly individualized treatment plans based on comprehensive assessment and ongoing progress evaluation."]
+          ]
+        },
+        applications: {
+          h2: "Applications & Indications",
+          categories: [
+            {
+              title: "Sports Performance",
+              items: ["Athletic injury rehabilitation", "Performance optimization", "Movement pattern correction", "Sport-specific training"]
+            },
+            {
+              title: "Chronic Conditions",
+              items: ["Long-standing pain syndromes", "Postural dysfunction", "Movement pattern disorders", "Complex musculoskeletal issues"]
+            },
+            {
+              title: "Post-Surgical Rehabilitation",
+              items: ["Advanced post-operative care", "Movement restoration", "Functional recovery", "Performance optimization"]
+            }
+          ]
+        },
+        session: {
+          h2: "Treatment Session Information",
+          items: [
+            ["Session Duration", "45-75 minutes per session due to comprehensive assessment and treatment requirements"],
+            ["Assessment Process", "Initial comprehensive evaluation with ongoing progress monitoring and plan adjustments"],
+            ["Treatment Frequency", "1-2 sessions per week, with home exercise programs and progress tracking"]
+          ]
+        },
+        images: [
+          "Advanced Biomechanical Analysis",
+          "Precision Treatment Techniques"
+        ],
+        cta: {
+          h3: "Experience Advanced Rehabilitation",
+          p: "Book your consultation today and discover the benefits of precision body engineering rehabilitation.",
+          btn: "Book Appointment"
+        },
+        footer: {
+          quick: "Quick Links",
+          quickLinks: ["Home", "Sign In", "Contact Us", "Success Stories", "Book Appointment"],
+          contact: "Contact",
+          email: "Email: alboqaiworld@gmail.com",
+          phone: "Phone: +962775252444",
+          address: "al-andlos road, Irbid",
+          hours: "Working Hours",
+          hoursList: ["Saturday - Thursday: 8:00 - 16:00", "Friday: Closed"],
+          copyright: "© 2025 AL-BOQAI CENTER. All rights reserved."
+        }
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      localStorage.setItem('lang', lang);
+      // Header
+      const navLinks = document.querySelectorAll('.navbar > li > a, .dropdown-menu > li > a, .dropdown-trigger');
+      const t = translations[lang];
+      const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11];
+      navLinks.forEach((el, i) => { if (t.header[navOrder[i]]) el.innerHTML = t.header[navOrder[i]]; });
+      // Nav alignment
+      const navbar = document.querySelector('.navbar');
+      if (navbar) {
+        if (lang === 'ar') {
+          navbar.style.flexDirection = 'row-reverse';
+          navbar.style.textAlign = 'right';
+        } else {
+          navbar.style.flexDirection = 'row';
+          navbar.style.textAlign = 'left';
+        }
+      }
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
+      });
+      // Dropdowns alignment
+      const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+      dropdownMenus.forEach(menu => {
+        menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
+      });
+      // Header
+      document.querySelector('.service-header h1').textContent = translations[lang].serviceHeader.h1;
+      document.querySelector('.service-header .service-subtitle').textContent = translations[lang].serviceHeader.subtitle;
+      document.querySelector('.service-header .service-description').textContent = translations[lang].serviceHeader.desc;
+      // Intro
+      document.querySelector('.service-intro h2').textContent = translations[lang].intro.h2;
+      document.querySelector('.service-intro p').textContent = translations[lang].intro.p;
+      // Components
+      document.querySelector('.components-section h2').textContent = translations[lang].components.h2;
+      const componentCards = document.querySelectorAll('.component-card');
+      translations[lang].components.cards.forEach((arr, i) => {
+        componentCards[i].querySelector('h3').textContent = arr[0];
+        componentCards[i].querySelector('p').textContent = arr[1];
+      });
+      // Benefits
+      document.querySelector('.benefits-section h2').textContent = translations[lang].benefits.h2;
+      const benefitItems = document.querySelectorAll('.benefit-item');
+      translations[lang].benefits.items.forEach((arr, i) => {
+        benefitItems[i].querySelector('h4').textContent = arr[0];
+        benefitItems[i].querySelector('p').textContent = arr[1];
+      });
+      // Applications
+      document.querySelector('.applications-section h2').textContent = translations[lang].applications.h2;
+      const applicationCategories = document.querySelectorAll('.application-category');
+      translations[lang].applications.categories.forEach((cat, i) => {
+        applicationCategories[i].querySelector('h4').textContent = cat.title;
+        const items = applicationCategories[i].querySelectorAll('li');
+        cat.items.forEach((item, j) => { if (items[j]) items[j].textContent = item; });
+      });
+      // Session Info
+      document.querySelector('.session-info h2').textContent = translations[lang].session.h2;
+      const sessionItems = document.querySelectorAll('.session-details .detail-item');
+      translations[lang].session.items.forEach((arr, i) => {
+        sessionItems[i].querySelector('h4').textContent = arr[0];
+        sessionItems[i].querySelector('p').textContent = arr[1];
+      });
+      // Images captions
+      const imgCaps = document.querySelectorAll('.image-caption');
+      translations[lang].images.forEach((txt, i) => { imgCaps[i].textContent = txt; });
+      // CTA
+      document.querySelector('.cta-card h3').textContent = translations[lang].cta.h3;
+      document.querySelector('.cta-card p').textContent = translations[lang].cta.p;
+      document.querySelector('.cta-card .cta-button').textContent = translations[lang].cta.btn;
+      // Footer
+      const footer = translations[lang].footer;
+      document.querySelector('.footer-section h4').textContent = footer.quick;
+      const quickLinks = document.querySelectorAll('.footer-section ul li a');
+      footer.quickLinks.forEach((txt, i) => { if (quickLinks[i]) quickLinks[i].textContent = txt; });
+      document.querySelectorAll('.footer-section h4')[1].textContent = footer.contact;
+      const contactLinks = document.querySelectorAll('.footer-section ul')[1].querySelectorAll('li');
+      contactLinks[0].querySelector('a').textContent = footer.email;
+      contactLinks[1].textContent = footer.phone;
+      contactLinks[2].querySelector('a').textContent = footer.address;
+      document.querySelectorAll('.footer-section h4')[2].textContent = footer.hours;
+      const hoursList = document.querySelectorAll('.footer-section ul')[2].querySelectorAll('li');
+      footer.hoursList.forEach((txt, i) => { hoursList[i].textContent = txt; });
+      document.querySelector('.footer-bottom').textContent = footer.copyright;
+      // Toggle button text
+      document.getElementById('lang-toggle-btn').textContent = lang === 'ar' ? 'English' : 'العربية';
+    }
+
+    // Language toggle event
+    const langBtn = document.getElementById('lang-toggle-btn');
+    let lang = localStorage.getItem('lang') || 'en';
+    setLanguage(lang);
+    langBtn.addEventListener('click', function() {
+      lang = lang === 'en' ? 'ar' : 'en';
+      setLanguage(lang);
+    });
+    </script>
+    <script src="../navbar-highlight.js"></script>
 </body>
 </html>

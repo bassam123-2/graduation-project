@@ -42,6 +42,11 @@ body {
     transition: all 0.3s ease;
 }
 
+.navbar {
+    display: flex !important;
+    width: 100% !important;
+}
+
 .signin-container {
   min-height: 100vh;
   display: flex;
@@ -274,6 +279,21 @@ button[type="submit"]:active {
   color: var(--text-secondary, #555);
   font-size: 1em;
   text-align: center;
+}
+
+/* RTL bullet alignment and text right-align for Arabic mode */
+[dir="rtl"] ul, [dir="rtl"] .check-list {
+    padding-left: 0 !important;
+    padding-right: 25px !important;
+    text-align: right !important;
+}
+[dir="rtl"] ul li, [dir="rtl"] .check-list li {
+    direction: rtl !important;
+    text-align: right !important;
+}
+[dir="rtl"] ul li:before, [dir="rtl"] .check-list li:before {
+    left: auto !important;
+    right: -20px !important;
 }
 
 /* Responsive Design */
