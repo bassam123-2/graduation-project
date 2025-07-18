@@ -55,33 +55,153 @@
 <div class="register-container">
   <form class="register-form" onsubmit="return validateRegisterForm()">
     <h2>Create Account</h2>
-    <div class="form-group">
-      <label for="reg-username">Username</label>
-      <input type="text" id="reg-username" name="username" required>
-    </div>
-    <div class="form-group">
-      <label for="reg-email">Email</label>
-      <input type="email" id="reg-email" name="email" required>
-    </div>
-    <div class="form-group">
-      <label for="reg-password">Password</label>
-      <div class="password-wrapper">
-        <input type="password" id="reg-password" name="password" required>
-        <button type="button" class="toggle-password" onclick="toggleRegisterPassword('reg-password', this)">Show</button>
+    
+    <!-- Personal Information Section -->
+    <div class="form-section">
+      <h3>Personal Information</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reg-firstname">First Name *</label>
+          <input type="text" id="reg-firstname" name="firstname" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-lastname">Last Name *</label>
+          <input type="text" id="reg-lastname" name="lastname" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reg-username">Username *</label>
+          <input type="text" id="reg-username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email *</label>
+          <input type="email" id="reg-email" name="email" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reg-phone">Phone Number *</label>
+          <input type="tel" id="reg-phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-dob">Date of Birth *</label>
+          <input type="date" id="reg-dob" name="dob" required>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reg-gender">Gender *</label>
+          <select id="reg-gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="reg-nationality">Nationality</label>
+          <input type="text" id="reg-nationality" name="nationality">
+        </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="reg-confirm-password">Confirm Password</label>
-      <div class="password-wrapper">
-        <input type="password" id="reg-confirm-password" name="confirm-password" required oninput="checkPasswordMatch()">
-        <button type="button" class="toggle-password" onclick="toggleRegisterPassword('reg-confirm-password', this)">Show</button>
+    
+    <!-- Address Information Section -->
+    <div class="form-section">
+      <h3>Address Information</h3>
+      <div class="form-group">
+        <label for="reg-address">Full Address</label>
+        <textarea id="reg-address" name="address" rows="3" placeholder="Enter your complete address"></textarea>
       </div>
-      <div id="password-match-message" class="password-message"></div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reg-city">City *</label>
+          <input type="text" id="reg-city" name="city" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-postal">Postal Code</label>
+          <input type="text" id="reg-postal" name="postal">
+        </div>
+      </div>
     </div>
-    <button type="submit">Register</button>
+    
+    <!-- Medical Information Section -->
+    <div class="form-section">
+      <h3>Medical Information</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reg-blood-type">Blood Type</label>
+          <select id="reg-blood-type" name="blood-type">
+            <option value="">Select Blood Type</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="reg-emergency-contact">Emergency Contact</label>
+          <input type="tel" id="reg-emergency-contact" name="emergency-contact" placeholder="Emergency contact number">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="reg-medical-history">Medical History (Optional)</label>
+        <textarea id="reg-medical-history" name="medical-history" rows="4" placeholder="Please mention any relevant medical history, allergies, or current medications"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="reg-reason">Reason for Seeking Treatment</label>
+        <select id="reg-reason" name="reason">
+          <option value="">Select Primary Reason</option>
+          <option value="manual-therapy">Manual Therapy</option>
+          <option value="physical-therapy">Physical Therapy</option>
+          <option value="rehabilitation">Rehabilitation</option>
+          <option value="pain-management">Pain Management</option>
+          <option value="post-surgery">Post-Surgery Recovery</option>
+          <option value="sports-injury">Sports Injury</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Account Security Section -->
+    <div class="form-section">
+      <h3>Account Security</h3>
+      <div class="form-group">
+        <label for="reg-password">Password *</label>
+        <div class="password-wrapper">
+          <input type="password" id="reg-password" name="password" required>
+          <button type="button" class="toggle-password" onclick="toggleRegisterPassword('reg-password', this)">Show</button>
+        </div>
+        <div class="password-requirements">
+          <small>Password must contain at least 8 characters, including uppercase, lowercase, number, and special character</small>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="reg-confirm-password">Confirm Password *</label>
+        <div class="password-wrapper">
+          <input type="password" id="reg-confirm-password" name="confirm-password" required oninput="checkPasswordMatch()">
+          <button type="button" class="toggle-password" onclick="toggleRegisterPassword('reg-confirm-password', this)">Show</button>
+        </div>
+        <div id="password-match-message" class="password-message"></div>
+      </div>
+    </div>
+    
+    <button type="submit">Create Account</button>
     <div class="signin-links">
       <span>Already have an account? <a href="sign in.html" class="register-link">Sign In</a></span>
     </div>
+    
     <script>
       function toggleRegisterPassword(inputId, btn) {
         var pwd = document.getElementById(inputId);
@@ -93,10 +213,12 @@
           btn.textContent = 'Show';
         }
       }
+      
       function checkPasswordMatch() {
         var pwd = document.getElementById('reg-password').value;
         var confirmPwd = document.getElementById('reg-confirm-password').value;
         var msg = document.getElementById('password-match-message');
+        
         if (confirmPwd.length === 0) {
           msg.textContent = '';
           msg.style.color = '';
@@ -108,14 +230,24 @@
           msg.style.color = '#e74c3c';
         }
       }
+      
       function validateRegisterForm() {
         var pwd = document.getElementById('reg-password').value;
         var confirmPwd = document.getElementById('reg-confirm-password').value;
+        
+        // Check password strength
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(pwd)) {
+          alert('Password must contain at least 8 characters, including uppercase, lowercase, number, and special character');
+          return false;
+        }
+        
         if (pwd !== confirmPwd) {
           document.getElementById('password-match-message').textContent = 'Passwords do not match';
           document.getElementById('password-match-message').style.color = '#e74c3c';
           return false;
         }
+        
         return true;
       }
     </script>
@@ -166,15 +298,51 @@
         ],
         register: {
           h2: "Create Account",
-          username: "Username",
-          email: "Email",
-          password: "Password",
-          confirmPassword: "Confirm Password",
+          personalInfo: "Personal Information",
+          addressInfo: "Address Information",
+          medicalInfo: "Medical Information",
+          accountSecurity: "Account Security",
+          communicationPrefs: "Communication Preferences",
+          termsConditions: "Terms and Conditions",
+          firstname: "First Name *",
+          lastname: "Last Name *",
+          username: "Username *",
+          email: "Email *",
+          phone: "Phone Number *",
+          dob: "Date of Birth *",
+          gender: "Gender *",
+          selectGender: "Select Gender",
+          male: "Male",
+          female: "Female",
+          other: "Other",
+          nationality: "Nationality",
+          address: "Full Address",
+          addressPlaceholder: "Enter your complete address",
+          city: "City *",
+          postal: "Postal Code",
+          bloodType: "Blood Type",
+          selectBloodType: "Select Blood Type",
+          emergencyContact: "Emergency Contact",
+          emergencyPlaceholder: "Emergency contact number",
+          medicalHistory: "Medical History (Optional)",
+          medicalHistoryPlaceholder: "Please mention any relevant medical history, allergies, or current medications",
+          reason: "Reason for Seeking Treatment",
+          selectReason: "Select Primary Reason",
+          manualTherapy: "Manual Therapy",
+          physicalTherapy: "Physical Therapy",
+          rehabilitation: "Rehabilitation",
+          painManagement: "Pain Management",
+          postSurgery: "Post-Surgery Recovery",
+          sportsInjury: "Sports Injury",
+          otherReason: "Other",
+          password: "Password *",
+          confirmPassword: "Confirm Password *",
           show: "Show",
           hide: "Hide",
+          passwordRequirements: "Password must contain at least 8 characters, including uppercase, lowercase, number, and special character",
           passwordsMatch: "Passwords match",
           passwordsNotMatch: "Passwords do not match",
-          register: "Register",
+          createAccount: "Create Account",
           haveAccount: "Already have an account?",
           signIn: "Sign In"
         },
@@ -193,29 +361,65 @@
         servicesDropdown: ["Manual Therapy", "Physical Therapy", "Rehabilitation Body Engineering"]
       },
       ar: {
-      nav: [
-      'الرئيسية', 'قصص النجاح', 'من نحن', 'الخدمات المقدمة', 'احجز موعد', 'تواصل معنا'
-    ],
+        nav: [
+          'الرئيسية', 'قصص النجاح', 'من نحن', 'الخدمات المقدمة', 'احجز موعد', 'تواصل معنا'
+        ],
         servicesDropdown: ["العلاج اليدوي", "العلاج الفيزيائي", "هندسة إعادة التأهيل"],
         aboutDropdown: ["من نحن", "السيرة الذاتية", "الفئات المسهدفة"],
         register: {
           h2: "إنشاء حساب",
-          username: "اسم المستخدم",
-          email: "البريد الإلكتروني",
-          password: "كلمة المرور",
-          confirmPassword: "تأكيد كلمة المرور",
+          personalInfo: "المعلومات الشخصية",
+          addressInfo: "معلومات العنوان",
+          medicalInfo: "المعلومات الطبية",
+          accountSecurity: "أمان الحساب",
+          communicationPrefs: "تفضيلات التواصل",
+          termsConditions: "الشروط والأحكام",
+          firstname: "الاسم الأول *",
+          lastname: "اسم العائلة *",
+          username: "اسم المستخدم *",
+          email: "البريد الإلكتروني *",
+          phone: "رقم الهاتف *",
+          dob: "تاريخ الميلاد *",
+          gender: "الجنس *",
+          selectGender: "اختر الجنس",
+          male: "ذكر",
+          female: "أنثى",
+          other: "آخر",
+          nationality: "الجنسية",
+          address: "العنوان الكامل",
+          addressPlaceholder: "أدخل عنوانك الكامل",
+          city: "المدينة *",
+          postal: "الرمز البريدي",
+          bloodType: "فصيلة الدم",
+          selectBloodType: "اختر فصيلة الدم",
+          emergencyContact: "جهة اتصال للطوارئ",
+          emergencyPlaceholder: "رقم الاتصال للطوارئ",
+          medicalHistory: "التاريخ الطبي (اختياري)",
+          medicalHistoryPlaceholder: "يرجى ذكر أي تاريخ طبي ذي صلة أو حساسية أو أدوية حالية",
+          reason: "سبب طلب العلاج",
+          selectReason: "اختر السبب الرئيسي",
+          manualTherapy: "العلاج اليدوي",
+          physicalTherapy: "العلاج الطبيعي",
+          rehabilitation: "إعادة التأهيل",
+          painManagement: "إدارة الألم",
+          postSurgery: "الشفاء بعد الجراحة",
+          sportsInjury: "إصابة رياضية",
+          otherReason: "أخرى",
+          password: "كلمة المرور *",
+          confirmPassword: "تأكيد كلمة المرور *",
           show: "إظهار",
           hide: "إخفاء",
+          passwordRequirements: "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، بما في ذلك الأحرف الكبيرة والصغيرة والرقم والرمز الخاص",
           passwordsMatch: "كلمات المرور متطابقة",
           passwordsNotMatch: "كلمات المرور غير متطابقة",
-          register: "تسجيل",
+          createAccount: "إنشاء حساب",
           haveAccount: "لديك حساب بالفعل؟",
           signIn: "تسجيل الدخول"
         },
         footer: {
           quick: "روابط سريعة",
           quickLinks: ["الرئيسية", "تسجيل الدخول", "اتصل بنا", "قصص النجاح", "حجز موعد"],
-          contact: "تواصل معنا",
+          contact: "معلومات التواصل",
           email: "البريد الإلكتروني: alboqaiworld@gmail.com",
           phone: "الهاتف: +962775252444",
           address: "شارع الأندلس، إربد",
@@ -265,11 +469,79 @@
       // Register form
       const register = translations[lang].register;
       document.querySelector('.register-form h2').textContent = register.h2;
+      
+      // Section headers
+      document.querySelectorAll('.form-section h3').forEach((header, index) => {
+        const sections = [register.personalInfo, register.addressInfo, register.medicalInfo, register.accountSecurity];
+        if (sections[index]) header.textContent = sections[index];
+      });
+      
+      // Personal Information fields
+      document.querySelector('label[for="reg-firstname"]').textContent = register.firstname;
+      document.querySelector('label[for="reg-lastname"]').textContent = register.lastname;
       document.querySelector('label[for="reg-username"]').textContent = register.username;
       document.querySelector('label[for="reg-email"]').textContent = register.email;
+      document.querySelector('label[for="reg-phone"]').textContent = register.phone;
+      document.querySelector('label[for="reg-dob"]').textContent = register.dob;
+      document.querySelector('label[for="reg-gender"]').textContent = register.gender;
+      document.querySelector('label[for="reg-nationality"]').textContent = register.nationality;
+      
+      // Address fields
+      document.querySelector('label[for="reg-address"]').textContent = register.address;
+      document.querySelector('#reg-address').placeholder = register.addressPlaceholder;
+      document.querySelector('label[for="reg-city"]').textContent = register.city;
+      document.querySelector('label[for="reg-postal"]').textContent = register.postal;
+      
+      // Medical fields
+      document.querySelector('label[for="reg-blood-type"]').textContent = register.bloodType;
+      document.querySelector('label[for="reg-emergency-contact"]').textContent = register.emergencyContact;
+      document.querySelector('#reg-emergency-contact').placeholder = register.emergencyPlaceholder;
+      document.querySelector('label[for="reg-medical-history"]').textContent = register.medicalHistory;
+      document.querySelector('#reg-medical-history').placeholder = register.medicalHistoryPlaceholder;
+      document.querySelector('label[for="reg-reason"]').textContent = register.reason;
+      
+      // Account Security fields
       document.querySelector('label[for="reg-password"]').textContent = register.password;
       document.querySelector('label[for="reg-confirm-password"]').textContent = register.confirmPassword;
-      document.querySelector('.register-form button[type="submit"]').textContent = register.register;
+      document.querySelector('.password-requirements small').textContent = register.passwordRequirements;
+      
+      // Update select options
+      const genderSelect = document.querySelector('#reg-gender');
+      genderSelect.options[0].textContent = register.selectGender;
+      genderSelect.options[1].textContent = register.male;
+      genderSelect.options[2].textContent = register.female;
+      genderSelect.options[3].textContent = register.other;
+      
+      const bloodTypeSelect = document.querySelector('#reg-blood-type');
+      bloodTypeSelect.options[0].textContent = register.selectBloodType;
+      
+      const reasonSelect = document.querySelector('#reg-reason');
+      reasonSelect.options[0].textContent = register.selectReason;
+      reasonSelect.options[1].textContent = register.manualTherapy;
+      reasonSelect.options[2].textContent = register.physicalTherapy;
+      reasonSelect.options[3].textContent = register.rehabilitation;
+      reasonSelect.options[4].textContent = register.painManagement;
+      reasonSelect.options[5].textContent = register.postSurgery;
+      reasonSelect.options[6].textContent = register.sportsInjury;
+      reasonSelect.options[7].textContent = register.otherReason;
+      
+      // Communication preferences
+      // const checkboxLabels = document.querySelectorAll('.checkbox-label');
+      // checkboxLabels[0].textContent = register.emailNotifications;
+      // checkboxLabels[1].textContent = register.smsNotifications;
+      // checkboxLabels[2].textContent = register.newsletter;
+      
+      // Fix terms agreement translation
+      // const checkboxLabels = document.querySelectorAll('.checkbox-label');
+      // if (lang === 'ar') {
+      //   checkboxLabels[0].innerHTML = register.termsConditions; // Changed from termsAgreement to termsConditions
+      // } else {
+      //   checkboxLabels[0].innerHTML = register.termsConditions; // Changed from termsAgreement to termsConditions
+      // }
+      
+      // checkboxLabels[1].textContent = register.medicalConsent;
+      
+      document.querySelector('.register-form button[type="submit"]').textContent = register.createAccount;
       document.querySelector('.signin-links span').innerHTML = register.haveAccount + ' <a href="sign in.html" class="register-link">' + register.signIn + '</a>';
       // Update toggle password button texts
       const toggleBtns = document.querySelectorAll('.toggle-password');
