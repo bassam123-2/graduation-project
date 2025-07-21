@@ -5,6 +5,9 @@
     padding: 30px 0 10px 0;
     font-size: 0.98em;
     margin-top: 40px;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .footer-content {
@@ -45,6 +48,8 @@
     pointer-events: auto !important;
     z-index: 2;
     position: relative;
+    cursor: pointer;
+    display: inline-block;
 }
 
 .footer-section ul li a:hover {
@@ -56,6 +61,9 @@
     text-decoration: underline;
     cursor: pointer;
     transition: color 0.2s;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 5;
 }
 .footer-section a:hover {
     color: var(--primary-color, #2a5d9f);

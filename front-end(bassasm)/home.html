@@ -39,6 +39,7 @@
                 </ul>
             </li>
             <li><a href="book appointment/book.html">Book Appointment</a></li>
+            <li><a href="symptom-assessment.html">AI Assessment</a></li>
             <li><a href="book appointment/contact us.html">Contact Us</a></li>
             <li><a href="book appointment/sign in.html" class="signin-link">Sign In</a></li>
         </ul>
@@ -304,7 +305,7 @@
                 <ul>
                         <li><a href="home.html">Home</a></li>
                     <li><a href="book appointment/sign in.html">Sign In</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="book appointment/contact us.html">Contact Us</a></li>
                     <li><a href="patient-testimonials.html">Success Stories</a></li>
                     <li><a href="book appointment/book.html">Book Appointment</a></li>
                 </ul>
@@ -330,14 +331,20 @@
         </div>
     </div>
 
+                <link rel="stylesheet" href="chatbot.css">
+            <link rel="stylesheet" href="voice-assistant.css">
+    <script src="dark-mode.js"></script>
     <script src="home.js"></script>
     <script src="navbar-highlight.js"></script>
+    <script src="chatbot.js"></script>
+                <script src="voice-assistant.js"></script>
+            <script src="gamification.js"></script>
     <script>
 // Language toggle logic for home page
 const translations = {
   ar: {
     header: [
-      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تواصل معنا ', 'تسجيل الدخول'
+      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تقييم الإعراض بالذكاء الاصطناعي','تواصل معنا ', 'تسجيل الدخول'
     ],
     heroTitle: 'مرحبًا بكم في مركز البقاعي',
     heroSubtitle: 'التميز في خدمات إعادة التأهيل والعلاج الطبيعي',
@@ -373,7 +380,7 @@ const translations = {
   },
   en: {
     header: [
-      'Home', 'Success Stories', 'About Us', 'About us', 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment', 'Contact Us', 'Sign In'
+      'Home', 'Success Stories', 'About Us', 'About us', 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment','AI Assesment', 'Contact Us', 'Sign In'
     ],
     heroTitle: 'Welcome to AL-BOQAI Center',
     heroSubtitle: 'Excellence in Rehabilitation & Physical Therapy Services',

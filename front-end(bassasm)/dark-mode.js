@@ -1,7 +1,14 @@
-// Dark Mode and Interactive Features for AL-BOQAI Center
+// Unified Dark Mode and Interactive Features for AL-BOQAI Center
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Dark Mode Toggle Functionality
+    initializeDarkMode();
+    initializeInteractiveFeatures();
+    initializeAnimations();
+    initializeKeyboardShortcuts();
+});
+
+// Dark Mode Management
+function initializeDarkMode() {
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
@@ -21,11 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('theme', newTheme);
             updateThemeIcon(newTheme);
             
-            // Add animation effect
-            themeToggleBtn.style.transform = 'scale(0.9)';
+            // Animation effect
+            themeToggleBtn.style.transform = 'scale(0.9) rotate(180deg)';
             setTimeout(() => {
-                themeToggleBtn.style.transform = 'scale(1)';
-            }, 150);
+                themeToggleBtn.style.transform = 'scale(1) rotate(0deg)';
+            }, 300);
+            
+            showNotification(`Switched to ${newTheme} mode`, 'info');
         });
     }
     
@@ -40,65 +49,158 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    
+}
 
+// Interactive Features
+function initializeInteractiveFeatures() {
+    // Enhanced hover effects for forms and buttons
+    const interactiveElements = document.querySelectorAll('.booking-form, .forgot-form, .register-form, .signin-form, button[type="submit"], .toggle-password, .service-card, .feature-item');
     
-    // Header scroll effect for pages with headers
-    const header = document.querySelector('.header');
-    if (header) {
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', function() {
-            // Always keep the gradient background
-            header.style.background = 'linear-gradient(90deg, #7886e9 0%, #7b5fc9 100%)';
-            header.style.backdropFilter = 'none';
-            header.style.boxShadow = '0 2px 8px rgba(123, 95, 201, 0.07)';
-            lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.02)';
+            this.style.boxShadow = '0 10px 30px var(--shadow-color, rgba(0, 0, 0, 0.15))';
         });
-    }
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 4px 20px var(--shadow-color, rgba(0, 0, 0, 0.08))';
+        });
+    });
     
-    // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+    // Form validation enhancements
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
             
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Processing...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    showNotification('Form submitted successfully!', 'success');
+                }, 2000);
             }
         });
     });
     
-    // Keyboard shortcuts
+    // Enhanced input focus effects
+    const inputs = document.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'translateY(-2px)';
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// Animation System
+function initializeAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animated');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    const animateElements = document.querySelectorAll('.booking-form, .forgot-form, .register-form, .signin-form, .form-group, .service-card, .feature-item, .testimonial-card');
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// Keyboard Shortcuts
+function initializeKeyboardShortcuts() {
     document.addEventListener('keydown', function(e) {
         // Toggle theme with Ctrl+T
         if (e.ctrlKey && e.key === 't') {
             e.preventDefault();
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
             if (themeToggleBtn) {
                 themeToggleBtn.click();
             }
         }
+        
+        // Escape key to close dropdowns
+        if (e.key === 'Escape') {
+            const dropdowns = document.querySelectorAll('.dropdown-menu');
+            dropdowns.forEach(dropdown => {
+                dropdown.style.display = 'none';
+            });
+        }
     });
+}
+
+// Notification System
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
     
-    // Console welcome message
-    console.log('%cWelcome to AL-BOQAI Center! 🏥', 'color: #2a5d9f; font-size: 20px; font-weight: bold;');
-    console.log('%cDark mode is available - Press Ctrl+T to toggle', 'color: #666; font-size: 14px;');
-});
+    const colors = {
+        success: '#27ae60',
+        error: '#e74c3c',
+        info: '#2a5d9f',
+        warning: '#f39c12'
+    };
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        background: ${colors[type] || colors.info};
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
 
-
-
-// Add CSS variables for dark mode if not already present
+// Add CSS variables for dark mode
 if (!document.querySelector('#dark-mode-vars')) {
     const style = document.createElement('style');
     style.id = 'dark-mode-vars';
     style.textContent = `
-        /* CSS Variables for Theme Switching */
         :root {
-            /* Light Theme Colors */
             --primary-color: #2a5d9f;
             --secondary-color: #1d406e;
             --background-color: #ffffff;
@@ -113,7 +215,6 @@ if (!document.querySelector('#dark-mode-vars')) {
         }
 
         [data-theme="dark"] {
-            /* Dark Theme Colors */
             --primary-color: #4a7bb8;
             --secondary-color: #2a5d9f;
             --background-color: #1a1a1a;
@@ -127,63 +228,24 @@ if (!document.querySelector('#dark-mode-vars')) {
             --gradient-secondary: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
         }
 
-        /* Smooth transitions for theme switching */
         * {
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
-        /* Dark mode specific adjustments */
         [data-theme="dark"] .header {
-            background: var(--background-color);
+            background: linear-gradient(90deg, #7886e9 0%, #7b5fc9 100%);
             border-bottom: 1px solid var(--border-color);
         }
 
-        [data-theme="dark"] .navbar {
-            background: var(--background-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        [data-theme="dark"] .dropdown-menu {
+        [data-theme="dark"] .footer {
             background: var(--surface-color);
-            border: 1px solid var(--border-color);
-        }
-
-        [data-theme="dark"] .service-header,
-        [data-theme="dark"] .about-header,
-        [data-theme="dark"] .cv-header,
-        [data-theme="dark"] .target-header {
-            background: var(--gradient-primary);
-        }
-
-        [data-theme="dark"] .content-wrapper,
-        [data-theme="dark"] .about-content,
-        [data-theme="dark"] .cv-content,
-        [data-theme="dark"] .target-content,
-        [data-theme="dark"] .service-card,
-        [data-theme="dark"] .technique-card,
-        [data-theme="dark"] .element-card,
-        [data-theme="dark"] .component-card,
-        [data-theme="dark"] .benefit-item,
-        [data-theme="dark"] .condition-category,
-        [data-theme="dark"] .application-category,
-        [data-theme="dark"] .detail-item,
-        [data-theme="dark"] .image-container,
-        [data-theme="dark"] .info-card {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-        }
-
-        [data-theme="dark"] .booking-form,
-        [data-theme="dark"] .forgot-form,
-        [data-theme="dark"] .register-form,
-        [data-theme="dark"] .signin-form {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
+            color: var(--text-primary);
         }
 
         [data-theme="dark"] .form-group input,
-        [data-theme="dark"] .form-group select {
-            background: var(--background-color);
+        [data-theme="dark"] .form-group select,
+        [data-theme="dark"] .form-group textarea {
+            background: var(--surface-color);
             color: var(--text-primary);
             border-color: var(--border-color);
         }
@@ -191,11 +253,43 @@ if (!document.querySelector('#dark-mode-vars')) {
         [data-theme="dark"] .form-group label {
             color: var(--text-primary);
         }
-
-        [data-theme="dark"] .footer {
-            background: var(--surface-color);
-            color: var(--text-primary);
-        }
     `;
     document.head.appendChild(style);
-} 
+}
+
+// Console welcome message
+console.log('%cWelcome to AL-BOQAI Center! 🏥', 'color: #2a5d9f; font-size: 20px; font-weight: bold;');
+console.log('%cPress Ctrl+T to toggle dark mode', 'color: #666; font-size: 14px;');
+
+// Export functions for external use
+window.ALBOQAICenter = {
+    toggleTheme: function() {
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        if (themeToggleBtn) {
+            themeToggleBtn.click();
+        }
+    },
+    
+    getCurrentTheme: function() {
+        return document.body.getAttribute('data-theme') || 'light';
+    },
+    
+    setTheme: function(theme) {
+        if (theme === 'dark' || theme === 'light') {
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            const themeIcon = document.getElementById('theme-icon');
+            if (themeIcon) {
+                if (theme === 'dark') {
+                    themeIcon.className = 'fas fa-sun';
+                    themeIcon.style.color = '#ffd700';
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                    themeIcon.style.color = '#ffffff';
+                }
+            }
+        }
+    },
+    
+    showNotification: showNotification
+}; 

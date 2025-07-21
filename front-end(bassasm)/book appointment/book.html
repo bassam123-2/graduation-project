@@ -79,7 +79,26 @@
             </div>
             <div class="form-group">
                 <label for="time">Choose Time</label>
-                <input type="time" id="time" name="time" required>
+                <select id="time" name="time" required>
+                    <option value="">-- Please select a time --</option>
+                    <option value="08:00">8:00 AM</option>
+                    <option value="08:30">8:30 AM</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="09:30">9:30 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="10:30">10:30 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="11:30">11:30 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="12:30">12:30 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="13:30">1:30 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="14:30">2:30 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="15:30">3:30 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                </select>
             </div>
             <button type="submit">Book Now</button>
         </form>
@@ -119,8 +138,100 @@
         </div>
     </div>
 
-    <script src="book-appointment-dark-mode.js"></script>
+    <script src="../dark-mode.js"></script>
     <script>
+// Professional Booking Form Management
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('date');
+    const timeSelect = document.getElementById('time');
+    const serviceSelect = document.getElementById('service');
+    const bookingForm = document.querySelector('.booking-form');
+
+    // Set minimum date to today
+    const today = new Date();
+    const todayString = today.toISOString().split('T')[0];
+    dateInput.setAttribute('min', todayString);
+
+    // Disable Fridays and past dates
+    dateInput.addEventListener('input', function() {
+        const selectedDate = new Date(this.value);
+        const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 5 = Friday
+        
+        if (dayOfWeek === 5) { // Friday
+            alert('Sorry, we are closed on Fridays. Please select another day.');
+            this.value = '';
+            return;
+        }
+        
+        // Check if date is in the past
+        if (selectedDate < today) {
+            alert('Please select a future date.');
+            this.value = '';
+            return;
+        }
+    });
+
+    // Form validation and submission
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const service = serviceSelect.value;
+        const date = dateInput.value;
+        const time = timeSelect.value;
+        
+        if (!service || !date || !time) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+        
+        // Check if selected date is Friday
+        const selectedDate = new Date(date);
+        if (selectedDate.getDay() === 5) {
+            alert('Sorry, we are closed on Fridays. Please select another day.');
+            return;
+        }
+        
+        // Professional booking confirmation
+        const serviceName = serviceSelect.options[serviceSelect.selectedIndex].text;
+        const timeDisplay = timeSelect.options[timeSelect.selectedIndex].text;
+        const dateDisplay = new Date(date).toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        const confirmationMessage = `Booking Confirmation:\n\nService: ${serviceName}\nDate: ${dateDisplay}\nTime: ${timeDisplay}\n\nThank you for choosing AL-BOQAI Center! We will contact you shortly to confirm your appointment.`;
+        
+        if (confirm(confirmationMessage)) {
+            // Here you would typically send the data to your server
+            alert('Your appointment has been successfully booked! We will contact you shortly to confirm.');
+            bookingForm.reset();
+        }
+    });
+
+    // Real-time validation feedback
+    function updateFormValidation() {
+        const isComplete = serviceSelect.value && dateInput.value && timeSelect.value;
+        const submitBtn = bookingForm.querySelector('button[type="submit"]');
+        
+        if (isComplete) {
+            submitBtn.style.opacity = '1';
+            submitBtn.style.cursor = 'pointer';
+        } else {
+            submitBtn.style.opacity = '0.7';
+            submitBtn.style.cursor = 'not-allowed';
+        }
+    }
+
+    serviceSelect.addEventListener('change', updateFormValidation);
+    dateInput.addEventListener('change', updateFormValidation);
+    timeSelect.addEventListener('change', updateFormValidation);
+    
+    // Initialize form state
+    updateFormValidation();
+});
+
 // Language toggle logic (copied and adapted from home.html)
 const translations = {
   ar: {
@@ -131,11 +242,18 @@ const translations = {
       h2: "احجز موعد",
       service: "اختر الخدمة",
       chooseService: "-- يرجى اختيار خدمة --",
-      general: "العلاج الطبيعي العام",
-      rehab: "علاج الفيزيائي",
+      general: "العلاج اليدوي",
+      rehab: "العلاج الفيزيائي",
       sports: "هندسة اعادة التأهيل",
       date: "اختر التاريخ",
       time: "اختر الوقت",
+      chooseTime: "-- يرجى اختيار الوقت --",
+      timeSlots: [
+        "8:00 صباحاً", "8:30 صباحاً", "9:00 صباحاً", "9:30 صباحاً",
+        "10:00 صباحاً", "10:30 صباحاً", "11:00 صباحاً", "11:30 صباحاً",
+        "12:00 ظهراً", "12:30 ظهراً", "1:00 مساءً", "1:30 مساءً",
+        "2:00 مساءً", "2:30 مساءً", "3:00 مساءً", "3:30 مساءً", "4:00 مساءً"
+      ],
       bookNow: "احجز الآن"
     },
     servicesDropdown: ["العلاج اليدوي", "العلاج الفيزيائي", "هندسة إعادة التأهيل"],
@@ -162,9 +280,16 @@ const translations = {
       chooseService: "-- Please choose a service --",
       general: "Manual Therapy",
       rehab: "Physical Therapy",
-      sports: "Rehabilitation Body",
+      sports: "Rehabilitation Body Engineering",
       date: "Choose Date",
       time: "Choose Time",
+      chooseTime: "-- Please select a time --",
+      timeSlots: [
+        "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM",
+        "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+        "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM",
+        "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM"
+      ],
       bookNow: "Book Now"
     },
     servicesDropdown: ["Manual Therapy", "Physical Therapy", "Rehabilitation Body Engineering"],
@@ -219,6 +344,15 @@ function setLanguage(lang) {
   serviceSelect.options[1].text = booking.general;
   serviceSelect.options[2].text = booking.rehab;
   serviceSelect.options[3].text = booking.sports;
+  
+  // Time slots
+  const timeSelect = document.getElementById('time');
+  timeSelect.options[0].text = booking.chooseTime;
+  booking.timeSlots.forEach((timeSlot, index) => {
+    if (timeSelect.options[index + 1]) {
+      timeSelect.options[index + 1].text = timeSlot;
+    }
+  });
   // Footer
   const footer = t.footer;
   document.querySelector('.footer-section h4').textContent = footer.quick;

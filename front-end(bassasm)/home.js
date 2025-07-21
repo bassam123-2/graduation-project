@@ -1,106 +1,13 @@
-// Professional Home Page JavaScript with Dark Mode Functionality
+// Professional Home Page JavaScript - Home-specific functionality only
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Dark Mode Toggle Functionality
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
-    const themeIcon = document.getElementById('theme-icon');
-    const body = document.body;
-    
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', currentTheme);
-    updateThemeIcon(currentTheme);
-    
-    // Theme toggle event listener with enhanced feedback
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', function() {
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            // Add smooth transition effect
-            body.style.transition = 'all 0.3s ease';
-            
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-            
-            // Enhanced animation effect
-            themeToggleBtn.style.transform = 'scale(0.9) rotate(180deg)';
-            setTimeout(() => {
-                themeToggleBtn.style.transform = 'scale(1) rotate(0deg)';
-            }, 300);
-            
-            // Show theme change notification
-            showThemeNotification(newTheme);
-        });
-    }
-    
-    function updateThemeIcon(theme) {
-        if (themeIcon) {
-            if (theme === 'dark') {
-                themeIcon.className = 'fas fa-sun';
-                themeIcon.style.color = '#ffd700';
-                themeIcon.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
-            } else {
-                themeIcon.className = 'fas fa-moon';
-                themeIcon.style.color = '#ffffff';
-                themeIcon.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.5)';
-            }
-        }
-    }
-    
-    function showThemeNotification(theme) {
-        const notification = document.createElement('div');
-        notification.className = 'theme-notification';
-        notification.textContent = `Switched to ${theme} mode`;
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 12px 20px;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            z-index: 10000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            background: ${theme === 'dark' ? '#2d2d2d' : '#2a5d9f'};
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Animate in
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Remove after 2 seconds
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
-        }, 2000);
-    }
-    
-    // Smooth Scrolling for Navigation Links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
+    initializeHomeFeatures();
+    initializeAnimations();
+    initializeInteractiveElements();
+});
+
+// Home-specific features
+function initializeHomeFeatures() {
     // Animate Stats on Scroll
     const statsSection = document.querySelector('.stats-section');
     const statNumbers = document.querySelectorAll('.stat-number');
@@ -143,18 +50,55 @@ document.addEventListener('DOMContentLoaded', function() {
     if (statsSection) {
         statsObserver.observe(statsSection);
     }
-    
-    // Header Scroll Effect
-    const header = document.querySelector('.header');
-    let lastScrollTop = 0;
-    
-    window.addEventListener('scroll', function() {
-        header.style.background = 'linear-gradient(90deg, #7886e9 0%, #7b5fc9 100%)';
-        header.style.backdropFilter = 'none';
-        header.style.boxShadow = '0 2px 8px rgba(123, 95, 201, 0.07)';
-        lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+}
+
+// Animation System
+function initializeAnimations() {
+    // Smooth Scrolling for Navigation Links
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
     
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animated');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    const animateElements = document.querySelectorAll('.service-card, .feature-item, .testimonial-card, .stat-item');
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// Interactive Elements
+function initializeInteractiveElements() {
     // Service Cards Hover Effect Enhancement
     const serviceCards = document.querySelectorAll('.service-card');
     serviceCards.forEach(card => {
@@ -216,156 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
-    
-    // Lazy Loading for Images
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-    
-    // Mobile Menu Toggle (if needed)
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            navbar.classList.toggle('active');
-            this.classList.toggle('active');
-        });
-    }
-    
-    // Form Validation (if forms are added)
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Add your form validation logic here
-            const formData = new FormData(this);
-            console.log('Form submitted:', Object.fromEntries(formData));
-            
-            // Show success message
-            showNotification('Form submitted successfully!', 'success');
-        });
-    });
-    
-    // Notification System
-    function showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.textContent = message;
-        
-        // Add notification styles
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            z-index: 10000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            background: ${type === 'success' ? '#27ae60' : type === 'error' ? '#e74c3c' : '#3498db'};
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Animate in
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Remove after 3 seconds
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
-        }, 3000);
-    }
-    
-    // Keyboard Navigation Support
-    document.addEventListener('keydown', function(e) {
-        // Toggle theme with Ctrl+T
-        if (e.ctrlKey && e.key === 't') {
-            e.preventDefault();
-            themeToggleBtn.click();
-        }
-        
-        // Escape key to close mobile menu
-        if (e.key === 'Escape' && navbar.classList.contains('active')) {
-            navbar.classList.remove('active');
-            if (mobileMenuToggle) {
-                mobileMenuToggle.classList.remove('active');
-            }
-        }
-    });
-    
-    // Performance Optimization: Debounce scroll events
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-    
-    // Apply debouncing to scroll events
-    const debouncedScrollHandler = debounce(function() {
-        // Your scroll handling logic here
-    }, 16);
-    
-    window.addEventListener('scroll', debouncedScrollHandler);
-    
-    // Highlight current page in navbar (Arabic and English)
-    function highlightCurrentNav() {
-        const path = window.location.pathname.split('/').pop();
-        const navLinks = document.querySelectorAll('.navbar > li > a');
-        navLinks.forEach(link => {
-            // Remove any existing active class
-            link.classList.remove('active');
-            // Normalize href for comparison
-            const href = link.getAttribute('href') ? link.getAttribute('href').split('?')[0] : '';
-            if (href && (href === path || (href === 'home.html' && (path === '' || path === 'index.html')))) {
-                link.classList.add('active');
-            }
-        });
-    }
-    highlightCurrentNav();
-    
-    // Console welcome message
-    console.log('%cWelcome to AL-BOQAI Center! 🏥', 'color: #2a5d9f; font-size: 20px; font-weight: bold;');
-    console.log('%cProfessional Rehabilitation & Physical Therapy Services', 'color: #666; font-size: 14px;');
-    console.log('%cDark mode functionality initialized', 'color: #27ae60; font-size: 12px;');
-    console.log('%cPress Ctrl+T to toggle dark mode', 'color: #2a5d9f; font-size: 12px; font-style: italic;');
-    
-    // Debug information
-    if (themeToggleBtn) {
-        console.log('✅ Theme toggle button found and initialized');
-    } else {
-        console.error('❌ Theme toggle button not found!');
-    }
-    
-    if (themeIcon) {
-        console.log('✅ Theme icon found and initialized');
-    } else {
-        console.error('❌ Theme icon not found!');
-    }
+}
 
-    // Removed translation-related code for footer quick links. Translation is now handled in home.html only.
-}); 
+// Console welcome message
+console.log('%cWelcome to AL-BOQAI Center Home Page! 🏠', 'color: #2a5d9f; font-size: 16px; font-weight: bold;'); 

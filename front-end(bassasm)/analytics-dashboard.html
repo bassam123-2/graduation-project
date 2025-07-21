@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-BOQAI Center | Analytics Dashboard</title>
+    <link rel="stylesheet" href="analytics-dashboard.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <a href="home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+            </a>
+        </div>
+        <!-- Navigation -->
+        <ul class="navbar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="success-stories.html">Success Stories</a></li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">ABOUT US</span>
+                <ul class="dropdown-menu">
+                    <li><a href="about us/aboutus.html">About us</a></li>
+                    <li><a href="about us/boqia cv.html">Boqia cv</a></li>
+                    <li><a href="about us/targeted group.html">Targeted People</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">Our Services</span>
+                <ul class="dropdown-menu">
+                    <li><a href="our services/manual therapy.html">Manual Therapy</a></li>
+                    <li><a href="our services/physical therapy.html">Physical Therapy</a></li>
+                    <li><a href="our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+                </ul>
+            </li>
+            <li><a href="book appointment/book.html">Book Appointment</a></li>
+            <li><a href="symptom-assessment.html">AI Assessment</a></li>
+            <li><a href="analytics-dashboard.html" class="active">Analytics</a></li>
+            <li><a href="book appointment/contact us.html">Contact Us</a></li>
+        </ul>
+        <!-- Dark Mode & Language Toggle -->
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Analytics Dashboard -->
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1><i class="fas fa-chart-line"></i> Real-Time Analytics Dashboard</h1>
+            <p>Comprehensive insights into AL-BOQAI Center performance and patient outcomes</p>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="metric-content">
+                    <h3 id="total-patients">1,247</h3>
+                    <p>Total Patients</p>
+                    <span class="metric-change positive">+12% this month</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="metric-content">
+                    <h3 id="appointments-today">23</h3>
+                    <p>Today's Appointments</p>
+                    <span class="metric-change positive">+5 from yesterday</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="metric-content">
+                    <h3 id="success-rate">94.2%</h3>
+                    <p>Treatment Success Rate</p>
+                    <span class="metric-change positive">+2.1% improvement</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="metric-content">
+                    <h3 id="satisfaction">4.8/5</h3>
+                    <p>Patient Satisfaction</p>
+                    <span class="metric-change positive">+0.2 points</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Patient Growth Trend</h3>
+                    <div class="chart-controls">
+                        <button class="time-filter active" data-period="month">Month</button>
+                        <button class="time-filter" data-period="quarter">Quarter</button>
+                        <button class="time-filter" data-period="year">Year</button>
+                    </div>
+                </div>
+                <canvas id="patientGrowthChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Service Distribution</h3>
+                    <div class="chart-controls">
+                        <button class="view-toggle active" data-view="pie">Pie</button>
+                        <button class="view-toggle" data-view="doughnut">Doughnut</button>
+                    </div>
+                </div>
+                <canvas id="serviceDistributionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Detailed Analytics -->
+        <div class="analytics-grid">
+            <div class="analytics-card">
+                <h3><i class="fas fa-map-marker-alt"></i> Geographic Distribution</h3>
+                <div class="geo-stats">
+                    <div class="geo-item">
+                        <span class="city">Irbid</span>
+                        <span class="percentage">45%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <div class="geo-item">
+                        <span class="city">Amman</span>
+                        <span class="percentage">28%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 28%"></div>
+                        </div>
+                    </div>
+                    <div class="geo-item">
+                        <span class="city">Zarqa</span>
+                        <span class="percentage">15%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 15%"></div>
+                        </div>
+                    </div>
+                    <div class="geo-item">
+                        <span class="city">Other</span>
+                        <span class="percentage">12%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 12%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analytics-card">
+                <h3><i class="fas fa-clock"></i> Peak Hours Analysis</h3>
+                <div class="peak-hours">
+                    <div class="hour-item">
+                        <span class="hour">9:00 AM</span>
+                        <span class="count">High</span>
+                        <div class="peak-indicator high"></div>
+                    </div>
+                    <div class="hour-item">
+                        <span class="hour">11:00 AM</span>
+                        <span class="count">Peak</span>
+                        <div class="peak-indicator peak"></div>
+                    </div>
+                    <div class="hour-item">
+                        <span class="hour">2:00 PM</span>
+                        <span class="count">Medium</span>
+                        <div class="peak-indicator medium"></div>
+                    </div>
+                    <div class="hour-item">
+                        <span class="hour">4:00 PM</span>
+                        <span class="count">Low</span>
+                        <div class="peak-indicator low"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analytics-card">
+                <h3><i class="fas fa-user-md"></i> Treatment Effectiveness</h3>
+                <div class="treatment-stats">
+                    <div class="treatment-item">
+                        <span class="treatment">Manual Therapy</span>
+                        <span class="effectiveness">92%</span>
+                        <div class="effectiveness-bar">
+                            <div class="effectiveness-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="treatment-item">
+                        <span class="treatment">Physical Therapy</span>
+                        <span class="effectiveness">96%</span>
+                        <div class="effectiveness-bar">
+                            <div class="effectiveness-fill" style="width: 96%"></div>
+                        </div>
+                    </div>
+                    <div class="treatment-item">
+                        <span class="treatment">Rehabilitation</span>
+                        <span class="effectiveness">94%</span>
+                        <div class="effectiveness-bar">
+                            <div class="effectiveness-fill" style="width: 94%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analytics-card">
+                <h3><i class="fas fa-robot"></i> AI Assessment Usage</h3>
+                <div class="ai-stats">
+                    <div class="ai-metric">
+                        <span class="metric-label">Total Assessments</span>
+                        <span class="metric-value">847</span>
+                    </div>
+                    <div class="ai-metric">
+                        <span class="metric-label">Conversion Rate</span>
+                        <span class="metric-value">78%</span>
+                    </div>
+                    <div class="ai-metric">
+                        <span class="metric-label">Avg. Confidence</span>
+                        <span class="metric-value">89%</span>
+                    </div>
+                    <div class="ai-metric">
+                        <span class="metric-label">User Satisfaction</span>
+                        <span class="metric-value">4.7/5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-Time Updates -->
+        <div class="realtime-section">
+            <h3><i class="fas fa-broadcast-tower"></i> Real-Time Updates</h3>
+            <div class="realtime-feed" id="realtime-feed">
+                <!-- Real-time updates will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="book appointment/sign in.html">Sign In</a></li>
+                    <li><a href="book appointment/contact us.html">Contact Us</a></li>
+                    <li><a href="success-stories.html">Success Stories</a></li>
+                    <li><a href="book appointment/book.html">Book Appointment</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:alboqaiworld@gmail.com" target="_blank">Email: alboqaiworld@gmail.com</a></li>
+                    <li>Phone: +962775252444</li>
+                    <li><a href="https://maps.app.goo.gl/8sPWu3tUFbbenmvd7?g_st=iw" target="_blank">al-andlos road, Irbid</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Saturday - Thursday: 8:00 - 16:00</li>
+                    <li>Friday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 AL-BOQAI CENTER. All rights reserved.
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="dark-mode.js"></script>
+    <script src="analytics-dashboard.js"></script>
+</body>
+</html> 

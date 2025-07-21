@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-BOQAI Center | AI Symptom Assessment & Therapy Preview</title>
+    <link rel="stylesheet" href="symptom-assessment.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <a href="home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+            </a>
+        </div>
+        <!-- Navigation -->
+        <ul class="navbar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="success-stories.html">Success Stories</a></li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">ABOUT US</span>
+                <ul class="dropdown-menu">
+                    <li><a href="about us/aboutus.html">About us</a></li>
+                    <li><a href="about us/boqia cv.html">Boqia cv</a></li>
+                    <li><a href="about us/targeted group.html">Targeted People</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">Our Services</span>
+                <ul class="dropdown-menu">
+                    <li><a href="our services/manual therapy.html">Manual Therapy</a></li>
+                    <li><a href="our services/physical therapy.html">Physical Therapy</a></li>
+                    <li><a href="our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+                </ul>
+            </li>
+            <li><a href="book appointment/book.html">Book Appointment</a></li>
+            <li><a href="book appointment/contact us.html">Contact Us</a></li>
+            <li><a href="book appointment/sign in.html" class="signin-link">Sign In</a></li>
+        </ul>
+        <!-- Dark Mode & Language Toggle -->
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="assessment-container">
+        <!-- AI Symptom Assessment Section -->
+        <div class="assessment-section" id="symptom-assessment">
+            <div class="section-header">
+                <h1><i class="fas fa-brain"></i> AI Symptom Assessment</h1>
+                <p>Describe your symptoms and get personalized therapy recommendations</p>
+            </div>
+
+            <!-- Assessment Form -->
+            <div class="assessment-form">
+                <div class="form-step active" id="step-1">
+                    <h3>Step 1: Basic Information</h3>
+                    <div class="form-group">
+                        <label for="age">Age Range</label>
+                        <select id="age" required>
+                            <option value="">Select age range</option>
+                            <option value="child">Child (0-12 years)</option>
+                            <option value="teen">Teenager (13-17 years)</option>
+                            <option value="adult">Adult (18-65 years)</option>
+                            <option value="senior">Senior (65+ years)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <button class="next-btn" onclick="nextStep(1)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+
+                <div class="form-step" id="step-2">
+                    <h3>Step 2: Primary Symptoms</h3>
+                    <div class="symptom-categories">
+                        <div class="symptom-category" onclick="selectCategory('pain')">
+                            <i class="fas fa-pain"></i>
+                            <h4>Pain & Discomfort</h4>
+                            <p>Back pain, joint pain, muscle aches</p>
+                        </div>
+                        <div class="symptom-category" onclick="selectCategory('mobility')">
+                            <i class="fas fa-walking"></i>
+                            <h4>Mobility Issues</h4>
+                            <p>Difficulty walking, balance problems</p>
+                        </div>
+                        <div class="symptom-category" onclick="selectCategory('neurological')">
+                            <i class="fas fa-brain"></i>
+                            <h4>Neurological</h4>
+                            <p>Stroke recovery, cerebral palsy</p>
+                        </div>
+                        <div class="symptom-category" onclick="selectCategory('developmental')">
+                            <i class="fas fa-baby"></i>
+                            <h4>Developmental</h4>
+                            <p>Birth injuries, developmental delays</p>
+                        </div>
+                    </div>
+                    <button class="back-btn" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+
+                <div class="form-step" id="step-3">
+                    <h3>Step 3: Detailed Symptoms</h3>
+                    <div class="symptom-details" id="symptom-details">
+                        <!-- Dynamic content will be loaded here -->
+                    </div>
+                    <button class="back-btn" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="analyze-btn" onclick="analyzeSymptoms()">
+                        <i class="fas fa-search"></i> Analyze Symptoms
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Analysis Results -->
+        <div class="results-section" id="results-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> AI Analysis Results</h2>
+                <p>Based on your symptoms, here are our recommendations</p>
+            </div>
+
+            <div class="results-content">
+                <div class="diagnosis-card">
+                    <h3>Preliminary Assessment</h3>
+                    <div class="diagnosis-content" id="diagnosis-content">
+                        <!-- AI diagnosis will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="recommendations-card">
+                    <h3>Recommended Therapies</h3>
+                    <div class="therapy-recommendations" id="therapy-recommendations">
+                        <!-- Therapy recommendations will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="confidence-card">
+                    <h3>Assessment Confidence</h3>
+                    <div class="confidence-meter">
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidence-fill"></div>
+                        </div>
+                        <span id="confidence-text">85%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Therapy Preview Section -->
+        <div class="preview-section" id="preview-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-vr-cardboard"></i> Therapy Preview</h2>
+                <p>Experience a virtual preview of your recommended therapy</p>
+            </div>
+
+            <div class="preview-content">
+                <div class="preview-controls">
+                    <button class="preview-btn active" onclick="showPreview('manual')">
+                        <i class="fas fa-hands"></i> Manual Therapy
+                    </button>
+                    <button class="preview-btn" onclick="showPreview('physical')">
+                        <i class="fas fa-dumbbell"></i> Physical Therapy
+                    </button>
+                    <button class="preview-btn" onclick="showPreview('rehabilitation')">
+                        <i class="fas fa-heart"></i> Rehabilitation
+                    </button>
+                </div>
+
+                <div class="preview-display">
+                    <div class="preview-canvas" id="preview-canvas">
+                        <!-- 3D preview will be rendered here -->
+                        <div class="preview-placeholder">
+                            <i class="fas fa-vr-cardboard"></i>
+                            <h3>Interactive 3D Preview</h3>
+                            <p>Select a therapy type to view the preview</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-info" id="preview-info">
+                    <!-- Therapy information will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons" id="action-buttons" style="display: none;">
+            <button class="book-appointment-btn" onclick="bookAppointment()">
+                <i class="fas fa-calendar-plus"></i> Book Appointment
+            </button>
+            <button class="download-report-btn" onclick="downloadReport()">
+                <i class="fas fa-download"></i> Download Report
+            </button>
+            <button class="restart-assessment-btn" onclick="restartAssessment()">
+                <i class="fas fa-redo"></i> Start New Assessment
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="book appointment/sign in.html">Sign In</a></li>
+                    <li><a href="book appointment/contact us.html">Contact Us</a></li>
+                    <li><a href="success-stories.html">Success Stories</a></li>
+                    <li><a href="book appointment/book.html">Book Appointment</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:alboqaiworld@gmail.com" target="_blank">Email: alboqaiworld@gmail.com</a></li>
+                    <li>Phone: +962775252444</li>
+                    <li><a href="https://maps.app.goo.gl/8sPWu3tUFbbenmvd7?g_st=iw" target="_blank">al-andlos road, Irbid</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Saturday - Thursday: 8:00 - 16:00</li>
+                    <li>Friday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 AL-BOQAI CENTER. All rights reserved.
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="dark-mode.js"></script>
+    <script src="symptom-assessment.js"></script>
+    <script>
+        // Language toggle logic
+        const translations = {
+            ar: {
+                title: "تقييم الأعراض بالذكاء الاصطناعي",
+                subtitle: "صف أعراضك واحصل على توصيات علاجية مخصصة",
+                step1: "الخطوة 1: المعلومات الأساسية",
+                step2: "الخطوة 2: الأعراض الأساسية",
+                step3: "الخطوة 3: تفاصيل الأعراض",
+                age: "الفئة العمرية",
+                gender: "الجنس",
+                selectAge: "اختر الفئة العمرية",
+                selectGender: "اختر الجنس",
+                child: "طفل (0-12 سنة)",
+                teen: "مراهق (13-17 سنة)",
+                adult: "بالغ (18-65 سنة)",
+                senior: "مسن (65+ سنة)",
+                male: "ذكر",
+                female: "أنثى",
+                next: "التالي",
+                back: "السابق",
+                analyze: "تحليل الأعراض",
+                results: "نتائج التحليل",
+                recommendations: "التوصيات العلاجية",
+                confidence: "مستوى الثقة",
+                preview: "معاينة العلاج",
+                book: "حجز موعد",
+                download: "تحميل التقرير",
+                restart: "بدء تقييم جديد",
+                pain: "الألم وعدم الراحة",
+                painDesc: "آلام الظهر، آلام المفاصل، آلام العضلات",
+                mobility: "مشاكل الحركة",
+                mobilityDesc: "صعوبة في المشي، مشاكل في التوازن",
+                neurological: "الأمراض العصبية",
+                neurologicalDesc: "التعافي من السكتة الدماغية، الشلل الدماغي",
+                developmental: "التطورية",
+                developmentalDesc: "إصابات الولادة، تأخر النمو",
+                preliminaryAssessment: "التقييم الأولي",
+                recommendedTherapies: "العلاجات الموصى بها",
+                assessmentConfidence: "ثقة التقييم",
+                therapyPreview: "معاينة العلاج",
+                previewDesc: "جرب معاينة افتراضية للعلاج الموصى به",
+                manualTherapy: "العلاج اليدوي",
+                physicalTherapy: "العلاج الطبيعي",
+                rehabilitation: "إعادة التأهيل",
+                interactivePreview: "معاينة تفاعلية ثلاثية الأبعاد",
+                selectTherapy: "اختر نوع العلاج لعرض المعاينة",
+                basedOnSymptoms: "بناءً على أعراضك، إليك توصياتنا",
+                experienceVirtual: "جرب معاينة افتراضية للعلاج الموصى به",
+                severity: "الشدة",
+                selectSymptoms: "اختر الأعراض التي تنطبق عليك"
+            },
+            en: {
+                title: "AI Symptom Assessment",
+                subtitle: "Describe your symptoms and get personalized therapy recommendations",
+                step1: "Step 1: Basic Information",
+                step2: "Step 2: Primary Symptoms",
+                step3: "Step 3: Detailed Symptoms",
+                age: "Age Range",
+                gender: "Gender",
+                selectAge: "Select age range",
+                selectGender: "Select gender",
+                child: "Child (0-12 years)",
+                teen: "Teenager (13-17 years)",
+                adult: "Adult (18-65 years)",
+                senior: "Senior (65+ years)",
+                male: "Male",
+                female: "Female",
+                next: "Next",
+                back: "Back",
+                analyze: "Analyze Symptoms",
+                results: "Analysis Results",
+                recommendations: "Therapy Recommendations",
+                confidence: "Assessment Confidence",
+                preview: "Therapy Preview",
+                book: "Book Appointment",
+                download: "Download Report",
+                restart: "Start New Assessment",
+                pain: "Pain & Discomfort",
+                painDesc: "Back pain, joint pain, muscle aches",
+                mobility: "Mobility Issues",
+                mobilityDesc: "Difficulty walking, balance problems",
+                neurological: "Neurological",
+                neurologicalDesc: "Stroke recovery, cerebral palsy",
+                developmental: "Developmental",
+                developmentalDesc: "Birth injuries, developmental delays",
+                preliminaryAssessment: "Preliminary Assessment",
+                recommendedTherapies: "Recommended Therapies",
+                assessmentConfidence: "Assessment Confidence",
+                therapyPreview: "Therapy Preview",
+                previewDesc: "Experience a virtual preview of your recommended therapy",
+                manualTherapy: "Manual Therapy",
+                physicalTherapy: "Physical Therapy",
+                rehabilitation: "Rehabilitation",
+                interactivePreview: "Interactive 3D Preview",
+                selectTherapy: "Select a therapy type to view the preview",
+                basedOnSymptoms: "Based on your symptoms, here are our recommendations",
+                experienceVirtual: "Experience a virtual preview of your recommended therapy",
+                severity: "Severity",
+                selectSymptoms: "Select symptoms that apply to you"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            localStorage.setItem('lang', lang);
+            
+            const t = translations[lang];
+            
+            // Main section headers
+            document.querySelector('.assessment-section h1').innerHTML = `<i class="fas fa-brain"></i> ${t.title}`;
+            document.querySelector('.assessment-section p').textContent = t.subtitle;
+            
+            // Step headers
+            document.querySelector('#step-1 h3').textContent = t.step1;
+            document.querySelector('#step-2 h3').textContent = t.step2;
+            document.querySelector('#step-3 h3').textContent = t.step3;
+            
+            // Form labels and options
+            document.querySelector('label[for="age"]').textContent = t.age;
+            document.querySelector('label[for="gender"]').textContent = t.gender;
+            
+            // Age options
+            const ageSelect = document.getElementById('age');
+            ageSelect.options[0].text = t.selectAge;
+            ageSelect.options[1].text = t.child;
+            ageSelect.options[2].text = t.teen;
+            ageSelect.options[3].text = t.adult;
+            ageSelect.options[4].text = t.senior;
+            
+            // Gender options
+            const genderSelect = document.getElementById('gender');
+            genderSelect.options[0].text = t.selectGender;
+            genderSelect.options[1].text = t.male;
+            genderSelect.options[2].text = t.female;
+            
+            // Buttons
+            document.querySelector('#step-1 .next-btn').innerHTML = `${t.next} <i class="fas fa-arrow-right"></i>`;
+            document.querySelector('#step-2 .back-btn').innerHTML = `<i class="fas fa-arrow-left"></i> ${t.back}`;
+            document.querySelector('#step-3 .back-btn').innerHTML = `<i class="fas fa-arrow-left"></i> ${t.back}`;
+            document.querySelector('#step-3 .analyze-btn').innerHTML = `<i class="fas fa-search"></i> ${t.analyze}`;
+            
+            // Symptom categories
+            const categories = document.querySelectorAll('.symptom-category');
+            categories[0].querySelector('h4').textContent = t.pain;
+            categories[0].querySelector('p').textContent = t.painDesc;
+            categories[1].querySelector('h4').textContent = t.mobility;
+            categories[1].querySelector('p').textContent = t.mobilityDesc;
+            categories[2].querySelector('h4').textContent = t.neurological;
+            categories[2].querySelector('p').textContent = t.neurologicalDesc;
+            categories[3].querySelector('h4').textContent = t.developmental;
+            categories[3].querySelector('p').textContent = t.developmentalDesc;
+            
+            // Results section
+            const resultsSection = document.getElementById('results-section');
+            if (resultsSection.style.display !== 'none') {
+                resultsSection.querySelector('h2').innerHTML = `<i class="fas fa-chart-line"></i> ${t.results}`;
+                resultsSection.querySelector('p').textContent = t.basedOnSymptoms;
+                resultsSection.querySelector('.diagnosis-card h3').textContent = t.preliminaryAssessment;
+                resultsSection.querySelector('.recommendations-card h3').textContent = t.recommendedTherapies;
+                resultsSection.querySelector('.confidence-card h3').textContent = t.assessmentConfidence;
+            }
+            
+            // Preview section
+            const previewSection = document.getElementById('preview-section');
+            if (previewSection.style.display !== 'none') {
+                previewSection.querySelector('h2').innerHTML = `<i class="fas fa-vr-cardboard"></i> ${t.therapyPreview}`;
+                previewSection.querySelector('p').textContent = t.previewDesc;
+                
+                // Preview buttons
+                const previewBtns = document.querySelectorAll('.preview-btn');
+                previewBtns[0].innerHTML = `<i class="fas fa-hands"></i> ${t.manualTherapy}`;
+                previewBtns[1].innerHTML = `<i class="fas fa-dumbbell"></i> ${t.physicalTherapy}`;
+                previewBtns[2].innerHTML = `<i class="fas fa-heart"></i> ${t.rehabilitation}`;
+                
+                // Preview placeholder
+                const placeholder = document.querySelector('.preview-placeholder');
+                if (placeholder) {
+                    placeholder.querySelector('h3').textContent = t.interactivePreview;
+                    placeholder.querySelector('p').textContent = t.selectTherapy;
+                }
+            }
+            
+            // Action buttons
+            const actionButtons = document.getElementById('action-buttons');
+            if (actionButtons.style.display !== 'none') {
+                const actionBtns = document.querySelectorAll('.action-buttons button');
+                actionBtns[0].innerHTML = `<i class="fas fa-calendar-plus"></i> ${t.book}`;
+                actionBtns[1].innerHTML = `<i class="fas fa-download"></i> ${t.download}`;
+                actionBtns[2].innerHTML = `<i class="fas fa-redo"></i> ${t.restart}`;
+            }
+
+            // Trigger JavaScript translation update
+            if (typeof assessment !== 'undefined' && assessment.updateLanguage) {
+                assessment.currentLanguage = lang;
+                assessment.updateLanguage();
+            }
+        }
+
+        const langBtn = document.getElementById('lang-toggle-btn');
+        let lang = localStorage.getItem('lang') || 'en';
+        setLanguage(lang);
+        langBtn.addEventListener('click', function() {
+            lang = lang === 'en' ? 'ar' : 'en';
+            setLanguage(lang);
+        });
+    </script>
+</body>
+</html> 
