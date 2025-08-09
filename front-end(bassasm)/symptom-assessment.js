@@ -1,4 +1,4 @@
-// AI Symptom Assessment & Therapy Preview System
+// AI Symptom Assessment System
 // Advanced JavaScript for AL-BOQAI Center Graduation Project
 
 class SymptomAssessment {
@@ -15,7 +15,6 @@ class SymptomAssessment {
     init() {
         this.setupEventListeners();
         this.loadSymptomDatabase();
-        this.initialize3DPreview();
         console.log('✅ AI Symptom Assessment System initialized');
     }
 
@@ -447,7 +446,6 @@ class SymptomAssessment {
     displayResults() {
         // Show results section
         document.getElementById('results-section').style.display = 'block';
-        document.getElementById('preview-section').style.display = 'block';
         document.getElementById('action-buttons').style.display = 'flex';
 
         // Update diagnosis
@@ -495,98 +493,7 @@ class SymptomAssessment {
     }
 
     // 3D Preview System
-    initialize3DPreview() {
-        this.currentPreview = null;
-        this.previewData = {
-            manual: {
-                title: 'Manual Therapy',
-                description: 'Hands-on treatment techniques including joint mobilization, soft tissue techniques, and myofascial release.',
-                benefits: ['Pain relief', 'Improved mobility', 'Reduced stiffness', 'Faster recovery'],
-                duration: '30-60 minutes per session',
-                frequency: '2-3 times per week'
-            },
-            physical: {
-                title: 'Physical Therapy',
-                description: 'Exercise-based treatment focusing on strengthening, flexibility, and functional movement.',
-                benefits: ['Muscle strengthening', 'Improved balance', 'Better coordination', 'Enhanced function'],
-                duration: '45-60 minutes per session',
-                frequency: '2-4 times per week'
-            },
-            rehabilitation: {
-                title: 'Comprehensive Rehabilitation',
-                description: 'Multi-disciplinary approach combining various therapeutic techniques for complex conditions.',
-                benefits: ['Holistic treatment', 'Long-term improvement', 'Functional independence', 'Quality of life'],
-                duration: '60-90 minutes per session',
-                frequency: '3-5 times per week'
-            }
-        };
-    }
 
-    showPreview(type) {
-        // Update active button
-        document.querySelectorAll('.preview-btn').forEach(btn => btn.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-
-        // Update preview content
-        const data = this.previewData[type];
-        const canvas = document.getElementById('preview-canvas');
-        const info = document.getElementById('preview-info');
-
-        // Create 3D preview (simplified for demo)
-        canvas.innerHTML = `
-            <div class="preview-3d">
-                <div class="preview-scene">
-                    <div class="preview-object ${type}-object">
-                        <i class="fas ${this.getPreviewIcon(type)}"></i>
-                    </div>
-                    <div class="preview-particles"></div>
-                </div>
-                <div class="preview-overlay">
-                    <h3>${data.title}</h3>
-                    <p>Interactive 3D Preview</p>
-                </div>
-            </div>
-        `;
-
-        // Update info panel
-        info.innerHTML = `
-            <h3>${data.title}</h3>
-            <p>${data.description}</p>
-            <div class="preview-benefits">
-                <h4>Benefits:</h4>
-                <ul>
-                    ${data.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
-                </ul>
-            </div>
-            <div class="preview-details">
-                <div class="detail">
-                    <strong>Session Duration:</strong> ${data.duration}
-                </div>
-                <div class="detail">
-                    <strong>Frequency:</strong> ${data.frequency}
-                </div>
-            </div>
-        `;
-
-        this.currentPreview = type;
-        this.animatePreview();
-    }
-
-    getPreviewIcon(type) {
-        const icons = {
-            manual: 'fa-hands',
-            physical: 'fa-dumbbell',
-            rehabilitation: 'fa-heart'
-        };
-        return icons[type] || 'fa-vr-cardboard';
-    }
-
-    animatePreview() {
-        const object = document.querySelector('.preview-object');
-        if (object) {
-            object.style.animation = 'previewFloat 3s ease-in-out infinite';
-        }
-    }
 
     // Utility Functions
     showNotification(message, type = 'info') {
@@ -689,7 +596,6 @@ Email: alboqaiworld@gmail.com`;
         document.getElementById('step-1').classList.add('active');
         
         document.getElementById('results-section').style.display = 'none';
-        document.getElementById('preview-section').style.display = 'none';
         document.getElementById('action-buttons').style.display = 'none';
 
         // Reset form
@@ -722,12 +628,12 @@ function prevStep(step) { assessment.prevStep(step); }
 function selectCategory(category) { assessment.selectCategory(category); }
 function selectSymptom(symptomId) { assessment.selectSymptom(symptomId); }
 function analyzeSymptoms() { assessment.analyzeSymptoms(); }
-function showPreview(type) { assessment.showPreview(type); }
+
 function bookAppointment() { assessment.bookAppointment(); }
 function downloadReport() { assessment.downloadReport(); }
 function restartAssessment() { assessment.restartAssessment(); }
 
-// Add CSS for notifications and 3D preview animations
+// Add CSS for notifications
 const additionalCSS = `
 .notification {
     position: fixed;
@@ -756,87 +662,6 @@ const additionalCSS = `
 
 .notification-success {
     border-left: 4px solid var(--success-color);
-}
-
-.preview-3d {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 350px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, rgba(42, 93, 159, 0.1) 0%, rgba(29, 64, 110, 0.1) 100%);
-    border-radius: 10px;
-}
-
-.preview-scene {
-    position: relative;
-    width: 200px;
-    height: 200px;
-}
-
-.preview-object {
-    width: 100px;
-    height: 100px;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    color: white;
-    font-size: 2em;
-    box-shadow: 0 10px 30px rgba(42, 93, 159, 0.3);
-}
-
-@keyframes previewFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
-}
-
-.preview-overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px 25px;
-    border-radius: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.preview-benefits ul {
-    list-style: none;
-    padding: 0;
-}
-
-.preview-benefits li {
-    padding: 5px 0;
-    position: relative;
-    padding-left: 20px;
-}
-
-.preview-benefits li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--success-color);
-    font-weight: bold;
-}
-
-.preview-details {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-}
-
-.preview-details .detail {
-    margin: 10px 0;
-    padding: 10px;
-    background: var(--surface-color);
-    border-radius: 8px;
 }
 
 .diagnosis-details {

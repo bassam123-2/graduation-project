@@ -22,7 +22,11 @@ class ALBOQAIChatbot {
                 <!-- Chat Header -->
                 <div class="chatbot-header" id="chatbot-header">
                     <div class="chatbot-avatar">
-                        <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Center">
+                        <div style="display: flex; align-items: center; background: transparent; font-family: Arial, sans-serif; width: 100%; height: 100%; justify-content: center;">
+                            <div style="background: #2a5d9f; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 8px;">
+                                Dr.<br>MBI
+                            </div>
+                        </div>
                     </div>
                     <div class="chatbot-info">
                         <h4 id="chatbot-title">AL-BOQAI Center</h4>
@@ -64,7 +68,9 @@ class ALBOQAIChatbot {
             <!-- Chat Toggle Button -->
             <div id="chatbot-toggle" class="chatbot-toggle">
                 <div class="chatbot-toggle-icon">
-                    <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Center">
+                    <div style="background: #2a5d9f; color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 9px;">
+                        Dr.<br>MBI
+                    </div>
                 </div>
             </div>
         `;

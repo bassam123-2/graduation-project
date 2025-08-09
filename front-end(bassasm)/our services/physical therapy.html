@@ -14,7 +14,19 @@
 <div class="header">
     <div class="logo">
         <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
-            <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+                <div style="display: flex; align-items: center; background: transparent; color: #2a5d9f; padding: 10px 20px; border-radius: 8px; font-family: Arial, sans-serif;">
+                    <div style="background: #2a5d9f; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; margin-right: 15px;">
+                        Dr.<br>MBI
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="font-size: 18px; font-weight: bold; color: #2a5d9f; line-height: 1;">
+                            البقاعي للعلاج الحكمي
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-top: 2px;">
+                            AL-BOQAI World for Judgmental therapy
+                        </div>
+                    </div>
+                </div>
         </a>
     </div>
     <ul class="navbar">
@@ -185,12 +197,8 @@
         
         <div class="side-images">
             <div class="image-container">
-                <img src="https://alboqai.com/wp-content/uploads/2022/12/IMG_2767-750x500.jpg" alt="Physical Therapy Session">
+                <img src="https://dralboqai.com/wp-content/uploads/2025/03/IMG_4315-scaled-1-1536x1024.jpg" alt="Physical Therapy Session">
                 <p class="image-caption">Professional Physical Therapy Treatment</p>
-            </div>
-            <div class="image-container">
-                <img src="https://alboqai.com/wp-content/uploads/2022/12/IMG_2570-750x500.jpg" alt="Therapeutic Exercise">
-                <p class="image-caption">Therapeutic Exercise Programs</p>
             </div>
             <div class="cta-card">
                 <h3>Start Your Recovery Journey</h3>
@@ -241,7 +249,7 @@
     const translations = {
       ar: {
         header: [
-      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تواصل معنا '
+      'الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تواصل معنا ', 'تسجيل الدخول'
     ],
         serviceHeader: {
           h1: "العلاج الطبيعي",
@@ -322,7 +330,7 @@
       },
       en: {
  header: [
-      'Home', 'Success Stories', 'About Us','About Us' , 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment', 'Contact Us', 'Sign In'
+      'Home', 'Success Stories', 'About Us','About Us' , 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment',  'Contact Us', 'Sign In'
     ],
         servicesDropdown: ["Manual Therapy", "Physical Therapy", "Rehabilitation Body Engineering"],
         aboutDropdown: ["About us", "Boqia cv", "Targeted People"],
@@ -412,7 +420,7 @@
       // Header
       const navLinks = document.querySelectorAll('.navbar > li > a, .dropdown-menu > li > a, .dropdown-trigger');
       const t = translations[lang];
-      const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11];
+      const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
       navLinks.forEach((el, i) => { if (t.header[navOrder[i]]) el.innerHTML = t.header[navOrder[i]]; });
       // Nav alignment
       const navbar = document.querySelector('.navbar');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AL-BOQAI Center | AI Symptom Assessment & Therapy Preview</title>
+    <title>AL-BOQAI Center | AI Symptom Assessment</title>
     <link rel="stylesheet" href="symptom-assessment.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
@@ -15,7 +15,19 @@
     <div class="header">
         <div class="logo">
             <a href="home.html" style="display: flex; align-items: center; text-decoration: none;">
-                <img src="https://alboqai.com/wp-content/uploads/2022/12/4414Artboard-5@3x-8-2048x651.png" alt="AL-BOQAI Logo" height="60">
+                <div style="display: flex; align-items: center; background: transparent; color: #2a5d9f; padding: 10px 20px; border-radius: 8px; font-family: Arial, sans-serif;">
+                    <div style="background: #2a5d9f; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; margin-right: 15px;">
+                        Dr.<br>MBI
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="font-size: 18px; font-weight: bold; color: #2a5d9f; line-height: 1;">
+                            البقاعي للعلاج الحكمي
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-top: 2px;">
+                            AL-BOQAI World for Judgmental therapy
+                        </div>
+                    </div>
+                </div>
             </a>
         </div>
         <!-- Navigation -->
@@ -161,42 +173,7 @@
             </div>
         </div>
 
-        <!-- Therapy Preview Section -->
-        <div class="preview-section" id="preview-section" style="display: none;">
-            <div class="section-header">
-                <h2><i class="fas fa-vr-cardboard"></i> Therapy Preview</h2>
-                <p>Experience a virtual preview of your recommended therapy</p>
-            </div>
 
-            <div class="preview-content">
-                <div class="preview-controls">
-                    <button class="preview-btn active" onclick="showPreview('manual')">
-                        <i class="fas fa-hands"></i> Manual Therapy
-                    </button>
-                    <button class="preview-btn" onclick="showPreview('physical')">
-                        <i class="fas fa-dumbbell"></i> Physical Therapy
-                    </button>
-                    <button class="preview-btn" onclick="showPreview('rehabilitation')">
-                        <i class="fas fa-heart"></i> Rehabilitation
-                    </button>
-                </div>
-
-                <div class="preview-display">
-                    <div class="preview-canvas" id="preview-canvas">
-                        <!-- 3D preview will be rendered here -->
-                        <div class="preview-placeholder">
-                            <i class="fas fa-vr-cardboard"></i>
-                            <h3>Interactive 3D Preview</h3>
-                            <p>Select a therapy type to view the preview</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="preview-info" id="preview-info">
-                    <!-- Therapy information will be displayed here -->
-                </div>
-            </div>
-        </div>
 
         <!-- Action Buttons -->
         <div class="action-buttons" id="action-buttons" style="display: none;">
@@ -253,6 +230,7 @@
         // Language toggle logic
         const translations = {
             ar: {
+                header: ['الرئيسية', 'قصص النجاح', 'من نحن', 'من نحن', 'السيرة الذاتية', 'الفئات المسهدفة', 'الخدمات المقدمة', 'العلاج اليدوي', 'العلاج الفيزيائي', 'هندسة اعادة التأهيل', 'احجز موعد', 'تقييم الأعراض بالذكاء الاصطناعي','تواصل معنا ', 'تسجيل الدخول'],
                 title: "تقييم الأعراض بالذكاء الاصطناعي",
                 subtitle: "صف أعراضك واحصل على توصيات علاجية مخصصة",
                 step1: "الخطوة 1: المعلومات الأساسية",
@@ -302,6 +280,7 @@
                 selectSymptoms: "اختر الأعراض التي تنطبق عليك"
             },
             en: {
+                header: ['Home', 'Success Stories', 'About Us', 'About us', 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment','AI Assesment', 'Contact Us', 'Sign In'],
                 title: "AI Symptom Assessment",
                 subtitle: "Describe your symptoms and get personalized therapy recommendations",
                 step1: "Step 1: Basic Information",
@@ -323,7 +302,7 @@
                 results: "Analysis Results",
                 recommendations: "Therapy Recommendations",
                 confidence: "Assessment Confidence",
-                preview: "Therapy Preview",
+
                 book: "Book Appointment",
                 download: "Download Report",
                 restart: "Start New Assessment",
@@ -338,7 +317,7 @@
                 preliminaryAssessment: "Preliminary Assessment",
                 recommendedTherapies: "Recommended Therapies",
                 assessmentConfidence: "Assessment Confidence",
-                therapyPreview: "Therapy Preview",
+
                 previewDesc: "Experience a virtual preview of your recommended therapy",
                 manualTherapy: "Manual Therapy",
                 physicalTherapy: "Physical Therapy",
@@ -358,6 +337,26 @@
             localStorage.setItem('lang', lang);
             
             const t = translations[lang];
+            
+            // Header navigation translation
+            const navLinks = document.querySelectorAll('.navbar > li > a, .dropdown-menu > li > a, .dropdown-trigger');
+            const navOrder = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+            navLinks.forEach((el, i) => { if (t.header[navOrder[i]]) el.innerHTML = t.header[navOrder[i]]; });
+            
+            // Nav alignment
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                if (lang === 'ar') {
+                    navbar.style.flexDirection = 'row-reverse';
+                    navbar.style.textAlign = 'right';
+                } else {
+                    navbar.style.flexDirection = 'row';
+                    navbar.style.textAlign = 'left';
+                }
+            }
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
+            });
             
             // Main section headers
             document.querySelector('.assessment-section h1').innerHTML = `<i class="fas fa-brain"></i> ${t.title}`;
