@@ -163,4 +163,3 @@ function initializeInteractiveElements() {
 }
 
 // Console welcome message
-console.log('%cWelcome to AL-BOQAI Center Home Page! 🏠', 'color: #2a5d9f; font-size: 16px; font-weight: bold;'); 

@@ -301,7 +301,7 @@ class TestResponseSerializers:
         """Test PaginatedResponseSerializer"""
         data = {
             'count': 10,
-            'next': 'http://localhost:8000/api/users/?page=2',
+            'next': 'http://localhost:8080/api/users/?page=2',
             'previous': None,
             'results': []
         }

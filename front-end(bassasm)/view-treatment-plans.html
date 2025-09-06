@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Treatment Plans | AL-BOQAI Center</title>
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../footer.css">
+    <link rel="stylesheet" href="view-treatment-plans.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <div style="display: flex; align-items: center; background: transparent; color: #2a5d9f; padding: 10px 20px; border-radius: 8px; font-family: Arial, sans-serif;">
+                    <div style="background: #2a5d9f; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; margin-right: 15px;">
+                        Dr.<br>MBI
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="font-size: 18px; font-weight: bold; color: #2a5d9f; line-height: 1;">
+                            البقاعي للعلاج الحكمي
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-top: 2px;">
+                            AL-BOQAI World for Judgmental therapy
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <ul class="navbar">
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../success-stories.html">Success Stories</a></li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">ABOUT US</span>
+                <ul class="dropdown-menu">
+                    <li><a href="../about us/aboutus.html">About us</a></li>
+                    <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
+                    <li><a href="../about us/targeted group.html">Targeted People</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">Our Services</span>
+                <ul class="dropdown-menu">
+                    <li><a href="../our services/manual therapy.html">Manual Therapy</a></li>
+                    <li><a href="../our services/physical therapy.html">Physical Therapy</a></li>
+                    <li><a href="../our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+                </ul>
+            </li>
+            <li><a href="../book appointment/book.html">Book Appointment</a></li>
+            <li><a href="../book appointment/contact us.html">Contact Us</a></li>
+            <li><a href="../book appointment/sign in.html" class="signin-link">Sign In</a></li>
+        </ul>
+        
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="page-header">
+            <h1><i class="fas fa-clipboard-list"></i> My Treatment Plans</h1>
+            <p>Track your progress and view your personalized treatment plans</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading your treatment plans...</p>
+        </div>
+
+        <!-- No Plans State -->
+        <div id="noPlansState" class="no-plans-state" style="display: none;">
+            <div class="no-plans-content">
+                <i class="fas fa-clipboard-list"></i>
+                <h3>No Treatment Plans Yet</h3>
+                <p>You don't have any treatment plans assigned yet. Your therapist will create a personalized plan for you after your appointment.</p>
+                <a href="../book appointment/book.html" class="btn-primary">
+                    <i class="fas fa-calendar-plus"></i> Book an Appointment
+                </a>
+            </div>
+        </div>
+
+        <!-- Treatment Plans List -->
+        <div id="plansContainer" class="plans-container" style="display: none;">
+            <!-- Plans will be populated here -->
+        </div>
+
+        <!-- Plan Details Modal -->
+        <div id="planDetailsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-clipboard-list"></i> Treatment Plan Details</h3>
+                    <button class="close-modal" onclick="closePlanModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="planDetailsContent">
+                        <!-- Plan details will be populated here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="closePlanModal()" class="btn-primary">Close</button>
+                    <button onclick="printPlan()" class="btn-secondary">
+                        <i class="fas fa-print"></i> Print Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Update Modal -->
+        <div id="progressModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-chart-line"></i> Update Progress</h3>
+                    <button class="close-modal" onclick="closeProgressModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="progressForm">
+                        <div class="form-group">
+                            <label for="completedSessions">Completed Sessions</label>
+                            <input type="number" id="completedSessions" name="completed_sessions" min="0" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="progressNotes">Progress Notes (Optional)</label>
+                            <textarea id="progressNotes" name="progress_notes" rows="3" placeholder="How are you feeling? Any improvements or concerns?"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="closeProgressModal()" class="btn-secondary">Cancel</button>
+                    <button onclick="updateProgress()" class="btn-primary">
+                        <i class="fas fa-save"></i> Update Progress
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../home.html">Home</a></li>
+                    <li><a href="../book appointment/sign in.html">Sign In</a></li>
+                    <li><a href="../book appointment/contact us.html">Contact Us</a></li>
+                    <li><a href="../success-stories.html">Success Stories</a></li>
+                    <li><a href="../book appointment/book.html">Book Appointment</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:alboqaiworld@gmail.com" target="_blank">Email: alboqaiworld@gmail.com</a></li>
+                    <li>Phone: +962775252444</li>
+                    <li><a href="https://maps.app.goo.gl/8sPWu3tUFbbenmvd7?g_st=iw" target="_blank">al-andlos road, Irbid</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Saturday - Thursday: 8:00 - 16:00</li>
+                    <li>Friday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 AL-BOQAI CENTER. All rights reserved.
+        </div>
+    </div>
+
+    <script src="../config.js"></script>
+    
+    <script src="../dark-mode.js"></script>
+    <script src="view-treatment-plans.js"></script>
+</body>
+</html>

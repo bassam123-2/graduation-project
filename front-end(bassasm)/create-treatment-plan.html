@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Treatment Plan | AL-BOQAI Center</title>
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../footer.css">
+    <link rel="stylesheet" href="create-treatment-plan.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="../home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <div style="display: flex; align-items: center; background: transparent; color: #2a5d9f; padding: 10px 20px; border-radius: 8px; font-family: Arial, sans-serif;">
+                    <div style="background: #2a5d9f; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; margin-right: 15px;">
+                        Dr.<br>MBI
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="font-size: 18px; font-weight: bold; color: #2a5d9f; line-height: 1;">
+                            البقاعي للعلاج الحكمي
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-top: 2px;">
+                            AL-BOQAI World for Judgmental therapy
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <ul class="navbar">
+            <li><a href="../home.html">Home</a></li>
+            <li><a href="../success-stories.html">Success Stories</a></li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">ABOUT US</span>
+                <ul class="dropdown-menu">
+                    <li><a href="../about us/aboutus.html">About us</a></li>
+                    <li><a href="../about us/boqia cv.html">Boqia cv</a></li>
+                    <li><a href="../about us/targeted group.html">Targeted People</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">Our Services</span>
+                <ul class="dropdown-menu">
+                    <li><a href="../our services/manual therapy.html">Manual Therapy</a></li>
+                    <li><a href="../our services/physical therapy.html">Physical Therapy</a></li>
+                    <li><a href="../our services/Rehabilitation Body Engineering for Manual Therapy Sciences.html">Rehabilitation Body Engineering</a></li>
+                </ul>
+            </li>
+            <li><a href="../book appointment/book.html">Book Appointment</a></li>
+            <li><a href="../book appointment/contact us.html">Contact Us</a></li>
+            <li><a href="../book appointment/sign in.html" class="signin-link">Sign In</a></li>
+        </ul>
+        
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="page-header">
+            <h1><i class="fas fa-clipboard-list"></i> Create Treatment Plan</h1>
+            <p>Design a comprehensive treatment plan for your patient</p>
+            
+            <!-- Backend Status Indicator -->
+            <div id="backendStatus" class="backend-status" style="display: none; margin-top: 20px; padding: 15px; border-radius: 8px;">
+                <div class="status-indicator">
+                    <i id="statusIcon" class="fas fa-circle"></i>
+                    <span id="statusText">Checking backend connection...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="treatment-plan-form-container">
+            <form id="treatmentPlanForm" class="treatment-plan-form">
+                <!-- Patient Selection -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user"></i> Patient Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientSelect">Select Patient *</label>
+                            <select id="patientSelect" name="patient" required>
+                                <option value="">Choose a patient...</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentSelect">Select Appointment *</label>
+                            <select id="appointmentSelect" name="appointment" required>
+                                <option value="">Choose an appointment...</option>
+                                <!-- Will be populated dynamically -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan Details -->
+                <div class="form-section">
+                    <h3><i class="fas fa-file-medical"></i> Plan Details</h3>
+                    <div class="form-group">
+                        <label for="planDetails">Treatment Plan Description *</label>
+                        <textarea id="planDetails" name="plan_details" rows="4" placeholder="Describe the treatment plan, goals, and approach..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="durationWeeks">Duration (Weeks) *</label>
+                            <input type="number" id="durationWeeks" name="duration_weeks" min="1" max="52" value="4" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="totalSessions">Total Sessions *</label>
+                            <input type="number" id="totalSessions" name="total_sessions" min="1" max="100" value="10" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercises -->
+                <div class="form-section">
+                    <h3><i class="fas fa-dumbbell"></i> Exercises & Activities</h3>
+                    <div id="exercisesContainer">
+                        <!-- Exercise items will be added here -->
+                    </div>
+                    <button type="button" id="addExerciseBtn" class="btn-secondary">
+                        <i class="fas fa-plus"></i> Add Exercise
+                    </button>
+                </div>
+
+                <!-- Additional Notes -->
+                <div class="form-section">
+                    <h3><i class="fas fa-sticky-note"></i> Additional Notes</h3>
+                    <div class="form-group">
+                        <label for="additionalNotes">Special Instructions or Notes</label>
+                        <textarea id="additionalNotes" name="additional_notes" rows="3" placeholder="Any special instructions, precautions, or additional information..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" id="saveDraftBtn" class="btn-secondary">
+                        <i class="fas fa-save"></i> Save Draft
+                    </button>
+                    <button type="submit" id="submitPlanBtn" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i> Create Treatment Plan
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="successModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-check-circle"></i> Success!</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Treatment plan has been created successfully!</p>
+                    <div class="plan-summary">
+                        <h4>Plan Summary:</h4>
+                        <div id="planSummary"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="closeSuccessModal()" class="btn-primary">Continue</button>
+                    <button onclick="viewAllPlans()" class="btn-secondary">View All Plans</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../home.html">Home</a></li>
+                    <li><a href="../book appointment/sign in.html">Sign In</a></li>
+                    <li><a href="../book appointment/contact us.html">Contact Us</a></li>
+                    <li><a href="../success-stories.html">Success Stories</a></li>
+                    <li><a href="../book appointment/book.html">Book Appointment</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:alboqaiworld@gmail.com" target="_blank">Email: alboqaiworld@gmail.com</a></li>
+                    <li>Phone: +962775252444</li>
+                    <li><a href="https://maps.app.goo.gl/8sPWu3tUFbbenmvd7?g_st=iw" target="_blank">al-andlos road, Irbid</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Saturday - Thursday: 8:00 - 16:00</li>
+                    <li>Friday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 AL-BOQAI CENTER. All rights reserved.
+        </div>
+    </div>
+
+    <script src="../config.js"></script>
+    
+    <script src="../dark-mode.js"></script>
+    <script src="create-treatment-plan.js"></script>
+</body>
+</html>

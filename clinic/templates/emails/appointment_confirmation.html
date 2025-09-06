@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Confirmation - AL-BOQAI Center</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .email-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #2a5d9f;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2a5d9f;
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+        .logo {
+            background: linear-gradient(135deg, #2a5d9f 0%, #1e4a8a 100%);
+            color: white;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(42, 93, 159, 0.3);
+        }
+        .appointment-details {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #2a5d9f;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #2a5d9f;
+            min-width: 120px;
+        }
+        .detail-value {
+            color: #495057;
+            font-weight: 500;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 2px solid #e9ecef;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .contact-info {
+            background: linear-gradient(135deg, #e8f2ff 0%, #d1e7ff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #b3d9ff;
+        }
+        .preparation-tips {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #ffd43b;
+        }
+        .health-advice {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #28a745;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2a5d9f 0%, #1e4a8a 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(42, 93, 159, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(42, 93, 159, 0.4);
+        }
+        .urgent-notice {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border: 1px solid #dc3545;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #721c24;
+        }
+        .service-specific {
+            background: linear-gradient(135deg, #e2e3e5 0%, #d6d8db 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #6c757d;
+        }
+        @media (max-width: 600px) {
+            .detail-row {
+                flex-direction: column;
+            }
+            .detail-label {
+                margin-bottom: 5px;
+                min-width: auto;
+            }
+            .email-container {
+                padding: 25px;
+            }
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <div class="logo">Dr.<br>MBI</div>
+            <h1 style="color: #2a5d9f; margin: 0; font-size: 28px;">Appointment Confirmation</h1>
+            <p style="color: #6c757d; margin: 15px 0 0 0; font-size: 16px;">AL-BOQAI World for Judgmental Therapy</p>
+            <p style="color: #28a745; margin: 5px 0 0 0; font-weight: 600;">✓ Your appointment has been confirmed!</p>
+        </div>
+        
+        <p style="font-size: 16px; color: #495057;">Dear <strong>{{ user.first_name }} {{ user.last_name }}</strong>,</p>
+        
+        <p style="font-size: 16px; color: #495057;">Thank you for choosing AL-BOQAI Center for your healthcare needs. Your appointment has been successfully scheduled and we're looking forward to helping you on your journey to better health.</p>
+        
+        <div class="appointment-details">
+            <h3 style="color: #2a5d9f; margin-top: 0; margin-bottom: 20px; font-size: 20px;">📅 Appointment Details</h3>
+            <div class="detail-row">
+                <span class="detail-label">Appointment ID:</span>
+                <span class="detail-value">#{{ appointment.id }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Date:</span>
+                <span class="detail-value">{{ appointment.date|date:"l, F j, Y" }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Time:</span>
+                <span class="detail-value">{{ appointment.date|time:"g:i A" }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Service:</span>
+                <span class="detail-value">{{ appointment.get_service_type_display }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Duration:</span>
+                <span class="detail-value">{{ appointment.duration }} minutes</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Status:</span>
+                <span class="detail-value" style="color: #28a745; font-weight: 600;">{{ appointment.get_status_display }}</span>
+            </div>
+        </div>
+        
+        <div class="preparation-tips">
+            <h3 style="color: #856404; margin-top: 0; margin-bottom: 15px;">🎯 Pre-Appointment Preparation</h3>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #856404;">
+                <li><strong>Arrive Early:</strong> Please arrive <span class="highlight">15 minutes before</span> your scheduled appointment time</li>
+                <li><strong>Documents:</strong> Bring any relevant medical records, test results, or referral letters</li>
+                <li><strong>Comfortable Clothing:</strong> Wear loose, comfortable clothing suitable for therapy sessions</li>
+                <li><strong>Medical History:</strong> Prepare a list of current medications and medical conditions</li>
+                <li><strong>Questions:</strong> Write down any questions or concerns you'd like to discuss</li>
+            </ul>
+        </div>
+        
+        <div class="health-advice">
+            <h3 style="color: #155724; margin-top: 0; margin-bottom: 15px;">💡 Health & Wellness Tips</h3>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #155724;">
+                <li><strong>Stay Hydrated:</strong> Drink plenty of water before your appointment</li>
+                <li><strong>Rest Well:</strong> Get adequate sleep the night before</li>
+                <li><strong>Light Exercise:</strong> Gentle stretching can help prepare your body</li>
+                <li><strong>Mental Preparation:</strong> Take a few moments to relax and focus on your health goals</li>
+            </ul>
+        </div>
+        
+        {% if appointment.service_type == 'manual-therapy' %}
+        <div class="service-specific">
+            <h4 style="color: #6c757d; margin-top: 0;">🖐️ Manual Therapy Preparation</h4>
+            <p style="color: #6c757d; margin: 10px 0;">For manual therapy sessions, avoid applying lotions or creams to the treatment area. Wear clothing that allows easy access to the areas being treated.</p>
+        </div>
+        {% endif %}
+        
+        {% if appointment.service_type == 'physical-therapy' %}
+        <div class="service-specific">
+            <h4 style="color: #6c757d; margin-top: 0;">🏃 Physical Therapy Preparation</h4>
+            <p style="color: #6c757d; margin: 10px 0;">For physical therapy, bring comfortable athletic shoes and clothing that allows for movement. We may perform exercises during your session.</p>
+        </div>
+        {% endif %}
+        
+        {% if appointment.service_type == 'rehabilitation' %}
+        <div class="service-specific">
+            <h4 style="color: #6c757d; margin-top: 0;">🔧 Rehabilitation Preparation</h4>
+            <p style="color: #6c757d; margin: 10px 0;">For rehabilitation sessions, bring any assistive devices you currently use. We'll assess your current mobility and create a personalized plan.</p>
+        </div>
+        {% endif %}
+        
+        <div class="contact-info">
+            <h3 style="color: #2a5d9f; margin-top: 0; margin-bottom: 15px;">📞 Important Information</h3>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #2a5d9f;">
+                <li><strong>Rescheduling:</strong> Contact us at least <span class="highlight">24 hours in advance</span> if you need to reschedule</li>
+                <li><strong>Cancellation:</strong> Late cancellations may incur a fee</li>
+                <li><strong>Emergency:</strong> For urgent medical issues, please call emergency services</li>
+                <li><strong>Questions:</strong> Don't hesitate to contact us with any concerns</li>
+            </ul>
+        </div>
+        
+        <p style="font-size: 16px; color: #495057;"><strong>What to expect during your first session:</strong></p>
+        <p style="font-size: 16px; color: #495057; line-height: 1.7;">Your initial appointment will include a comprehensive assessment of your condition, discussion of your treatment goals, and development of a personalized treatment plan tailored to your specific needs. Our experienced therapists will take the time to understand your concerns and answer all your questions.</p>
+        
+        <div style="text-align: center; margin: 35px 0;">
+            <a href="http://localhost:3000/patient-dashboard.html" class="btn">View Dashboard</a>
+            <a href="http://localhost:3000/book%20appointment/book.html" class="btn">Book Another Appointment</a>
+        </div>
+        
+        <div class="footer">
+            <p style="margin: 5px 0; font-weight: 600; color: #2a5d9f;">AL-BOQAI Center</p>
+            <p style="margin: 5px 0;">📍 al-andlos road, Irbid, Jordan</p>
+            <p style="margin: 5px 0;">📞 +962775252444 | 📧 alboqaiworld@gmail.com</p>
+            <p style="margin: 5px 0;">🌐 <a href="http://localhost:3000" style="color: #2a5d9f;">www.alboqai.com</a></p>
+            <p style="margin-top: 20px; font-size: 12px; color: #999;">
+                This is an automated confirmation email. Please do not reply to this email.<br>
+                If you have questions, please contact us directly at +962775252444 or alboqaiworld@gmail.com
+            </p>
+            <p style="margin-top: 15px; font-size: 11px; color: #999;">
+                © 2025 AL-BOQAI Center. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

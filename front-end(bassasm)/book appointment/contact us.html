@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../header.css">
     <link rel="stylesheet" href="../footer.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../auth-utils.js"></script>
     <style>
         .contact-container {
             max-width: 500px;
@@ -17,18 +18,21 @@
             box-shadow: 0 8px 32px var(--shadow-color, rgba(42, 93, 159, 0.12));
             padding: 40px 32px 32px 32px;
             text-align: center;
+            transition: all 0.3s ease;
         }
         .contact-title {
             font-size: 2em;
             font-weight: bold;
             color: var(--primary-color, #2a5d9f);
             margin-bottom: 18px;
+            transition: color 0.3s ease;
         }
         .contact-phone {
             font-size: 1.2em;
             margin-bottom: 24px;
             color: var(--text-primary, #333);
             font-weight: 500;
+            transition: color 0.3s ease;
         }
         .contact-socials {
             display: flex;
@@ -45,10 +49,10 @@
             height: 52px;
             border-radius: 50%;
             background: var(--surface-color, #f0f4fa);
-            color: #2a5d9f;
+            color: var(--primary-color, #2a5d9f);
             font-size: 2em;
             box-shadow: 0 2px 8px var(--shadow-color, rgba(42, 93, 159, 0.10));
-            transition: background 0.2s, color 0.2s, transform 0.2s;
+            transition: all 0.3s ease;
             text-decoration: none;
         }
         .contact-socials a:hover {
@@ -60,11 +64,61 @@
             font-size: 1em;
             color: var(--text-secondary, #555);
             margin-top: 8px;
+            transition: color 0.3s ease;
         }
         .contact-location {
             margin: 12px 0 24px 0;
             color: var(--text-primary, #333);
             font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        
+        /* Dark mode specific styles */
+        [data-theme="dark"] .contact-container {
+            background: var(--surface-color, #2d2d2d);
+            box-shadow: 0 8px 32px var(--shadow-color, rgba(0, 0, 0, 0.3));
+        }
+        
+        [data-theme="dark"] .contact-title {
+            color: var(--primary-color, #4a7bb8);
+        }
+        
+        [data-theme="dark"] .contact-phone {
+            color: var(--text-primary, #ffffff);
+        }
+        
+        [data-theme="dark"] .contact-label {
+            color: var(--text-secondary, #e0e0e0);
+        }
+        
+        [data-theme="dark"] .contact-location {
+            color: var(--text-primary, #ffffff);
+        }
+        
+        [data-theme="dark"] .contact-socials a {
+            background: var(--surface-color, #2d2d2d);
+            color: var(--primary-color, #4a7bb8);
+            box-shadow: 0 2px 8px var(--shadow-color, rgba(0, 0, 0, 0.3));
+        }
+        
+        [data-theme="dark"] .contact-socials a:hover {
+            background: var(--gradient-primary, linear-gradient(135deg, #4a7bb8 0%, #2a5d9f 100%));
+        }
+        
+        /* Animation for contact container */
+        .contact-container.animated {
+            animation: slideInUp 0.6s ease forwards;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -109,7 +163,8 @@
         </li>
         <li><a href="book.html">Book Appointment</a></li>
         <li><a href="contact.html" class="active">Contact Us</a></li>
-        <li><a href="sign in.html" class="signin-link">Sign In</a></li>
+        <li><a href="sign in.html" class="signin-link" id="signin-nav-link">Sign In</a></li>
+        <li><a href="../patient-dashboard.html" class="dashboard-link" id="dashboard-nav-link" style="display: none;">Dashboard</a></li>
     </ul>
     <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
         <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
@@ -176,7 +231,7 @@
         &copy; 2025 AL-BOQAI CENTER. All rights reserved.
     </div>
 </div>
-<script src="book-appointment-dark-mode.js"></script>
+<script src="../dark-mode.js"></script>
 <script>
 // Language toggle logic
 const translations = {
@@ -276,6 +331,48 @@ langBtn.addEventListener('click', function() {
   lang = lang === 'en' ? 'ar' : 'en';
   setLanguage(lang);
 });
+
+// Initialize dark mode for contact page
+document.addEventListener('DOMContentLoaded', function() {
+    // Add animation class to contact container
+    const contactContainer = document.querySelector('.contact-container');
+    if (contactContainer) {
+        contactContainer.classList.add('animated');
+    }
+    
+    // Update Google Maps link color based on theme
+    function updateMapLinkColor() {
+        const mapLink = document.querySelector('.contact-location a');
+        if (mapLink) {
+            const currentTheme = document.body.getAttribute('data-theme') || 'light';
+            if (currentTheme === 'dark') {
+                mapLink.style.color = '#4a7bb8';
+            } else {
+                mapLink.style.color = '#2a5d9f';
+            }
+        }
+    }
+    
+    // Initial color update
+    updateMapLinkColor();
+    
+    // Listen for theme changes
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                updateMapLinkColor();
+            }
+        });
+    });
+    
+    observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+    });
+});
 </script>
+
+
+
 </body>
 </html> 

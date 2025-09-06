@@ -226,6 +226,106 @@ body {
     right: 20px;
     top: 20px;
     z-index: 1001;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Theme button styles */
+.theme-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+}
+
+.theme-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.theme-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.theme-btn i {
+    font-size: 16px;
+}
+
+/* Language toggle specific styles */
+#lang-toggle-btn {
+    min-width: 80px;
+    justify-content: center;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .theme-btn {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+[data-theme="dark"] .theme-btn:hover {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* RTL Support */
+[dir="rtl"] .header {
+    text-align: right;
+}
+
+[dir="rtl"] .header .logo {
+    margin-left: 0;
+    margin-right: 30px;
+}
+
+[dir="rtl"] .navbar {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-left: 0;
+    margin-right: 30px;
+}
+
+[dir="rtl"] .navbar > li > a {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+[dir="rtl"] .dropdown-menu {
+    right: auto;
+    left: 0;
+    text-align: right;
+}
+
+[dir="rtl"] .dropdown-menu a {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+[dir="rtl"] .theme-toggle {
+    left: 20px;
+    right: auto;
+}
+
+[dir="rtl"] .theme-btn {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .theme-btn i {
+    margin-left: 6px;
+    margin-right: 0;
 }
 
 /* Mobile responsive adjustments */

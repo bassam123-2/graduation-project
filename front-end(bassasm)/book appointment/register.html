@@ -214,55 +214,274 @@
       <span>Already have an account? <a href="sign in.html" class="register-link">Sign In</a></span>
     </div>
     
-    <script>
-      function toggleRegisterPassword(inputId, btn) {
-        var pwd = document.getElementById(inputId);
-        if (pwd.type === 'password') {
-          pwd.type = 'text';
-          btn.textContent = 'Hide';
-        } else {
-          pwd.type = 'password';
-          btn.textContent = 'Show';
+         <script>
+       function toggleRegisterPassword(inputId, btn) {
+         var pwd = document.getElementById(inputId);
+         if (pwd.type === 'password') {
+           pwd.type = 'text';
+           btn.textContent = 'Hide';
+         } else {
+           pwd.type = 'password';
+           btn.textContent = 'Show';
+         }
+       }
+       
+       function checkPasswordMatch() {
+         var pwd = document.getElementById('reg-password').value;
+         var confirmPwd = document.getElementById('reg-confirm-password').value;
+         var msg = document.getElementById('password-match-message');
+         
+         if (confirmPwd.length === 0) {
+           msg.textContent = '';
+           msg.style.color = '';
+         } else if (pwd === confirmPwd) {
+           msg.textContent = 'Passwords match';
+           msg.style.color = '#2ecc40';
+         } else {
+           msg.textContent = 'Passwords do not match';
+           msg.style.color = '#e74c3c';
+         }
+       }
+       
+       function validateRegisterForm() {
+         var pwd = document.getElementById('reg-password').value;
+         var confirmPwd = document.getElementById('reg-confirm-password').value;
+         
+         // Check password strength
+         var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+         if (!passwordRegex.test(pwd)) {
+           alert('Password must contain at least 8 characters, including uppercase, lowercase, number, and special character');
+           return false;
+         }
+         
+         if (pwd !== confirmPwd) {
+           document.getElementById('password-match-message').textContent = 'Passwords do not match';
+           document.getElementById('password-match-message').style.color = '#e74c3c';
+           return false;
+         }
+         
+         // Submit form via JavaScript instead of returning true
+         submitRegistrationForm();
+         return false; // Prevent default form submission
+       }
+       
+               async function submitRegistrationForm() {
+          const registerBtn = document.querySelector('.register-form button[type="submit"]');
+          
+          // Get form data
+          const formData = {
+            username: document.getElementById('reg-username').value.trim(),
+            email: document.getElementById('reg-email').value.trim(),
+            password: document.getElementById('reg-password').value,
+            password2: document.getElementById('reg-confirm-password').value,
+            first_name: document.getElementById('reg-firstname').value.trim(),
+            last_name: document.getElementById('reg-lastname').value.trim(),
+            phone_number: document.getElementById('reg-phone').value.trim(),
+            date_of_birth: document.getElementById('reg-dob').value,
+            gender: document.getElementById('reg-gender').value,
+            nationality: document.getElementById('reg-nationality').value.trim(),
+            address: document.getElementById('reg-address').value.trim(),
+            city: document.getElementById('reg-city').value.trim(),
+            postal_code: document.getElementById('reg-postal').value.trim(),
+            blood_type: document.getElementById('reg-blood-type').value,
+            emergency_contact: document.getElementById('reg-emergency-contact').value.trim(),
+            medical_history: document.getElementById('reg-medical-history').value.trim(),
+            treatment_reason: document.getElementById('reg-reason').value,
+            role: 'patient'
+          };
+
+          // Basic validation
+          if (!formData.username || !formData.email || !formData.password || !formData.password2) {
+            showNotification('Please fill in all required fields.', 'error');
+            return;
+          }
+
+          if (formData.password !== formData.password2) {
+            showNotification('Passwords do not match.', 'error');
+            return;
+          }
+
+          if (formData.password.length < 8) {
+            showNotification('Password must be at least 8 characters long.', 'error');
+            return;
+          }
+
+          // Disable submit button
+          registerBtn.disabled = true;
+          registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+
+          try {
+            // Debug: Log the data being sent
+            console.log('Data being sent to backend:', formData);
+            
+            const response = await fetch(CONFIG.API.BASE_URL + CONFIG.API.ENDPOINTS.USERS, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData)
+            });
+            
+            console.log('Response received:', response);
+            console.log('Status:', response.status);
+            console.log('Content-Type:', response.headers.get('content-type'));
+
+            const data = await response.json();
+            console.log('Response data:', data);
+
+            if (response.ok) {
+              showNotification('Registration successful! Please check your email for verification.', 'success');
+              
+              // Store user data in localStorage for dashboard access
+              const userData = {
+                id: data.id || data.user_id || 'temp-user-' + Date.now(),
+                first_name: formData.first_name,
+                last_name: formData.last_name,
+                email: formData.email,
+                phone_number: formData.phone_number,
+                date_of_birth: formData.date_of_birth,
+                gender: formData.gender,
+                address: formData.address,
+                city: formData.city,
+                postal_code: formData.postal_code,
+                blood_type: formData.blood_type,
+                emergency_contact: formData.emergency_contact,
+                medical_history: formData.medical_history,
+                treatment_reason: formData.treatment_reason,
+                role: formData.role,
+                created_at: new Date().toISOString()
+              };
+              
+              // Store user data for dashboard
+              localStorage.setItem('userData', JSON.stringify(userData));
+              localStorage.setItem('userId', userData.id);
+              localStorage.setItem('userRole', userData.role);
+              
+              console.log('✅ User data stored in localStorage:', userData);
+              
+              // Store email for verification page
+              localStorage.setItem('verification_email', formData.email);
+              
+              setTimeout(() => {
+                window.location.href = '../email-verification.html?email=' + encodeURIComponent(formData.email);
+              }, 2000);
+            } else {
+              // Handle field-specific errors with better error messages
+              if (data.details) {
+                // Backend validation errors
+                const errorMessages = [];
+                for (const [field, errors] of Object.entries(data.details)) {
+                  if (Array.isArray(errors)) {
+                    errorMessages.push(`${field}: ${errors.join(', ')}`);
+                  } else {
+                    errorMessages.push(`${field}: ${errors}`);
+                  }
+                }
+                throw new Error('Validation errors: ' + errorMessages.join('; '));
+              } else if (data.error) {
+                throw new Error(data.error);
+              } else {
+                throw new Error(data.message || 'Registration failed');
+              }
+            }
+
+          } catch (error) {
+            console.error('Registration error:', error);
+            showNotification(error.message || 'Registration failed. Please try again.', 'error');
+          } finally {
+            registerBtn.disabled = false;
+            registerBtn.innerHTML = 'Create Account';
+          }
         }
-      }
-      
-      function checkPasswordMatch() {
-        var pwd = document.getElementById('reg-password').value;
-        var confirmPwd = document.getElementById('reg-confirm-password').value;
-        var msg = document.getElementById('password-match-message');
-        
-        if (confirmPwd.length === 0) {
-          msg.textContent = '';
-          msg.style.color = '';
-        } else if (pwd === confirmPwd) {
-          msg.textContent = 'Passwords match';
-          msg.style.color = '#2ecc40';
-        } else {
-          msg.textContent = 'Passwords do not match';
-          msg.style.color = '#e74c3c';
-        }
-      }
-      
-      function validateRegisterForm() {
-        var pwd = document.getElementById('reg-password').value;
-        var confirmPwd = document.getElementById('reg-confirm-password').value;
-        
-        // Check password strength
-        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        if (!passwordRegex.test(pwd)) {
-          alert('Password must contain at least 8 characters, including uppercase, lowercase, number, and special character');
-          return false;
-        }
-        
-        if (pwd !== confirmPwd) {
-          document.getElementById('password-match-message').textContent = 'Passwords do not match';
-          document.getElementById('password-match-message').style.color = '#e74c3c';
-          return false;
-        }
-        
-        return true;
-      }
-    </script>
+       
+       // Notification system
+       function showNotification(message, type) {
+         // Remove any existing notifications
+         const existingNotification = document.querySelector('.notification');
+         if (existingNotification) {
+           existingNotification.remove();
+         }
+
+         // Create notification element
+         const notification = document.createElement('div');
+         notification.className = `notification ${type}`;
+         notification.innerHTML = `
+           <div class="notification-content">
+             <i class="fas ${getNotificationIcon(type)}"></i>
+             <span>${message}</span>
+             <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+               <i class="fas fa-times"></i>
+             </button>
+           </div>
+         `;
+
+         // Add styles
+         notification.style.cssText = `
+           position: fixed;
+           top: 20px;
+           right: 20px;
+           z-index: 10000;
+           background: ${type === 'success' ? '#d4edda' : type === 'error' ? '#f8d7da' : '#d1ecf1'};
+           border: 1px solid ${type === 'success' ? '#c3e6cb' : type === 'error' ? '#f5c6cb' : '#bee5eb'};
+           color: ${type === 'success' ? '#155724' : type === 'error' ? '#721c24' : '#0c5460'};
+           padding: 15px 20px;
+           border-radius: 8px;
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+           max-width: 400px;
+           animation: slideInRight 0.3s ease-out;
+         `;
+
+         // Add to page
+         document.body.appendChild(notification);
+
+         // Auto-remove after 5 seconds
+         setTimeout(() => {
+           if (notification.parentElement) {
+             notification.remove();
+           }
+         }, 5000);
+       }
+
+       function getNotificationIcon(type) {
+         switch (type) {
+           case 'success': return 'fa-check-circle';
+           case 'error': return 'fa-exclamation-circle';
+           default: return 'fa-info-circle';
+         }
+       }
+
+       // Add CSS for notifications
+       const notificationStyles = document.createElement('style');
+       notificationStyles.textContent = `
+         @keyframes slideInRight {
+           from {
+             transform: translateX(100%);
+             opacity: 0;
+           }
+           to {
+             transform: translateX(0);
+             opacity: 1;
+           }
+         }
+         .notification-content {
+           display: flex;
+           align-items: center;
+           gap: 10px;
+         }
+         .notification-close {
+           background: none;
+           border: none;
+           cursor: pointer;
+           opacity: 0.7;
+           transition: opacity 0.2s;
+           margin-left: auto;
+         }
+         .notification-close:hover {
+           opacity: 1;
+         }
+       `;
+       document.head.appendChild(notificationStyles);
+     </script>
   </form>
 </div>
 
@@ -301,6 +520,7 @@
     </div>
 
     <script src="../dark-mode.js"></script>
+    <script src="../config.js"></script>
     <script>
     // Language Toggle and Translation Logic
     const translations = {
@@ -592,6 +812,215 @@
     // On load
     const savedLang = localStorage.getItem('lang') || 'en';
     setLanguage(savedLang);
+
+    // Registration form handling - DISABLED DUPLICATE
+    /*
+    document.addEventListener('DOMContentLoaded', function() {
+        const registerForm = document.querySelector('.register-form');
+        const registerBtn = registerForm.querySelector('button[type="submit"]');
+
+        registerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                username: document.getElementById('reg-username').value.trim(),
+                email: document.getElementById('reg-email').value.trim(),
+                password: document.getElementById('reg-password').value,
+                password2: document.getElementById('reg-confirm-password').value,
+                first_name: document.getElementById('reg-firstname').value.trim(),
+                last_name: document.getElementById('reg-lastname').value.trim(),
+                phone_number: document.getElementById('reg-phone').value.trim(),
+                date_of_birth: document.getElementById('reg-dob').value,
+                gender: document.getElementById('reg-gender').value,
+                nationality: document.getElementById('reg-nationality').value.trim(),
+                address: document.getElementById('reg-address').value.trim(),
+                city: document.getElementById('reg-city').value.trim(),
+                postal_code: document.getElementById('reg-postal').value.trim(),
+                blood_type: document.getElementById('reg-blood-type').value,
+                emergency_contact: document.getElementById('reg-emergency-contact').value.trim(),
+                medical_history: document.getElementById('reg-medical-history').value.trim(),
+                treatment_reason: document.getElementById('reg-reason').value,
+                role: 'patient'
+            };
+
+            // Basic validation
+            if (!formData.username || !formData.email || !formData.password || !formData.password2) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            if (formData.password !== formData.password2) {
+                showNotification('Passwords do not match.', 'error');
+                return;
+            }
+
+            if (formData.password.length < 8) {
+                showNotification('Password must be at least 8 characters long.', 'error');
+                return;
+            }
+
+            // Disable submit button
+            registerBtn.disabled = true;
+            registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+
+            try {
+                const response = await fetch(CONFIG.API.BASE_URL + CONFIG.API.ENDPOINTS.USERS, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Check if response is JSON
+                const contentType = response.headers.get('content-type');
+                let data;
+                
+                if (contentType && contentType.includes('application/json')) {
+                    data = await response.json();
+                } else {
+                    // If not JSON, get text and check for HTML
+                    const responseText = await response.text();
+                    if (responseText.trim().startsWith('<!DOCTYPE') || responseText.trim().startsWith('<html')) {
+                        throw new Error('Server returned HTML instead of JSON. This usually means a server error occurred.');
+                    } else {
+                        throw new Error('Server returned unexpected response format. Please try again.');
+                    }
+                }
+
+                if (response.ok) {
+                    showNotification('Registration successful! Please check your email for verification.', 'success');
+                    
+                    // Store email for verification page
+                    localStorage.setItem('verification_email', formData.email);
+                    
+                    setTimeout(() => {
+                        window.location.href = '../email-verification.html?email=' + encodeURIComponent(formData.email);
+                    }, 2000);
+                } else {
+                    // Handle field-specific errors
+                    if (data.username) {
+                        throw new Error('Username: ' + data.username.join(', '));
+                    } else if (data.email) {
+                        throw new Error('Email: ' + data.email.join(', '));
+                    } else if (data.password) {
+                        throw new Error('Password: ' + data.password.join(', '));
+                    } else {
+                        throw new Error(data.error || data.message || 'Registration failed');
+                    }
+                }
+
+            } catch (error) {
+                console.error('Registration error:', error);
+                console.error('Error details:', {
+                    message: error.message,
+                    stack: error.stack,
+                    name: error.name
+                });
+                showNotification(error.message || 'Registration failed. Please try again.', 'error');
+            } finally {
+                registerBtn.disabled = false;
+                registerBtn.innerHTML = getCurrentLanguage() === 'ar' ? 'إنشاء حساب' : 'Create Account';
+            }
+        });
+
+        // Notification system
+        function showNotification(message, type) {
+            // Remove any existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas ${getNotificationIcon(type)}"></i>
+                    <span>${message}</span>
+                    <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+
+            // Add styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                background: ${type === 'success' ? '#d4edda' : type === 'error' ? '#f8d7da' : '#d1ecf1'};
+                border: 1px solid ${type === 'success' ? '#c3e6cb' : type === 'error' ? '#f5c6cb' : '#bee5eb'};
+                color: ${type === 'success' ? '#155724' : type === 'error' ? '#721c24' : '#0c5460'};
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                max-width: 400px;
+                animation: slideInRight 0.3s ease-out;
+            `;
+
+            // Add to page
+            document.body.appendChild(notification);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        function getNotificationIcon(type) {
+            switch (type) {
+                case 'success': return 'fa-check-circle';
+                case 'error': return 'fa-exclamation-circle';
+                default: return 'fa-info-circle';
+            }
+        }
+
+        function getCurrentLanguage() {
+            return localStorage.getItem('lang') || 'en';
+        }
+
+        // Add CSS for notifications
+        const notificationStyles = document.createElement('style');
+        notificationStyles.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            .notification-content {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .notification-close {
+                background: none;
+                border: none;
+                cursor: pointer;
+                opacity: 0.7;
+                transition: opacity 0.2s;
+                margin-left: auto;
+            }
+            .notification-close:hover {
+                opacity: 1;
+            }
+        `;
+        document.head.appendChild(notificationStyles);
+    });
+    */
     </script>
+
+
+
 </body>
 </html>

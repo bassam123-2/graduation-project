@@ -274,4 +274,3 @@ function showNotification(message, type = 'info') {
 }
 
 // Console welcome message
-console.log('%cWelcome to AL-BOQAI Center Success Stories! 🎬', 'color: #2a5d9f; font-size: 16px; font-weight: bold;'); 

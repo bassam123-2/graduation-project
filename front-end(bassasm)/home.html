@@ -53,7 +53,8 @@
             <li><a href="book appointment/book.html">Book Appointment</a></li>
             <li><a href="symptom-assessment.html">AI Assessment</a></li>
             <li><a href="book appointment/contact us.html">Contact Us</a></li>
-            <li><a href="book appointment/sign in.html" class="signin-link">Sign In</a></li>
+            <li><a href="book appointment/sign in.html" class="signin-link" id="signin-nav-link">Sign In</a></li>
+            <li><a href="patient-dashboard.html" class="dashboard-link" id="dashboard-nav-link" style="display: none;">Dashboard</a></li>
         </ul>
         
         <!-- Dark Mode Toggle -->
@@ -89,6 +90,58 @@
             </div>
             <div class="hero-image">
                 <img src="https://alboqai.com/wp-content/uploads/2025/03/IMG_2767-scaled-2-1024x683.jpg" alt="AL-BOQAI Center">
+            </div>
+        </div>
+    </section>
+
+    <!-- User Dashboard Section (Fixed when signed in) -->
+    <section id="user-dashboard-section" class="user-dashboard-section" style="display: none;">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-user-circle"></i> Welcome to Your Dashboard</h2>
+                <p>Manage your appointments, treatment plans, and health journey</p>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>My Appointments</h3>
+                    <p>View and manage your upcoming appointments</p>
+                    <a href="patient-dashboard.html" class="dashboard-btn">View Appointments</a>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="dashboard-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>Treatment Plans</h3>
+                    <p>Track your personalized treatment progress</p>
+                    <a href="patient-dashboard.html" class="dashboard-btn">View Plans</a>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="dashboard-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Health Progress</h3>
+                    <p>Monitor your recovery and improvements</p>
+                    <a href="patient-dashboard.html" class="dashboard-btn">Track Progress</a>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="dashboard-icon">
+                        <i class="fas fa-user-edit"></i>
+                    </div>
+                    <h3>Profile Settings</h3>
+                    <p>Update your personal information and preferences</p>
+                    <a href="patient-dashboard.html" class="dashboard-btn">Manage Profile</a>
+                </div>
+            </div>
+            <div class="dashboard-actions">
+                <button id="logout-btn" class="btn btn-outline">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </button>
             </div>
         </div>
     </section>
@@ -345,13 +398,228 @@
 
                 <link rel="stylesheet" href="chatbot.css">
             <link rel="stylesheet" href="voice-assistant.css">
-    <script src="dark-mode.js"></script>
+    <script src="config.js"></script>
     <script src="home.js"></script>
+    <script src="dark-mode.js"></script>
+    <script src="navbar-highlight.js"></script>
+    <script>
+        // Home page specific authentication handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user just logged in and show welcome message
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('login') === 'success') {
+                showWelcomeMessage();
+                // Clean URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+            
+            // Navigation is now handled by AuthUtils.init() automatically
+        });
+
+        function showWelcomeMessage() {
+            const userId = localStorage.getItem('userId');
+            if (userId) {
+                // Create and show welcome notification
+                const welcomeDiv = document.createElement('div');
+                welcomeDiv.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    z-index: 10000;
+                    background: #d4edda;
+                    border: 1px solid #c3e6cb;
+                    color: #155724;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    max-width: 350px;
+                    animation: slideInRight 0.3s ease-out;
+                `;
+                
+                welcomeDiv.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Welcome back! You're now signed in.</span>
+                        <button onclick="this.parentElement.parentElement.remove()" 
+                                style="background: none; border: none; cursor: pointer; margin-left: auto; opacity: 0.7;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                
+                document.body.appendChild(welcomeDiv);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (welcomeDiv.parentElement) {
+                        welcomeDiv.remove();
+                    }
+                }, 5000);
+            }
+        }
+
+        // Authentication is now handled by AuthUtils.updateNavigationForAuth()
+
+        // Auth state changes are now handled by AuthUtils
+
+        // Logout is now handled by AuthUtils
+
+        // Logout confirmation modal is now handled by AuthUtils
+
+        // Logout message is now handled by AuthUtils
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                max-width: 350px;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            style="background: none; border: none; cursor: pointer; margin-left: auto; opacity: 0.7;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // Add CSS for welcome animation and logout modal
+        const welcomeStyles = document.createElement('style');
+        welcomeStyles.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            @keyframes slideInUp {
+                from { 
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to { 
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .btn-danger {
+                background: #dc3545;
+                color: white;
+                border: 1px solid #dc3545;
+            }
+            
+            .btn-danger:hover {
+                background: #c82333;
+                border-color: #bd2130;
+            }
+            
+            .btn-secondary {
+                background: #6c757d;
+                color: white;
+                border: 1px solid #6c757d;
+            }
+            
+            .btn-secondary:hover {
+                background: #5a6268;
+                border-color: #545b62;
+            }
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(welcomeStyles);
+    </script>
+    
     <script src="navbar-highlight.js"></script>
     <script src="chatbot.js"></script>
                 <script src="voice-assistant.js"></script>
             <script src="gamification.js"></script>
     <script>
+// Debug authentication state
+console.log('🔍 Home page authentication debug:');
+console.log('User ID:', localStorage.getItem('userId'));
+console.log('Session ID:', localStorage.getItem('sessionId'));
+console.log('User Role:', localStorage.getItem('userRole'));
+
+// Check if user dashboard section exists
+const userDashboardSection = document.getElementById('user-dashboard-section');
+console.log('User dashboard section found:', !!userDashboardSection);
+
+// Check authentication state immediately
+function checkAuthStateImmediately() {
+    const userId = localStorage.getItem('userId');
+    const userRole = localStorage.getItem('userRole');
+    
+    console.log('🔍 Immediate auth check - User ID:', userId, 'Role:', userRole);
+    
+    if (userId && userRole) {
+        console.log('✅ User is authenticated, showing dashboard section');
+        if (userDashboardSection) {
+            userDashboardSection.style.display = 'block';
+            
+            // Update welcome message with user info
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            const welcomeTitle = userDashboardSection.querySelector('.dashboard-header h2');
+            if (welcomeTitle && userData.first_name) {
+                welcomeTitle.innerHTML = `<i class="fas fa-user-circle"></i> Welcome back, ${userData.first_name}!`;
+            }
+        }
+        
+        // Hide hero section for authenticated users
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            heroSection.style.display = 'none';
+        }
+    } else {
+        console.log('❌ User not authenticated, hiding dashboard section');
+        if (userDashboardSection) {
+            userDashboardSection.style.display = 'none';
+        }
+        
+        // Show hero section for unauthenticated users
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            heroSection.style.display = 'block';
+        }
+    }
+}
+
+// Run immediate check
+checkAuthStateImmediately();
+
+// Also check when auth state changes
+window.addEventListener('authStateChanged', checkAuthStateImmediately);
+window.addEventListener('loginSuccess', checkAuthStateImmediately);
+
 // Language toggle logic for home page
 const translations = {
   ar: {
@@ -387,7 +655,19 @@ const translations = {
     ctaTitle: 'جاهز لبدء رحلة شفائك؟',
     ctaDesc: 'احجز استشارتك اليوم واختبر فوائد الرعاية التأهيلية الاحترافية.',
     ctaBook: 'احجز موعد',
-    ctaCall: 'اتصل بنا: +962775252444'
+    ctaCall: 'اتصل بنا: +962775252444',
+    dashboardTitle: 'مرحبًا بك في لوحة التحكم',
+    dashboardDesc: 'إدارة مواعيدك وخطط العلاج ورحلة صحتك',
+    dashboardAppointments: 'مواعيدي',
+    dashboardAppointmentsDesc: 'عرض وإدارة مواعيدك القادمة',
+    dashboardPlans: 'خطط العلاج',
+    dashboardPlansDesc: 'تتبع تقدم علاجك الشخصي',
+    dashboardProgress: 'التقدم الصحي',
+    dashboardProgressDesc: 'مراقبة شفائك والتحسينات',
+    dashboardProfile: 'إعدادات الملف الشخصي',
+    dashboardProfileDesc: 'تحديث معلوماتك الشخصية والتفضيلات',
+    dashboardView: 'عرض',
+    dashboardSignOut: 'تسجيل الخروج'
   },
   en: {
     header: [      'Home', 'Success Stories', 'About Us', 'About us', 'Boqia cv', 'Targeted People', 'Our Services', 'Manual Therapy', 'Physical Therapy', 'Rehabilitation Body Engineering', 'Book Appointment','AI Assesment', 'Contact Us', 'Sign In'
@@ -422,7 +702,19 @@ const translations = {
     ctaTitle: 'Ready to Start Your Recovery Journey?',
     ctaDesc: 'Book your consultation today and experience the benefits of professional rehabilitation care.',
     ctaBook: 'Book Appointment',
-    ctaCall: 'Call Us: +962775252444'
+    ctaCall: 'Call Us: +962775252444',
+    dashboardTitle: 'Welcome to Your Dashboard',
+    dashboardDesc: 'Manage your appointments, treatment plans, and health journey',
+    dashboardAppointments: 'My Appointments',
+    dashboardAppointmentsDesc: 'View and manage your upcoming appointments',
+    dashboardPlans: 'Treatment Plans',
+    dashboardPlansDesc: 'Track your personalized treatment progress',
+    dashboardProgress: 'Health Progress',
+    dashboardProgressDesc: 'Monitor your recovery and improvements',
+    dashboardProfile: 'Profile Settings',
+    dashboardProfileDesc: 'Update your personal information and preferences',
+    dashboardView: 'View',
+    dashboardSignOut: 'Sign Out'
   }
 };
 
@@ -500,6 +792,36 @@ function setLanguage(lang) {
     document.querySelector('.cta-buttons a.btn-primary').innerHTML = t.ctaBook;
     document.querySelector('.cta-buttons a.btn-outline').innerHTML = t.ctaCall;
   }
+  
+  // Dashboard section
+  if (document.querySelector('.dashboard-header h2')) {
+    document.querySelector('.dashboard-header h2').innerHTML = `<i class="fas fa-user-circle"></i> ${t.dashboardTitle}`;
+    document.querySelector('.dashboard-header p').innerHTML = t.dashboardDesc;
+  }
+  
+  if (document.querySelectorAll('.dashboard-card h3').length > 0) {
+    const dashboardTitles = document.querySelectorAll('.dashboard-card h3');
+    const dashboardDescs = document.querySelectorAll('.dashboard-card p');
+    const dashboardBtns = document.querySelectorAll('.dashboard-btn');
+    
+    if (dashboardTitles[0]) dashboardTitles[0].innerHTML = t.dashboardAppointments;
+    if (dashboardTitles[1]) dashboardTitles[1].innerHTML = t.dashboardPlans;
+    if (dashboardTitles[2]) dashboardTitles[2].innerHTML = t.dashboardProgress;
+    if (dashboardTitles[3]) dashboardTitles[3].innerHTML = t.dashboardProfile;
+    
+    if (dashboardDescs[0]) dashboardDescs[0].innerHTML = t.dashboardAppointmentsDesc;
+    if (dashboardDescs[1]) dashboardDescs[1].innerHTML = t.dashboardPlansDesc;
+    if (dashboardDescs[2]) dashboardDescs[2].innerHTML = t.dashboardProgressDesc;
+    if (dashboardDescs[3]) dashboardDescs[3].innerHTML = t.dashboardProfileDesc;
+    
+    dashboardBtns.forEach(btn => {
+      btn.innerHTML = `${t.dashboardView} ${btn.innerHTML.split(' ').slice(1).join(' ')}`;
+    });
+  }
+  
+  if (document.getElementById('logout-btn')) {
+    document.getElementById('logout-btn').innerHTML = `<i class="fas fa-sign-out-alt"></i> ${t.dashboardSignOut}`;
+  }
 }
 
 const langBtn = document.getElementById('lang-toggle-btn');
@@ -510,5 +832,6 @@ langBtn.addEventListener('click', function() {
   setLanguage(lang);
 });
     </script>
+    <script src="auth-utils.js"></script>
   </body>
 </html>

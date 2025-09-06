@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -359,86 +359,128 @@
             });
             
             // Main section headers
-            document.querySelector('.assessment-section h1').innerHTML = `<i class="fas fa-brain"></i> ${t.title}`;
-            document.querySelector('.assessment-section p').textContent = t.subtitle;
+            const mainH1 = document.querySelector('.assessment-section h1');
+            const mainP = document.querySelector('.assessment-section p');
+            if (mainH1) mainH1.innerHTML = `<i class="fas fa-brain"></i> ${t.title}`;
+            if (mainP) mainP.textContent = t.subtitle;
             
             // Step headers
-            document.querySelector('#step-1 h3').textContent = t.step1;
-            document.querySelector('#step-2 h3').textContent = t.step2;
-            document.querySelector('#step-3 h3').textContent = t.step3;
+            const step1H3 = document.querySelector('#step-1 h3');
+            const step2H3 = document.querySelector('#step-2 h3');
+            const step3H3 = document.querySelector('#step-3 h3');
+            if (step1H3) step1H3.textContent = t.step1;
+            if (step2H3) step2H3.textContent = t.step2;
+            if (step3H3) step3H3.textContent = t.step3;
             
             // Form labels and options
-            document.querySelector('label[for="age"]').textContent = t.age;
-            document.querySelector('label[for="gender"]').textContent = t.gender;
+            const ageLabel = document.querySelector('label[for="age"]');
+            const genderLabel = document.querySelector('label[for="gender"]');
+            if (ageLabel) ageLabel.textContent = t.age;
+            if (genderLabel) genderLabel.textContent = t.gender;
             
             // Age options
             const ageSelect = document.getElementById('age');
-            ageSelect.options[0].text = t.selectAge;
-            ageSelect.options[1].text = t.child;
-            ageSelect.options[2].text = t.teen;
-            ageSelect.options[3].text = t.adult;
-            ageSelect.options[4].text = t.senior;
+            if (ageSelect && ageSelect.options.length >= 5) {
+                ageSelect.options[0].text = t.selectAge;
+                ageSelect.options[1].text = t.child;
+                ageSelect.options[2].text = t.teen;
+                ageSelect.options[3].text = t.adult;
+                ageSelect.options[4].text = t.senior;
+            }
             
             // Gender options
             const genderSelect = document.getElementById('gender');
-            genderSelect.options[0].text = t.selectGender;
-            genderSelect.options[1].text = t.male;
-            genderSelect.options[2].text = t.female;
+            if (genderSelect && genderSelect.options.length >= 3) {
+                genderSelect.options[0].text = t.selectGender;
+                genderSelect.options[1].text = t.male;
+                genderSelect.options[2].text = t.female;
+            }
             
             // Buttons
-            document.querySelector('#step-1 .next-btn').innerHTML = `${t.next} <i class="fas fa-arrow-right"></i>`;
-            document.querySelector('#step-2 .back-btn').innerHTML = `<i class="fas fa-arrow-left"></i> ${t.back}`;
-            document.querySelector('#step-3 .back-btn').innerHTML = `<i class="fas fa-arrow-left"></i> ${t.back}`;
-            document.querySelector('#step-3 .analyze-btn').innerHTML = `<i class="fas fa-search"></i> ${t.analyze}`;
+            const step1NextBtn = document.querySelector('#step-1 .next-btn');
+            const step2BackBtn = document.querySelector('#step-2 .back-btn');
+            const step3BackBtn = document.querySelector('#step-3 .back-btn');
+            const step3AnalyzeBtn = document.querySelector('#step-3 .analyze-btn');
+            
+            if (step1NextBtn) step1NextBtn.innerHTML = `${t.next} <i class="fas fa-arrow-right"></i>`;
+            if (step2BackBtn) step2BackBtn.innerHTML = `<i class="fas fa-arrow-left"></i> ${t.back}`;
+            if (step3BackBtn) step3BackBtn.innerHTML = `<i class="fas fa-arrow-left"></i> ${t.back}`;
+            if (step3AnalyzeBtn) step3AnalyzeBtn.innerHTML = `<i class="fas fa-search"></i> ${t.analyze}`;
             
             // Symptom categories
             const categories = document.querySelectorAll('.symptom-category');
-            categories[0].querySelector('h4').textContent = t.pain;
-            categories[0].querySelector('p').textContent = t.painDesc;
-            categories[1].querySelector('h4').textContent = t.mobility;
-            categories[1].querySelector('p').textContent = t.mobilityDesc;
-            categories[2].querySelector('h4').textContent = t.neurological;
-            categories[2].querySelector('p').textContent = t.neurologicalDesc;
-            categories[3].querySelector('h4').textContent = t.developmental;
-            categories[3].querySelector('p').textContent = t.developmentalDesc;
+            if (categories.length >= 4) {
+                const painH4 = categories[0].querySelector('h4');
+                const painP = categories[0].querySelector('p');
+                const mobilityH4 = categories[1].querySelector('h4');
+                const mobilityP = categories[1].querySelector('p');
+                const neuroH4 = categories[2].querySelector('h4');
+                const neuroP = categories[2].querySelector('p');
+                const devH4 = categories[3].querySelector('h4');
+                const devP = categories[3].querySelector('p');
+                
+                if (painH4) painH4.textContent = t.pain;
+                if (painP) painP.textContent = t.painDesc;
+                if (mobilityH4) mobilityH4.textContent = t.mobility;
+                if (mobilityP) mobilityP.textContent = t.mobilityDesc;
+                if (neuroH4) neuroH4.textContent = t.neurological;
+                if (neuroP) neuroP.textContent = t.neurologicalDesc;
+                if (devH4) devH4.textContent = t.developmental;
+                if (devP) devP.textContent = t.developmentalDesc;
+            }
             
             // Results section
             const resultsSection = document.getElementById('results-section');
-            if (resultsSection.style.display !== 'none') {
-                resultsSection.querySelector('h2').innerHTML = `<i class="fas fa-chart-line"></i> ${t.results}`;
-                resultsSection.querySelector('p').textContent = t.basedOnSymptoms;
-                resultsSection.querySelector('.diagnosis-card h3').textContent = t.preliminaryAssessment;
-                resultsSection.querySelector('.recommendations-card h3').textContent = t.recommendedTherapies;
-                resultsSection.querySelector('.confidence-card h3').textContent = t.assessmentConfidence;
+            if (resultsSection && resultsSection.style.display !== 'none') {
+                const h2 = resultsSection.querySelector('h2');
+                const p = resultsSection.querySelector('p');
+                const diagnosisCard = resultsSection.querySelector('.diagnosis-card h3');
+                const recommendationsCard = resultsSection.querySelector('.recommendations-card h3');
+                const confidenceCard = resultsSection.querySelector('.confidence-card h3');
+                
+                if (h2) h2.innerHTML = `<i class="fas fa-chart-line"></i> ${t.results}`;
+                if (p) p.textContent = t.basedOnSymptoms;
+                if (diagnosisCard) diagnosisCard.textContent = t.preliminaryAssessment;
+                if (recommendationsCard) recommendationsCard.textContent = t.recommendedTherapies;
+                if (confidenceCard) confidenceCard.textContent = t.assessmentConfidence;
             }
             
             // Preview section
             const previewSection = document.getElementById('preview-section');
-            if (previewSection.style.display !== 'none') {
-                previewSection.querySelector('h2').innerHTML = `<i class="fas fa-vr-cardboard"></i> ${t.therapyPreview}`;
-                previewSection.querySelector('p').textContent = t.previewDesc;
+            if (previewSection && previewSection.style.display !== 'none') {
+                const h2 = previewSection.querySelector('h2');
+                const p = previewSection.querySelector('p');
+                
+                if (h2) h2.innerHTML = `<i class="fas fa-vr-cardboard"></i> ${t.therapyPreview}`;
+                if (p) p.textContent = t.previewDesc;
                 
                 // Preview buttons
-                const previewBtns = document.querySelectorAll('.preview-btn');
-                previewBtns[0].innerHTML = `<i class="fas fa-hands"></i> ${t.manualTherapy}`;
-                previewBtns[1].innerHTML = `<i class="fas fa-dumbbell"></i> ${t.physicalTherapy}`;
-                previewBtns[2].innerHTML = `<i class="fas fa-heart"></i> ${t.rehabilitation}`;
+                const previewBtns = previewSection.querySelectorAll('.preview-btn');
+                if (previewBtns.length >= 3) {
+                    previewBtns[0].innerHTML = `<i class="fas fa-hands"></i> ${t.manualTherapy}`;
+                    previewBtns[1].innerHTML = `<i class="fas fa-dumbbell"></i> ${t.physicalTherapy}`;
+                    previewBtns[2].innerHTML = `<i class="fas fa-heart"></i> ${t.rehabilitation}`;
+                }
                 
                 // Preview placeholder
-                const placeholder = document.querySelector('.preview-placeholder');
+                const placeholder = previewSection.querySelector('.preview-placeholder');
                 if (placeholder) {
-                    placeholder.querySelector('h3').textContent = t.interactivePreview;
-                    placeholder.querySelector('p').textContent = t.selectTherapy;
+                    const placeholderH3 = placeholder.querySelector('h3');
+                    const placeholderP = placeholder.querySelector('p');
+                    if (placeholderH3) placeholderH3.textContent = t.interactivePreview;
+                    if (placeholderP) placeholderP.textContent = t.selectTherapy;
                 }
             }
             
             // Action buttons
             const actionButtons = document.getElementById('action-buttons');
-            if (actionButtons.style.display !== 'none') {
-                const actionBtns = document.querySelectorAll('.action-buttons button');
-                actionBtns[0].innerHTML = `<i class="fas fa-calendar-plus"></i> ${t.book}`;
-                actionBtns[1].innerHTML = `<i class="fas fa-download"></i> ${t.download}`;
-                actionBtns[2].innerHTML = `<i class="fas fa-redo"></i> ${t.restart}`;
+            if (actionButtons && actionButtons.style.display !== 'none') {
+                const actionBtns = actionButtons.querySelectorAll('button');
+                if (actionBtns.length >= 3) {
+                    actionBtns[0].innerHTML = `<i class="fas fa-calendar-plus"></i> ${t.book}`;
+                    actionBtns[1].innerHTML = `<i class="fas fa-download"></i> ${t.download}`;
+                    actionBtns[2].innerHTML = `<i class="fas fa-redo"></i> ${t.restart}`;
+                }
             }
 
             // Trigger JavaScript translation update
@@ -456,5 +498,8 @@
             setLanguage(lang);
         });
     </script>
+
+
+
 </body>
 </html> 

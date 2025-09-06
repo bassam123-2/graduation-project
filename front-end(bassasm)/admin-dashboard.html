@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | AL-BOQAI Center</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <a href="home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <div style="display: flex; align-items: center; background: transparent; color: #2a5d9f; padding: 10px 20px; border-radius: 8px; font-family: Arial, sans-serif;">
+                    <div style="background: #2a5d9f; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; margin-right: 15px;">
+                        Dr.<br>MBI
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="font-size: 18px; font-weight: bold; color: #2a5d9f; line-height: 1;">
+                            البقاعي للعلاج الحكمي
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-top: 2px;">
+                            AL-BOQAI World for Judgmental therapy
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Admin Navigation -->
+        <ul class="navbar">
+            <li><a href="admin-dashboard.html" class="active">Admin Dashboard</a></li>
+            <li><a href="admin-appointments.html">Appointments</a></li>
+            <li><a href="admin-users.html">Users</a></li>
+            <li><a href="admin-testimonials.html">Testimonials</a></li>
+            <li><a href="admin-reports.html">Reports</a></li>
+            <li><a href="create-treatment-plan.html">📋 Create Treatment Plan</a></li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">Admin</span>
+                <ul class="dropdown-menu">
+                    <li><a href="#settings" onclick="showSettingsNotification()">Settings</a></li>
+                    <li><a href="home.html" onclick="logout()">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <!-- Dark Mode & Language Toggle -->
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Admin Dashboard Content -->
+    <div class="admin-dashboard-container">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <h1 class="welcome-title">Admin Dashboard</h1>
+                <p class="welcome-subtitle">Manage AL-BOQAI Center operations</p>
+            </div>
+            <div class="welcome-stats">
+                <div class="stat-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-appointments">0</span>
+                        <span class="stat-label">Total Appointments</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-users">0</span>
+                        <span class="stat-label">Total Users</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-testimonials">0</span>
+                        <span class="stat-label">Testimonials</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="today-appointments">0</span>
+                        <span class="stat-label">Today's Appointments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Quick Actions -->
+            <div class="dashboard-card quick-actions">
+                <div class="card-header">
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                </div>
+                <div class="card-content">
+                    <div class="action-buttons">
+                        <button class="action-btn primary" onclick="viewAllAppointments()">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>View All Appointments</span>
+                        </button>
+                        <button class="action-btn secondary" onclick="manageUsers()">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Manage Users</span>
+                        </button>
+                        <button class="action-btn tertiary" onclick="viewTestimonials()">
+                            <i class="fas fa-star"></i>
+                            <span>Review Testimonials</span>
+                        </button>
+                        <button class="action-btn quaternary" onclick="generateReports()">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Generate Reports</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Appointments -->
+            <div class="dashboard-card recent-appointments">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-alt"></i> Recent Appointments</h3>
+                    <button class="view-all-btn" onclick="viewAllAppointments()">View All</button>
+                </div>
+                <div class="card-content">
+                    <div id="recent-appointments-list" class="appointments-list">
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span data-en="Loading appointments..." data-ar="جاري تحميل المواعيد...">Loading appointments...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointment Statistics -->
+            <div class="dashboard-card appointment-stats">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-pie"></i> Appointment Statistics</h3>
+                </div>
+                <div class="card-content">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon scheduled">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-number" id="scheduled-count">0</span>
+                                <span class="stat-label">Scheduled</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon confirmed">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-number" id="confirmed-count">0</span>
+                                <span class="stat-label">Confirmed</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon completed">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-number" id="completed-count">0</span>
+                                <span class="stat-label">Completed</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon cancelled">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-number" id="cancelled-count">0</span>
+                                <span class="stat-label">Cancelled</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Type Distribution -->
+            <div class="dashboard-card service-distribution">
+                <div class="card-header">
+                    <h3><i class="fas fa-stethoscope"></i> Service Type Distribution</h3>
+                </div>
+                <div class="card-content">
+                    <div id="service-chart" class="service-chart">
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span data-en="Loading service data..." data-ar="جاري تحميل بيانات الخدمة...">Loading service data...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-card recent-activity">
+                <div class="card-header">
+                    <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                </div>
+                <div class="card-content">
+                    <div id="activity-list" class="activity-list">
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span data-en="Loading activity..." data-ar="جاري تحميل النشاط...">Loading activity...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+                    <li><a href="admin-appointments.html">Appointments</a></li>
+                    <li><a href="admin-users.html">Users</a></li>
+                    <li><a href="admin-testimonials.html">Testimonials</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:alboqaiworld@gmail.com" target="_blank">Email: alboqaiworld@gmail.com</a></li>
+                    <li>Phone: +962775252444</li>
+                    <li><a href="https://maps.app.goo.gl/8sPWu3tUFbbenmvd7?g_st=iw" target="_blank">al-andlos road, Irbid</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Saturday - Thursday: 8:00 - 16:00</li>
+                    <li>Friday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 AL-BOQAI CENTER. All rights reserved.
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="admin-dashboard.js"></script>
+    <script src="dark-mode.js"></script>
+</body>
+</html>

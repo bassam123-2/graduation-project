@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../header.css">
     <link rel="stylesheet" href="../footer.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../auth-utils.js"></script>
 </head>
 <!--logo-->
 <body>
@@ -50,7 +51,8 @@
         </li>
         <li><a href="../book appointment/book.html">Book Appointment</a></li>
         <li><a href="../book appointment/contact us.html">Contact Us</a></li>
-        <li><a href="../book appointment/sign in.html" class="signin-link">Sign In</a></li>
+        <li><a href="../book appointment/sign in.html" class="signin-link" id="signin-nav-link">Sign In</a></li>
+        <li><a href="../patient-dashboard.html" class="dashboard-link" id="dashboard-nav-link" style="display: none;">Dashboard</a></li>
     </ul>
     <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
         <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
@@ -375,56 +377,133 @@
         menu.style.textAlign = lang === 'ar' ? 'right' : 'left';
       });
       // Service Header
-      document.querySelector('.service-header h1').textContent = t.serviceHeader.h1;
-      document.querySelector('.service-header .service-subtitle').textContent = t.serviceHeader.subtitle;
-      document.querySelector('.service-header .service-description').textContent = t.serviceHeader.desc;
+      const serviceHeaderH1 = document.querySelector('.service-header h1');
+      const serviceHeaderSubtitle = document.querySelector('.service-header .service-subtitle');
+      const serviceHeaderDesc = document.querySelector('.service-header .service-description');
+      if (serviceHeaderH1) serviceHeaderH1.textContent = t.serviceHeader.h1;
+      if (serviceHeaderSubtitle) serviceHeaderSubtitle.textContent = t.serviceHeader.subtitle;
+      if (serviceHeaderDesc) serviceHeaderDesc.textContent = t.serviceHeader.desc;
+      
       // Intro
-      document.querySelector('.service-intro h2').textContent = t.intro.h2;
-      document.querySelector('.service-intro p').textContent = t.intro.p;
+      const introH2 = document.querySelector('.service-intro h2');
+      const introP = document.querySelector('.service-intro p');
+      if (introH2) introH2.textContent = t.intro.h2;
+      if (introP) introP.textContent = t.intro.p;
+      
       // Techniques
-      document.querySelector('.techniques-section h2').textContent = t.techniques.h2;
+      const techniquesH2 = document.querySelector('.techniques-section h2');
+      if (techniquesH2) techniquesH2.textContent = t.techniques.h2;
+      
       const techCards = document.querySelectorAll('.technique-card');
-      t.techniques.cards.forEach((arr, i) => {
-        techCards[i].querySelector('h3').textContent = arr[0];
-        techCards[i].querySelector('p').textContent = arr[1];
-      });
+      if (techCards.length > 0 && t.techniques.cards) {
+        t.techniques.cards.forEach((arr, i) => {
+          if (techCards[i]) {
+            const h3 = techCards[i].querySelector('h3');
+            const p = techCards[i].querySelector('p');
+            if (h3 && arr[0]) h3.textContent = arr[0];
+            if (p && arr[1]) p.textContent = arr[1];
+          }
+        });
+      }
+      
       // Benefits
-      document.querySelector('.benefits-section h2').textContent = t.benefits.h2;
+      const benefitsH2 = document.querySelector('.benefits-section h2');
+      if (benefitsH2) benefitsH2.textContent = t.benefits.h2;
+      
       const benefitItems = document.querySelectorAll('.benefit-item');
-      t.benefits.items.forEach((arr, i) => {
-        benefitItems[i].querySelector('h4').textContent = arr[0];
-        benefitItems[i].querySelector('p').textContent = arr[1];
-      });
+      if (benefitItems.length > 0 && t.benefits.items) {
+        t.benefits.items.forEach((arr, i) => {
+          if (benefitItems[i]) {
+            const h4 = benefitItems[i].querySelector('h4');
+            const p = benefitItems[i].querySelector('p');
+            if (h4 && arr[0]) h4.textContent = arr[0];
+            if (p && arr[1]) p.textContent = arr[1];
+          }
+        });
+      }
+      
       // Session Info
-      document.querySelector('.session-info h2').textContent = t.session.h2;
+      const sessionH2 = document.querySelector('.session-info h2');
+      if (sessionH2) sessionH2.textContent = t.session.h2;
+      
       const sessionItems = document.querySelectorAll('.session-details .detail-item');
-      t.session.items.forEach((arr, i) => {
-        sessionItems[i].querySelector('h4').textContent = arr[0];
-        sessionItems[i].querySelector('p').textContent = arr[1];
-      });
+      if (sessionItems.length > 0 && t.session.items) {
+        t.session.items.forEach((arr, i) => {
+          if (sessionItems[i]) {
+            const h4 = sessionItems[i].querySelector('h4');
+            const p = sessionItems[i].querySelector('p');
+            if (h4 && arr[0]) h4.textContent = arr[0];
+            if (p && arr[1]) p.textContent = arr[1];
+          }
+        });
+      }
+      
       // Images captions
       const imgCaps = document.querySelectorAll('.image-caption');
-      t.images.forEach((txt, i) => { imgCaps[i].textContent = txt; });
+      if (imgCaps.length > 0 && t.images) {
+        t.images.forEach((txt, i) => { 
+          if (imgCaps[i] && txt) imgCaps[i].textContent = txt; 
+        });
+      }
+      
       // CTA
-      document.querySelector('.cta-card h3').textContent = t.cta.h3;
-      document.querySelector('.cta-card p').textContent = t.cta.p;
-      document.querySelector('.cta-card .cta-button').textContent = t.cta.btn;
+      const ctaH3 = document.querySelector('.cta-card h3');
+      const ctaP = document.querySelector('.cta-card p');
+      const ctaButton = document.querySelector('.cta-card .cta-button');
+      if (ctaH3) ctaH3.textContent = t.cta.h3;
+      if (ctaP) ctaP.textContent = t.cta.p;
+      if (ctaButton) ctaButton.textContent = t.cta.btn;
+      
       // Footer
       const footer = t.footer;
-      document.querySelector('.footer-section h4').textContent = footer.quick;
+      const footerQuickH4 = document.querySelector('.footer-section h4');
+      if (footerQuickH4) footerQuickH4.textContent = footer.quick;
+      
       const quickLinks = document.querySelectorAll('.footer-section ul li a');
-      footer.quickLinks.forEach((txt, i) => { if (quickLinks[i]) quickLinks[i].textContent = txt; });
-      document.querySelectorAll('.footer-section h4')[1].textContent = footer.contact;
-      const contactLinks = document.querySelectorAll('.footer-section ul')[1].querySelectorAll('li');
-      contactLinks[0].querySelector('a').textContent = footer.email;
-      contactLinks[1].textContent = footer.phone;
-      contactLinks[2].querySelector('a').textContent = footer.address;
-      document.querySelectorAll('.footer-section h4')[2].textContent = footer.hours;
-      const hoursList = document.querySelectorAll('.footer-section ul')[2].querySelectorAll('li');
-      footer.hoursList.forEach((txt, i) => { hoursList[i].textContent = txt; });
-      document.querySelector('.footer-bottom').textContent = footer.copyright;
+      if (quickLinks.length > 0 && footer.quickLinks) {
+        footer.quickLinks.forEach((txt, i) => { 
+          if (quickLinks[i] && txt) quickLinks[i].textContent = txt; 
+        });
+      }
+      
+      const footerH4s = document.querySelectorAll('.footer-section h4');
+      if (footerH4s.length > 1) {
+        if (footerH4s[1]) footerH4s[1].textContent = footer.contact;
+      }
+      
+      const footerUls = document.querySelectorAll('.footer-section ul');
+      if (footerUls.length > 1) {
+        const contactLinks = footerUls[1].querySelectorAll('li');
+        if (contactLinks.length > 2) {
+          const emailLink = contactLinks[0].querySelector('a');
+          const phoneLi = contactLinks[1];
+          const addressLink = contactLinks[2].querySelector('a');
+          
+          if (emailLink) emailLink.textContent = footer.email;
+          if (phoneLi) phoneLi.textContent = footer.phone;
+          if (addressLink) addressLink.textContent = footer.address;
+        }
+      }
+      
+      if (footerH4s.length > 2) {
+        if (footerH4s[2]) footerH4s[2].textContent = footer.hours;
+      }
+      
+      if (footerUls.length > 2) {
+        const hoursList = footerUls[2].querySelectorAll('li');
+        if (hoursList.length > 0 && footer.hoursList) {
+          footer.hoursList.forEach((txt, i) => { 
+            if (hoursList[i] && txt) hoursList[i].textContent = txt; 
+          });
+        }
+      }
+      
+      const footerBottom = document.querySelector('.footer-bottom');
+      if (footerBottom) footerBottom.textContent = footer.copyright;
+      
       // Toggle button text
-      document.getElementById('lang-toggle-btn').textContent = lang === 'ar' ? 'English' : 'العربية';
+      const langToggleBtn = document.getElementById('lang-toggle-btn');
+      if (langToggleBtn) langToggleBtn.textContent = lang === 'ar' ? 'English' : 'العربية';
     }
 
     // Language toggle event
@@ -440,5 +519,6 @@
     </script>
     <script src="../dark-mode.js"></script>
     <script src="../navbar-highlight.js"></script>
+    
 </body>
 </html>

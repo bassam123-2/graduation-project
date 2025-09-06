@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../header.css">
     <link rel="stylesheet" href="../footer.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../config.js"></script>
 </head>
 <!--logo-->
 <body>
@@ -74,36 +75,307 @@
        <!--body-->
         <div class="signin-container">
   <form class="signin-form">
-    <h2>Sign In</h2>
+         <h2>Patient Sign In</h2>
+     <p style="text-align: center; color: #666; margin-bottom: 20px;">Sign in to access your patient dashboard</p>
+     <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 5px; padding: 10px; margin-bottom: 20px; text-align: center;">
+       <i class="fas fa-shield-alt" style="color: #856404; margin-right: 5px;"></i>
+       <strong>Security Notice:</strong> Admin access is restricted to backend management only.
+     </div>
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" id="username" name="username" required>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-   <div class="password-wrapper">
+      <div class="password-wrapper">
         <input type="password" id="password" name="password" required>
-        <button type="button" class="toggle-password" onclick="togglePassword()">Show</button>
+        <button type="button" class="toggle-password" onclick="togglePassword()" style="display: inline-block !important; visibility: visible !important; opacity: 1 !important;">Show</button>
       </div>
     </div>
-    <button type="submit">Sign In</button>
+            <button type="submit" id="signin-btn">Sign In</button>
+        
+
      <div class="signin-links">
-      <a href="forget pass.html" class="forgot-link">Forgot password?</a>
+      <a href="../password-reset.html" class="forgot-link">
+        <i class="fas fa-key"></i> Forgot Password?
+      </a>
       <span>Don't have an account? <a href="register.html" class="register-link">Register</a></span>
     </div>
     <script>
       function togglePassword() {
+        console.log('togglePassword function called');
         var pwd = document.getElementById('password');
         var btn = document.querySelector('.toggle-password');
+        
+        if (!pwd) {
+          console.error('Password input not found');
+          return;
+        }
+        
+        if (!btn) {
+          console.error('Toggle button not found');
+          return;
+        }
+        
+        console.log('Current password type:', pwd.type);
+        console.log('Current button text:', btn.textContent);
+        
         if (pwd.type === 'password') {
           pwd.type = 'text';
           btn.textContent = 'Hide';
+          console.log('Password now visible');
         } else {
           pwd.type = 'password';
           btn.textContent = 'Show';
+          console.log('Password now hidden');
+        }
+              }
+        
+
+        
+        // Enhanced Sign In with Dashboard Redirect
+      document.addEventListener('DOMContentLoaded', function() {
+        
+        const signinForm = document.querySelector('.signin-form');
+        const signinBtn = document.getElementById('signin-btn');
+        
+        signinForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+          
+          console.log('🔐 Sign-in attempt:', { username, passwordLength: password.length });
+          
+          if (!username || !password) {
+            showNotification('Please fill in all fields', 'error');
+            return;
+          }
+          
+          // Show loading state
+          signinBtn.disabled = true;
+          signinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+          
+          try {
+            // Call login API using configuration
+            const response = await fetch(CONFIG.API.BASE_URL + CONFIG.API.ENDPOINTS.LOGIN, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+              },
+              credentials: 'include',
+              body: JSON.stringify({
+                username: username,
+                password: password
+              })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok && data.success) {
+              // Check if user is trying to sign in as admin (blocked for security)
+              if (data.role === 'admin') {
+                showNotification('Admin users cannot sign in through the frontend. Please contact the system administrator.', 'error');
+                console.log('❌ Admin user blocked from frontend sign-in:', data.username);
+                return;
+              }
+              
+              // Store user session (only for patients)
+              localStorage.setItem('userId', data.user_id);
+              localStorage.setItem('userRole', data.role || 'patient');
+              localStorage.setItem('sessionId', data.session_id || Date.now().toString());
+              
+              // Store complete user data for profile display
+              if (data.user) {
+                localStorage.setItem('userData', JSON.stringify(data.user));
+                console.log('✅ Full user data stored:', data.user);
+              } else {
+                // Fallback if user data is not provided
+                const fallbackUserData = {
+                  id: data.user_id,
+                  username: data.username,
+                  email: data.email,
+                  role: data.role,
+                  first_name: data.first_name || 'Patient',
+                  last_name: data.last_name || 'User',
+                  phone_number: 'Not provided',
+                  gender: 'Not specified',
+                  address: 'Not provided',
+                  city: 'Not provided',
+                  blood_type: 'Not provided',
+                  emergency_contact: 'Not provided'
+                };
+                localStorage.setItem('userData', JSON.stringify(fallbackUserData));
+                console.log('⚠️ Using fallback user data:', fallbackUserData);
+              }
+                      console.log('✅ Patient login successful, user role:', data.role);
+        console.log('🔑 Login response data:', data);
+        
+        showNotification('Sign in successful! Redirecting to patient dashboard...', 'success');
+              
+              // Trigger auth state change for all tabs and pages
+              if (typeof AuthManager !== 'undefined') {
+                AuthManager.triggerAuthStateChange();
+                AuthManager.triggerLoginSuccess();
+              }
+              
+              // Also trigger a custom event for immediate response
+              window.dispatchEvent(new CustomEvent('loginSuccess'));
+              
+              // Redirect to patient dashboard only
+              const redirectUrl = '../patient-dashboard.html';
+              console.log('🔄 Redirecting to patient dashboard:', redirectUrl);
+              
+              console.log('⏳ Waiting 1.5 seconds before redirect...');
+              setTimeout(() => {
+                console.log('🚀 Executing redirect to:', redirectUrl);
+                window.location.href = redirectUrl;
+              }, 1500);
+              
+            } else {
+              // Handle specific error cases
+              if (data.needs_verification) {
+                showNotification('Please verify your email before signing in. Check your inbox for verification instructions.', 'warning');
+                // Optionally redirect to verification page
+                setTimeout(() => {
+                  window.location.href = '../email-verification.html?email=' + encodeURIComponent(data.email || username);
+                }, 3000);
+              } else if (data.error) {
+                throw new Error(data.error);
+              } else {
+                throw new Error('Invalid credentials');
+              }
+            }
+            
+          } catch (error) {
+            console.error('Sign in error:', error);
+            
+            // Handle specific error types
+            let errorMessage = error.message;
+            if (error.message.includes('Account is not active')) {
+              errorMessage = CONFIG.ERROR_MESSAGES.ACCOUNT_INACTIVE;
+            } else if (error.message.includes('Email not verified')) {
+              errorMessage = CONFIG.ERROR_MESSAGES.VERIFICATION_NEEDED;
+            } else if (error.message.includes('Invalid password')) {
+              errorMessage = CONFIG.ERROR_MESSAGES.INVALID_CREDENTIALS;
+            } else if (error.message.includes('Invalid credentials')) {
+              errorMessage = CONFIG.ERROR_MESSAGES.INVALID_CREDENTIALS;
+            }
+            
+            showNotification(errorMessage, 'error');
+          } finally {
+            // Reset button state
+            signinBtn.disabled = false;
+            signinBtn.textContent = 'Sign In';
+          }
+        });
+        
+        // Password toggle functionality - add fallback event listener
+        const togglePasswordBtn = document.querySelector('.toggle-password');
+        if (togglePasswordBtn) {
+          // Remove existing onclick to avoid conflicts
+          togglePasswordBtn.removeAttribute('onclick');
+          // Add event listener
+          togglePasswordBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            togglePassword();
+          });
+          console.log('✅ Fallback event listener added to toggle button');
+        } else {
+          console.error('❌ Toggle password button not found for fallback');
+        }
+        
+        function showNotification(message, type = 'info') {
+          // Remove existing notifications
+          const existingNotifications = document.querySelectorAll('.signin-notification');
+          existingNotifications.forEach(n => n.remove());
+          
+          // Create notification
+          const notification = document.createElement('div');
+          notification.className = `signin-notification notification-${type}`;
+          notification.innerHTML = `
+            <div class="notification-content">
+              <i class="fas fa-${getNotificationIcon(type)}"></i>
+              <span>${message}</span>
+            </div>
+          `;
+          
+          // Add styles
+          notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : type === 'warning' ? '#ffc107' : '#17a2b8'};
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideInRight 0.3s ease;
+            max-width: 400px;
+            font-weight: 500;
+          `;
+          
+          document.body.appendChild(notification);
+          
+          // Auto remove after 6 seconds for warnings, 4 seconds for others
+          const autoRemoveTime = type === 'warning' ? 6000 : 4000;
+          setTimeout(() => {
+            if (notification.parentElement) {
+              notification.style.animation = 'slideOutRight 0.3s ease';
+              setTimeout(() => notification.remove(), 300);
+            }
+          }, autoRemoveTime);
+        }
+        
+        function getNotificationIcon(type) {
+          const icons = {
+            'success': 'check-circle',
+            'error': 'exclamation-circle',
+            'warning': 'exclamation-triangle',
+            'info': 'info-circle'
+          };
+          return icons[type] || 'info-circle';
+        }
+      });
+    </script>
+    
+    <style>
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
         }
       }
-    </script>
+      
+      @keyframes slideOutRight {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+      
+      .signin-form button[disabled] {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+      
+      .signin-form button[disabled]:hover {
+        transform: none;
+      }
+    </style>
 </div>
 <!--footer -->
    <div class="footer">
@@ -264,6 +536,34 @@ langBtn.addEventListener('click', function() {
   lang = lang === 'en' ? 'ar' : 'en';
   setLanguage(lang);
 });
+
+// Check if user came from email verification
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('verified') === 'true') {
+    showNotification('Email verified successfully! You can now sign in.', 'success');
+    // Clean URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+});
+
+// Debug function to check password reset status
+window.debugPasswordReset = function() {
+    console.log('🔍 Debugging password reset issue...');
+    console.log('Current localStorage contents:');
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        console.log(`${key}:`, value);
+    }
+    
+    console.log('🧹 Clearing all cached data...');
+    localStorage.clear();
+    sessionStorage.clear();
+    
+    console.log('✅ Cache cleared. Now try password reset again.');
+    alert('Cache cleared! Please try the password reset process again.');
+};
     </script>
 </body>
 </html>

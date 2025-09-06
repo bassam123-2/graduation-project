@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification | AL-BOQAI Center</title>
+    <link rel="stylesheet" href="book appointment/sign in.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .verification-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-secondary, linear-gradient(135deg, #f8f9fa 0%, #e8f2ff 100%));
+            padding: 20px;
+        }
+        
+        .verification-form {
+            background: var(--card-background, #ffffff);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color, rgba(0, 0, 0, 0.1));
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .verification-icon {
+            background: linear-gradient(135deg, #2a5d9f, #1d406e);
+            color: white;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .verification-title {
+            color: #2a5d9f;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .verification-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .code-input-container {
+            margin: 30px 0;
+        }
+        
+        .code-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .code-input {
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        
+        .code-input:focus {
+            outline: none;
+            border-color: #2a5d9f;
+            background: white;
+            transform: scale(1.05);
+        }
+        
+        .verify-btn {
+            background: linear-gradient(135deg, #2a5d9f, #1d406e);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 93, 159, 0.3);
+        }
+        
+        .verify-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .resend-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .resend-text {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .resend-btn {
+            background: transparent;
+            color: #2a5d9f;
+            border: 2px solid #2a5d9f;
+            padding: 10px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .resend-btn:hover {
+            background: #2a5d9f;
+            color: white;
+        }
+        
+        .timer {
+            color: #dc3545;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .info-message {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .verification-form {
+                padding: 30px 20px;
+            }
+            
+            .code-input {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+            
+            .verification-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <a href="home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <div style="display: flex; align-items: center; background: transparent; color: #2a5d9f; padding: 10px 20px; border-radius: 8px; font-family: Arial, sans-serif;">
+                    <div style="background: #2a5d9f; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; margin-right: 15px;">
+                        Dr.<br>MBI
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="font-size: 18px; font-weight: bold; color: #2a5d9f; line-height: 1;">
+                            البقاعي للعلاج الحكمي
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-top: 2px;">
+                            AL-BOQAI World for Judgmental therapy
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Navigation -->
+        <ul class="navbar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="book appointment/sign in.html">Sign In</a></li>
+            <li><a href="book appointment/register.html">Register</a></li>
+        </ul>
+        
+        <!-- Dark Mode & Language Toggle -->
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="verification-container">
+        <div class="verification-form">
+            <div class="verification-icon">
+                <i class="fas fa-envelope-open"></i>
+            </div>
+            
+            <h1 class="verification-title">Verify Your Email</h1>
+            <p class="verification-subtitle">
+                We've sent a 6-digit verification code to your email address. 
+                Please enter it below to activate your account.
+            </p>
+            
+            <div id="message-container"></div>
+            
+            <form id="verification-form">
+                <div class="code-input-container">
+                    <label for="verification-code" style="display: block; margin-bottom: 10px; font-weight: 600;">Enter Verification Code:</label>
+                    <div class="code-inputs">
+                        <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        <input type="text" class="code-input" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                    </div>
+                </div>
+                
+                <button type="submit" class="verify-btn" id="verify-btn">
+                    <i class="fas fa-check-circle"></i> Verify Email
+                </button>
+            </form>
+            
+            <div class="resend-section">
+                <p class="resend-text">Didn't receive the code?</p>
+                <div id="timer-container" class="timer" style="display: none;">
+                    Resend available in: <span id="timer">60</span> seconds
+                </div>
+                <button class="resend-btn" id="resend-btn">
+                    <i class="fas fa-redo"></i> Resend Code
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="book appointment/sign in.html">Sign In</a></li>
+                    <li><a href="book appointment/register.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:albouqaiworld@gmail.com" target="_blank">Email: albouqaiworld@gmail.com</a></li>
+                    <li>Phone: +962775252444</li>
+                    <li><a href="https://maps.app.goo.gl/8sPWu3tUFbbenmvd7?g_st=iw" target="_blank">al-andlos road, Irbid</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Saturday - Thursday: 8:00 - 16:00</li>
+                    <li>Friday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 AL-BOQAI CENTER. All rights reserved.
+        </div>
+    </div>
+
+    <script src="dark-mode.js"></script>
+    <script src="config.js"></script>
+    <script>
+        class EmailVerificationManager {
+            constructor() {
+                this.apiBaseUrl = CONFIG.API.BASE_URL;
+                this.resendTimer = null;
+                this.resendCountdown = 60;
+                
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setupCodeInputs();
+                this.startResendTimer();
+                
+                // Get email from URL parameters or localStorage
+                const urlParams = new URLSearchParams(window.location.search);
+                this.email = urlParams.get('email') || localStorage.getItem('verification_email');
+                
+                if (this.email) {
+                    this.updateEmailDisplay();
+                }
+            }
+
+            setupEventListeners() {
+                const form = document.getElementById('verification-form');
+                const resendBtn = document.getElementById('resend-btn');
+
+                form.addEventListener('submit', (e) => this.handleVerification(e));
+                resendBtn.addEventListener('click', () => this.handleResend());
+            }
+
+            setupCodeInputs() {
+                const inputs = document.querySelectorAll('.code-input');
+                
+                inputs.forEach((input, index) => {
+                    input.addEventListener('input', (e) => {
+                        if (e.target.value.length === 1 && index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    });
+                    
+                    input.addEventListener('keydown', (e) => {
+                        if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                            inputs[index - 1].focus();
+                        }
+                    });
+                    
+                    input.addEventListener('paste', (e) => {
+                        e.preventDefault();
+                        const paste = (e.clipboardData || window.clipboardData).getData('text');
+                        const digits = paste.replace(/\D/g, '').slice(0, 6);
+                        
+                        digits.split('').forEach((digit, i) => {
+                            if (inputs[i]) {
+                                inputs[i].value = digit;
+                            }
+                        });
+                        
+                        if (digits.length === 6) {
+                            this.handleVerification(e);
+                        }
+                    });
+                });
+            }
+
+            getVerificationCode() {
+                const inputs = document.querySelectorAll('.code-input');
+                return Array.from(inputs).map(input => input.value).join('');
+            }
+
+            async handleVerification(e) {
+                e.preventDefault();
+                
+                const verificationCode = this.getVerificationCode();
+                
+                if (verificationCode.length !== 6) {
+                    this.showMessage('Please enter all 6 digits of the verification code.', 'error');
+                    return;
+                }
+
+                const verifyBtn = document.getElementById('verify-btn');
+                verifyBtn.disabled = true;
+                verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+
+                try {
+                    const response = await fetch(`${this.apiBaseUrl}/users/verify_email/`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            verification_code: verificationCode,
+                            email: this.email
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        this.showMessage('Email verified successfully! Please sign in to access your account.', 'success');
+                        
+                        // Clear verification email from storage
+                        localStorage.removeItem('verification_email');
+                        
+                        // Redirect to sign in page with verified parameter
+                        setTimeout(() => {
+                            window.location.href = 'book appointment/sign in.html?verified=true';
+                        }, 2000);
+                        
+                    } else {
+                        throw new Error(data.error || 'Verification failed');
+                    }
+
+                } catch (error) {
+                    console.error('Verification error:', error);
+                    this.showMessage(error.message || 'Verification failed. Please try again.', 'error');
+                } finally {
+                    verifyBtn.disabled = false;
+                    verifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verify Email';
+                }
+            }
+
+            async handleResend() {
+                if (!this.email) {
+                    this.showMessage('Email address not found. Please register again.', 'error');
+                    return;
+                }
+
+                const resendBtn = document.getElementById('resend-btn');
+                resendBtn.disabled = true;
+                resendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+                try {
+                    const response = await fetch(`${this.apiBaseUrl}/users/resend_verification/`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: this.email,
+                            verification_type: 'registration'
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        this.showMessage('New verification code sent to your email!', 'success');
+                        this.startResendTimer();
+                    } else {
+                        throw new Error(data.error || 'Failed to resend verification code');
+                    }
+
+                } catch (error) {
+                    console.error('Resend error:', error);
+                    this.showMessage(error.message || 'Failed to resend code. Please try again.', 'error');
+                } finally {
+                    resendBtn.disabled = false;
+                    resendBtn.innerHTML = '<i class="fas fa-redo"></i> Resend Code';
+                }
+            }
+
+            startResendTimer() {
+                const resendBtn = document.getElementById('resend-btn');
+                const timerContainer = document.getElementById('timer-container');
+                const timerSpan = document.getElementById('timer');
+                
+                resendBtn.style.display = 'none';
+                timerContainer.style.display = 'block';
+                
+                this.resendCountdown = 60;
+                
+                this.resendTimer = setInterval(() => {
+                    this.resendCountdown--;
+                    timerSpan.textContent = this.resendCountdown;
+                    
+                    if (this.resendCountdown <= 0) {
+                        clearInterval(this.resendTimer);
+                        resendBtn.style.display = 'inline-block';
+                        timerContainer.style.display = 'none';
+                    }
+                }, 1000);
+            }
+
+            updateEmailDisplay() {
+                const subtitle = document.querySelector('.verification-subtitle');
+                if (this.email) {
+                    subtitle.innerHTML = `We've sent a 6-digit verification code to <strong>${this.email}</strong>. Please enter it below to activate your account.`;
+                }
+            }
+
+            showMessage(message, type) {
+                const container = document.getElementById('message-container');
+                const messageClass = type === 'success' ? 'success-message' : 
+                                  type === 'error' ? 'error-message' : 'info-message';
+                
+                container.innerHTML = `<div class="${messageClass}">${message}</div>`;
+                
+                // Auto-hide after 5 seconds for non-success messages
+                if (type !== 'success') {
+                    setTimeout(() => {
+                        container.innerHTML = '';
+                    }, 5000);
+                }
+            }
+        }
+
+        // Initialize email verification when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new EmailVerificationManager();
+        });
+    </script>
+</body>
+</html>

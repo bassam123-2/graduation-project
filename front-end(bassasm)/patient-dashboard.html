@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard | AL-BOQAI Center</title>
+    <link rel="stylesheet" href="patient-dashboard.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <a href="home.html" style="display: flex; align-items: center; text-decoration: none;">
+                <div style="display: flex; align-items: center; background: transparent; color: #2a5d9f; padding: 10px 20px; border-radius: 8px; font-family: Arial, sans-serif;">
+                    <div style="background: #2a5d9f; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; margin-right: 15px;">
+                        Dr.<br>MBI
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="font-size: 18px; font-weight: bold; color: #2a5d9f; line-height: 1;">
+                            البقاعي للعلاج الحكمي
+                        </div>
+                        <div style="font-size: 12px; color: #666; margin-top: 2px;">
+                            AL-BOQAI World for Judgmental therapy
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Patient Navigation -->
+        <ul class="navbar">
+            <li><a href="patient-dashboard.html" class="active">Dashboard</a></li>
+            <li><a href="book appointment/book.html">Book Appointment</a></li>
+            <li><a href="symptom-assessment.html">AI Assessment</a></li>
+            <li><a href="patient-testimonials.html">Success Stories</a></li>
+            <li><a href="share-testimony.html">📝 Share Testimony</a></li>
+            <li class="dropdown">
+                <span class="dropdown-trigger">Profile</span>
+                <ul class="dropdown-menu">
+                    <li><a href="#profile" onclick="showNotification('Profile page coming soon!', 'info')">View Profile</a></li>
+                    <li><a href="#settings" onclick="showNotification('Settings page coming soon!', 'info')">Settings</a></li>
+                    <li><a href="home.html" onclick="logout()">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <!-- Dark Mode & Language Toggle -->
+        <div class="theme-toggle" style="display: flex; gap: 10px; align-items: center;">
+            <button id="lang-toggle-btn" class="theme-btn" title="تبديل اللغة / Switch Language">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle-btn" class="theme-btn">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <div class="dashboard-container">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <h1 class="welcome-title">Welcome back, <span id="patient-name">Patient</span>!</h1>
+                <p class="welcome-subtitle">Here's your health journey overview</p>
+            </div>
+            <div class="welcome-stats">
+                <div class="stat-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="total-appointments">0</span>
+                        <span class="stat-label">Total Appointments</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="upcoming-appointments">0</span>
+                        <span class="stat-label">Upcoming</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="progress-score">0%</span>
+                        <span class="stat-label">Progress</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Quick Actions -->
+            <div class="dashboard-card quick-actions">
+                <div class="card-header">
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                </div>
+                <div class="card-content">
+                    <div class="action-buttons">
+                        <button class="action-btn primary" onclick="bookAppointment()">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>Book Appointment</span>
+                        </button>
+                        <button class="action-btn secondary" onclick="startAssessment()">
+                            <i class="fas fa-brain"></i>
+                            <span>AI Assessment</span>
+                        </button>
+                        <button class="action-btn tertiary" onclick="viewTreatmentPlan()">
+                            <i class="fas fa-file-medical"></i>
+                            <span>Treatment Plan</span>
+                        </button>
+                        <button class="action-btn quaternary" onclick="shareTestimony()">
+                            <i class="fas fa-star"></i>
+                            <span>Share Experience</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="dashboard-card appointments">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-alt"></i> Upcoming Appointments</h3>
+                    <button class="view-all-btn" onclick="viewAllAppointments()">View All</button>
+                </div>
+                <div class="card-content">
+                    <div id="appointments-list" class="appointments-list">
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Loading appointments...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Treatment Progress -->
+            <div class="dashboard-card progress">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-line"></i> Treatment Progress</h3>
+                </div>
+                <div class="card-content">
+                    <div class="progress-overview">
+                        <div class="progress-circle">
+                            <svg class="progress-ring" width="120" height="120">
+                                <circle class="progress-ring-circle" stroke="#e6f3ff" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                                <circle class="progress-ring-progress" stroke="#2a5d9f" stroke-width="8" fill="transparent" r="52" cx="60" cy="60" stroke-dasharray="327" stroke-dashoffset="327"/>
+                            </svg>
+                            <div class="progress-text">
+                                <span class="progress-percentage" id="progress-percentage">0%</span>
+                                <span class="progress-label">Complete</span>
+                            </div>
+                        </div>
+                        <div class="progress-details">
+                            <div class="progress-item">
+                                <span class="progress-item-label">Sessions Completed</span>
+                                <span class="progress-item-value" id="completed-sessions">0/0</span>
+                            </div>
+                            <div class="progress-item">
+                                <span class="progress-item-label">Next Session</span>
+                                <span class="progress-item-value" id="next-session">Not scheduled</span>
+                            </div>
+                            <div class="progress-item">
+                                <span class="progress-item-label">Recovery Goal</span>
+                                <span class="progress-item-value" id="recovery-goal">In Progress</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Insights -->
+            <div class="dashboard-card insights">
+                <div class="card-header">
+                    <h3><i class="fas fa-lightbulb"></i> Health Insights</h3>
+                </div>
+                <div class="card-content">
+                    <div id="health-insights" class="insights-list">
+                        <div class="insight-item">
+                            <i class="fas fa-info-circle insight-icon"></i>
+                            <div class="insight-content">
+                                <h4>Stay Consistent</h4>
+                                <p>Regular therapy sessions show better recovery outcomes.</p>
+                            </div>
+                        </div>
+                        <div class="insight-item">
+                            <i class="fas fa-dumbbell insight-icon"></i>
+                            <div class="insight-content">
+                                <h4>Exercise Reminder</h4>
+                                <p>Don't forget your daily exercises for optimal recovery.</p>
+                            </div>
+                        </div>
+                        <div class="insight-item">
+                            <i class="fas fa-calendar-check insight-icon"></i>
+                            <div class="insight-content">
+                                <h4>Schedule Check-up</h4>
+                                <p>It's time for your monthly progress evaluation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-card activity">
+                <div class="card-header">
+                    <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                </div>
+                <div class="card-content">
+                    <div id="recent-activity" class="activity-list">
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Loading activity...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Summary -->
+            <div class="dashboard-card profile-summary">
+                <div class="card-header">
+                    <h3><i class="fas fa-user"></i> Profile Summary</h3>
+                    <div class="profile-actions">
+                        <button class="edit-profile-btn" id="edit-profile-btn">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="refresh-profile-btn" id="refresh-profile-btn" title="Refresh Profile Data">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <button class="debug-btn" id="debug-btn" title="Debug: Show localStorage Contents" style="background: #6c757d; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; margin-left: 5px;">
+                            <i class="fas fa-bug"></i>
+                        </button>
+                        <button class="test-data-btn" id="test-data-btn" title="Set Test User Data" style="background: #28a745; color: white; border: none; padding: 5px 8px; border-radius: 4px; cursor: pointer; margin-left: 5px;">
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-details">
+                            <h4 id="profile-name">Loading...</h4>
+                            <p id="profile-email">Loading...</p>
+                            <p id="profile-phone">Loading...</p>
+                            <div class="profile-extended-info">
+                                <p><i class="fas fa-venus-mars"></i> <span id="profile-gender">Not specified</span></p>
+                                <p><i class="fas fa-map-marker-alt"></i> <span id="profile-address">Not provided</span></p>
+                                <p><i class="fas fa-birthday-cake"></i> <span id="profile-dob">Not provided</span></p>
+                                <p><i class="fas fa-tint"></i> Blood Type: <span id="profile-blood-type">Not provided</span></p>
+                                <p><i class="fas fa-phone-alt"></i> Emergency: <span id="profile-emergency-contact">Not provided</span></p>
+                            </div>
+                            <div class="profile-stats">
+                                <span class="profile-stat">
+                                    <i class="fas fa-calendar"></i>
+                                    Member since <span id="member-since">2024</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Patient Portal</h4>
+                <ul>
+                    <li><a href="patient-dashboard.html">Dashboard</a></li>
+                    <li><a href="book appointment/book.html">Book Appointment</a></li>
+                    <li><a href="symptom-assessment.html">AI Assessment</a></li>
+                    <li><a href="#profile">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:alboqaiworld@gmail.com" target="_blank">Email: alboqaiworld@gmail.com</a></li>
+                    <li>Phone: +962775252444</li>
+                    <li><a href="https://maps.app.goo.gl/8sPWu3tUFbbenmvd7?g_st=iw" target="_blank">al-andlos road, Irbid</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Working Hours</h4>
+                <ul>
+                    <li>Saturday - Thursday: 8:00 - 16:00</li>
+                    <li>Friday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 AL-BOQAI CENTER. All rights reserved.
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="dark-mode.js"></script>
+    <script src="config.js"></script>
+    <script src="patient-dashboard.js?v=202412201234567890123456"></script>
+    
+    <script>
+        // Language toggle functionality
+        const translations = {
+            ar: {
+                header: [
+                    'لوحة التحكم', 'احجز موعد', 'تقييم الذكاء الاصطناعي', 'قصص النجاح', 'الملف الشخصي', 'عرض الملف الشخصي', 'الإعدادات', 'تسجيل الخروج'
+                ],
+                dashboard: {
+                    welcome: "مرحبا بعودتك",
+                    subtitle: "إليك نظرة عامة على رحلتك الصحية",
+                    totalAppointments: "إجمالي المواعيد",
+                    upcoming: "القادمة",
+                    progress: "التقدم",
+                    quickActions: "إجراءات سريعة",
+                    bookAppointment: "احجز موعد",
+                    aiAssessment: "تقييم الذكاء الاصطناعي",
+                    treatmentPlan: "خطة العلاج",
+                    shareExperience: "شارك التجربة",
+                    upcomingAppointments: "المواعيد القادمة",
+                    viewAll: "عرض الكل",
+                    treatmentProgress: "تقدم العلاج",
+                    complete: "مكتمل",
+                    healthInsights: "رؤى صحية",
+                    recentActivity: "النشاط الأخير",
+                    profileSummary: "ملخص الملف الشخصي",
+                    memberSince: "عضو منذ"
+                },
+                footer: {
+                    patientPortal: "بوابة المريض",
+                    dashboard: "لوحة التحكم",
+                    bookAppointment: "احجز موعد",
+                    aiAssessment: "تقييم الذكاء الاصطناعي",
+                    profile: "الملف الشخصي",
+                    contact: "تواصل معنا",
+                    email: "البريد الإلكتروني: alboqaiworld@gmail.com",
+                    phone: "الهاتف: +962775252444",
+                    address: "شارع الأندلس، إربد",
+                    hours: "ساعات العمل",
+                    hoursList: ["السبت - الخميس: 8:00 - 16:00", "الجمعة: مغلق"],
+                    copyright: "© 2025 مركز البقاعي. جميع الحقوق محفوظة."
+                }
+            },
+            en: {
+                header: [
+                    'Dashboard', 'Book Appointment', 'AI Assessment', 'Success Stories', 'Profile', 'View Profile', 'Settings', 'Logout'
+                ],
+                dashboard: {
+                    welcome: "Welcome back",
+                    subtitle: "Here's your health journey overview",
+                    totalAppointments: "Total Appointments",
+                    upcoming: "Upcoming",
+                    progress: "Progress",
+                    quickActions: "Quick Actions",
+                    bookAppointment: "Book Appointment",
+                    aiAssessment: "AI Assessment",
+                    treatmentPlan: "Treatment Plan",
+                    shareExperience: "Share Experience",
+                    upcomingAppointments: "Upcoming Appointments",
+                    viewAll: "View All",
+                    treatmentProgress: "Treatment Progress",
+                    complete: "Complete",
+                    healthInsights: "Health Insights",
+                    recentActivity: "Recent Activity",
+                    profileSummary: "Profile Summary",
+                    memberSince: "Member since"
+                },
+                footer: {
+                    patientPortal: "Patient Portal",
+                    dashboard: "Dashboard",
+                    bookAppointment: "Book Appointment",
+                    aiAssessment: "AI Assessment",
+                    profile: "Profile",
+                    contact: "Contact",
+                    email: "Email: alboqaiworld@gmail.com",
+                    phone: "Phone: +962775252444",
+                    address: "al-andlos road, Irbid",
+                    hours: "Working Hours",
+                    hoursList: ["Saturday - Thursday: 8:00 - 16:00", "Friday: Closed"],
+                    copyright: "© 2025 AL-BOQAI CENTER. All rights reserved."
+                }
+            }
+        };
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            localStorage.setItem('lang', lang);
+            
+            const t = translations[lang];
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.navbar > li > a, .dropdown-menu > li > a');
+            t.header.forEach((text, i) => {
+                if (navLinks[i]) navLinks[i].textContent = text;
+            });
+            
+            // Update dashboard content
+            const dashboard = t.dashboard;
+            if (document.querySelector('.welcome-subtitle')) {
+                document.querySelector('.welcome-subtitle').textContent = dashboard.subtitle;
+            }
+            
+            // Update footer
+            const footer = t.footer;
+            const footerSections = document.querySelectorAll('.footer-section h4');
+            if (footerSections[0]) footerSections[0].textContent = footer.patientPortal;
+            if (footerSections[1]) footerSections[1].textContent = footer.contact;
+            if (footerSections[2]) footerSections[2].textContent = footer.hours;
+            
+            document.querySelector('.footer-bottom').textContent = footer.copyright;
+        }
+
+        // Initialize language
+        const langBtn = document.getElementById('lang-toggle-btn');
+        let lang = localStorage.getItem('lang') || 'en';
+        setLanguage(lang);
+        langBtn.addEventListener('click', function() {
+            lang = lang === 'en' ? 'ar' : 'en';
+            setLanguage(lang);
+        });
+    </script>
+</body>
+</html>

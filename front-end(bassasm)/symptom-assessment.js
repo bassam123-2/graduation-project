@@ -15,7 +15,7 @@ class SymptomAssessment {
     init() {
         this.setupEventListeners();
         this.loadSymptomDatabase();
-        console.log('✅ AI Symptom Assessment System initialized');
+
     }
 
     setupEventListeners() {
@@ -150,7 +150,7 @@ class SymptomAssessment {
 
     loadSymptomCategories() {
         // Categories are already in HTML, just ensure they're visible
-        console.log('Symptom categories loaded');
+
     }
 
     getLocalizedText(textObj) {
@@ -493,7 +493,6 @@ class SymptomAssessment {
     }
 
     // 3D Preview System
-
 
     // Utility Functions
     showNotification(message, type = 'info') {

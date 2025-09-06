@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to AL-BOQAI Center - Verify Your Email</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #2a5d9f;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo {
+            background: #2a5d9f;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .title {
+            color: #2a5d9f;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin: 5px 0 0 0;
+        }
+        .welcome-message {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f2ff 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .verification-code {
+            background: #2a5d9f;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            letter-spacing: 8px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .verification-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #2a5d9f, #1d406e);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            transition: transform 0.2s;
+        }
+        .verification-button:hover {
+            transform: translateY(-2px);
+        }
+        .info-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+        .contact-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .contact-info h4 {
+            color: #2a5d9f;
+            margin: 0 0 10px 0;
+        }
+        .expiry-warning {
+            background: #ffe6e6;
+            border: 1px solid #ffb3b3;
+            color: #cc0000;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+            margin: 15px 0;
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 20px; }
+            .verification-code { font-size: 24px; letter-spacing: 4px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Dr.<br>MBI</div>
+            <h1 class="title">البقاعي للعلاج الحكمي</h1>
+            <p class="subtitle">AL-BOQAI World for Judgmental Therapy</p>
+        </div>
+
+        <div class="welcome-message">
+            <h2>Welcome to AL-BOQAI Center, {{ user.first_name }}!</h2>
+            <p>Thank you for creating your account. We're excited to have you join our healthcare community.</p>
+        </div>
+
+        <h3>Email Verification Required</h3>
+        <p>To complete your registration and activate your account, please verify your email address using the verification code below:</p>
+
+        <div class="verification-code">
+            {{ verification_code }}
+        </div>
+
+        <div class="info-box">
+            <strong>How to verify:</strong>
+            <ol>
+                <li>Copy the 6-digit verification code above</li>
+                <li>Go back to the registration page</li>
+                <li>Enter the verification code when prompted</li>
+                <li>Your account will be activated immediately</li>
+            </ol>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="{{ verification_url }}" class="verification-button">
+                Verify Email Address
+            </a>
+        </div>
+
+        <div class="expiry-warning">
+            ⚠️ This verification code expires on {{ expires_at|date:"F d, Y" }} at {{ expires_at|time:"g:i A" }}
+        </div>
+
+        <div class="contact-info">
+            <h4>Need Help?</h4>
+            <p><strong>Email:</strong> albouqaiworld@gmail.com</p>
+            <p><strong>Phone:</strong> +962775252444</p>
+            <p><strong>Address:</strong> al-andlos road, Irbid</p>
+            <p><strong>Working Hours:</strong> Saturday - Thursday: 8:00 - 16:00</p>
+        </div>
+
+        <div class="footer">
+            <p><strong>AL-BOQAI Center</strong> - Professional Healthcare Services</p>
+            <p>If you didn't create this account, please ignore this email or contact us immediately.</p>
+            <p>&copy; 2025 AL-BOQAI Center. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+

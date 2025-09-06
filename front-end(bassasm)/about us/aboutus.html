@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../header.css">
     <link rel="stylesheet" href="../footer.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="../auth-utils.js"></script>
 </head>
 <!--logo-->
 <body>
@@ -51,7 +52,8 @@
   </li>
   <li><a href="../book appointment/book.html">Book Appointment</a></li>
   <li><a href="../book appointment/contact us.html">Contact Us</a></li>
-  <li><a href="../book appointment/sign in.html " class="signin-link">Sign In</a></li>
+  <li><a href="../book appointment/sign in.html" class="signin-link" id="signin-nav-link">Sign In</a></li>
+  <li><a href="../patient-dashboard.html" class="dashboard-link" id="dashboard-nav-link" style="display: none;">Dashboard</a></li>
 </ul>
 
 <!-- Dark Mode Toggle -->
@@ -72,12 +74,12 @@
         <p class="description">Leading the way in comprehensive rehabilitation care with cutting-edge technology and compassionate expertise</p>
     </div>
     
-    <div class="about-content">
-        <div class="about-text">
-            <div class="mission-section">
-                <h2>Our Mission</h2>
-                <p>At AL-BOQAI Center, we are committed to delivering exceptional rehabilitation and physical therapy services that empower our patients to achieve optimal physical health and enhanced quality of life. Through evidence-based practices, advanced therapeutic techniques, and personalized care plans, we ensure every individual receives the highest standard of treatment tailored to their unique needs and recovery goals.</p>
-            </div>
+            <div class="about-content">
+            <div class="about-text">
+                <div class="mission-section">
+                    <h2>Our Mission</h2>
+                    <p>At AL-BOQAI Center, we are committed to delivering exceptional rehabilitation and physical therapy services that empower our patients to achieve optimal physical health and enhanced quality of life. Through evidence-based practices, advanced therapeutic techniques, and personalized care plans, we ensure every individual receives the highest standard of treatment tailored to their unique needs and recovery goals.</p>
+                </div>
             
             <div class="vision-section">
                 <h2>Our Vision</h2>
@@ -359,6 +361,11 @@ langBtn.addEventListener('click', function() {
   setLanguage(lang);
 });
 </script>
+
+
+
+
+
 </body>
 </html>
 

@@ -258,8 +258,6 @@ if (!document.querySelector('#dark-mode-vars')) {
 }
 
 // Console welcome message
-console.log('%cWelcome to AL-BOQAI Center! 🏥', 'color: #2a5d9f; font-size: 20px; font-weight: bold;');
-console.log('%cPress Ctrl+T to toggle dark mode', 'color: #666; font-size: 14px;');
 
 // Export functions for external use
 window.ALBOQAICenter = {

@@ -941,31 +941,4 @@ body {
     }
 }
 
-/* Debug styles to make theme changes more visible */
-[data-theme="dark"] {
-    /* Force dark mode visibility */
-    background-color: #1a1a1a !important;
-    color: #ffffff !important;
-}
-
-[data-theme="dark"] .form-container {
-    background-color: #2d2d2d !important;
-    border-color: #404040 !important;
-}
-
-[data-theme="dark"] .form-group input,
-[data-theme="dark"] .form-group select,
-[data-theme="dark"] .form-group textarea {
-    background-color: #2d2d2d !important;
-    color: #ffffff !important;
-    border-color: #404040 !important;
-}
-
-[data-theme="dark"] .form-group label {
-    color: #ffffff !important;
-}
-
-[data-theme="dark"] .footer {
-    background-color: #2d2d2d !important;
-    color: #ffffff !important;
-} 
+ 

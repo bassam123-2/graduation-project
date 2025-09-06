@@ -914,3 +914,231 @@ body {
 * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
+
+/* User Dashboard Section Styles */
+.user-dashboard-section {
+    background: var(--gradient-secondary);
+    padding: 80px 0;
+    margin: 40px 0;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.user-dashboard-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(42, 93, 159, 0.05) 0%, rgba(29, 64, 110, 0.05) 100%);
+    pointer-events: none;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-header h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.dashboard-header h2 i {
+    font-size: 0.9em;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dashboard-header p {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-card {
+    background: var(--background-color);
+    padding: 35px 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px var(--shadow-color);
+}
+
+.dashboard-card:hover::before {
+    transform: scaleX(1);
+}
+
+.dashboard-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.dashboard-card:hover .dashboard-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.dashboard-card h3 {
+    font-size: 1.4em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.dashboard-card p {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.dashboard-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: var(--gradient-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.dashboard-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-color);
+    color: white;
+}
+
+.dashboard-actions {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-actions .btn {
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.dashboard-actions .btn-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.dashboard-actions .btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+/* Responsive Dashboard */
+@media (max-width: 768px) {
+    .user-dashboard-section {
+        padding: 60px 0;
+        margin: 30px 0;
+        border-radius: 15px;
+    }
+    
+    .dashboard-header h2 {
+        font-size: 2em;
+    }
+    
+    .dashboard-header p {
+        font-size: 1.1em;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .dashboard-card {
+        padding: 30px 20px;
+    }
+    
+    .dashboard-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-dashboard-section {
+        padding: 50px 0;
+        margin: 20px 0;
+    }
+    
+    .dashboard-header h2 {
+        font-size: 1.8em;
+    }
+    
+    .dashboard-header p {
+        font-size: 1em;
+    }
+    
+    .dashboard-card {
+        padding: 25px 15px;
+    }
+    
+    .dashboard-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6em;
+    }
+}

@@ -15,7 +15,7 @@ class GamificationSystem {
         this.setupEventListeners();
         this.checkAchievements();
         this.startDailyChallenges();
-        console.log('🎮 Gamification System initialized');
+
     }
 
     loadUserProgress() {

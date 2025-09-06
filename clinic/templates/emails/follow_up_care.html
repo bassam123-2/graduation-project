@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow-up Care - AL-BOQAI Center</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .email-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid #28a745;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #28a745;
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+        .logo {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        .session-summary {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #28a745;
+        }
+        .care-instructions {
+            background: linear-gradient(135deg, #e8f2ff 0%, #d1e7ff 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #b3d9ff;
+        }
+        .wellness-tips {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #ffd43b;
+        }
+        .next-steps {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #dc3545;
+        }
+        .exercise-section {
+            background: linear-gradient(135deg, #e2e3e5 0%, #d6d8db 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #6c757d;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 2px solid #e9ecef;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 15px 10px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .progress-bar {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        @media (max-width: 600px) {
+            .email-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <div class="logo">Dr.<br>MBI</div>
+            <h1 style="color: #28a745; margin: 0; font-size: 28px;">Follow-up Care</h1>
+            <p style="color: #6c757d; margin: 15px 0 0 0; font-size: 16px;">AL-BOQAI World for Judgmental Therapy</p>
+            <p style="color: #28a745; margin: 5px 0 0 0; font-weight: 600;">🌟 Your health journey continues!</p>
+        </div>
+        
+        {% if user %}
+        <p style="font-size: 16px; color: #495057;">Dear <strong>{{ user.first_name }} {{ user.last_name }}</strong>,</p>
+        {% else %}
+        <p style="font-size: 16px; color: #495057;">Dear <strong>{{ appointment.guest_first_name }} {{ appointment.guest_last_name }}</strong>,</p>
+        {% endif %}
+        
+        <p style="font-size: 16px; color: #495057;">Thank you for completing your therapy session today! We hope you found it beneficial and are feeling positive about your progress. This email contains important follow-up care instructions and wellness tips to help you continue your recovery journey.</p>
+        
+        <div class="session-summary">
+            <h3 style="color: #155724; margin-top: 0; margin-bottom: 20px; font-size: 20px;">📋 Today's Session Summary</h3>
+            <p style="color: #155724; margin: 10px 0;"><strong>Service:</strong> {{ appointment.get_service_type_display }}</p>
+            <p style="color: #155724; margin: 10px 0;"><strong>Date:</strong> {{ appointment.date|date:"l, F j, Y" }}</p>
+            <p style="color: #155724; margin: 10px 0;"><strong>Duration:</strong> {{ appointment.duration }} minutes</p>
+            {% if appointment.is_guest %}
+            <p style="color: #155724; margin: 10px 0;"><strong>Guest ID:</strong> {{ appointment.guest_id }}</p>
+            {% endif %}
+        </div>
+        
+        <div class="care-instructions">
+            <h3 style="color: #2a5d9f; margin-top: 0; margin-bottom: 15px;">🏥 Post-Session Care Instructions</h3>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #2a5d9f;">
+                <li><strong>Rest Period:</strong> Allow your body to rest for the next 24-48 hours</li>
+                <li><strong>Ice/Heat:</strong> Apply ice for the first 24 hours if there's swelling, then heat for comfort</li>
+                <li><strong>Hydration:</strong> Drink plenty of water to help flush out toxins</li>
+                <li><strong>Gentle Movement:</strong> Perform gentle stretches as recommended by your therapist</li>
+                <li><strong>Pain Management:</strong> Take prescribed medications as directed</li>
+                <li><strong>Activity Level:</strong> Gradually return to normal activities as tolerated</li>
+            </ul>
+        </div>
+        
+        {% if appointment.service_type == 'manual-therapy' %}
+        <div class="exercise-section">
+            <h4 style="color: #6c757d; margin-top: 0;">🖐️ Manual Therapy Follow-up</h4>
+            <p style="color: #6c757d; margin: 10px 0;"><strong>What to expect:</strong> You may experience some soreness in the treated areas for 1-2 days. This is normal and indicates that the therapy is working.</p>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #6c757d;">
+                <li>Continue any home exercises prescribed by your therapist</li>
+                <li>Avoid strenuous activities for 24-48 hours</li>
+                <li>Maintain good posture throughout the day</li>
+                <li>Use ergonomic supports if recommended</li>
+            </ul>
+        </div>
+        {% endif %}
+        
+        {% if appointment.service_type == 'physical-therapy' %}
+        <div class="exercise-section">
+            <h4 style="color: #6c757d; margin-top: 0;">🏃 Physical Therapy Follow-up</h4>
+            <p style="color: #6c757d; margin: 10px 0;"><strong>Exercise Program:</strong> Continue your prescribed home exercise program daily. Consistency is key to achieving optimal results.</p>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #6c757d;">
+                <li>Perform exercises 2-3 times daily as prescribed</li>
+                <li>Maintain proper form and technique</li>
+                <li>Gradually increase repetitions and intensity</li>
+                <li>Stop if you experience increased pain</li>
+            </ul>
+        </div>
+        {% endif %}
+        
+        {% if appointment.service_type == 'rehabilitation' %}
+        <div class="exercise-section">
+            <h4 style="color: #6c757d; margin-top: 0;">🔧 Rehabilitation Follow-up</h4>
+            <p style="color: #6c757d; margin: 10px 0;"><strong>Recovery Focus:</strong> Focus on the specific rehabilitation goals set during your session. Progress may be gradual but steady.</p>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #6c757d;">
+                <li>Use assistive devices as prescribed</li>
+                <li>Practice mobility exercises regularly</li>
+                <li>Monitor your progress and celebrate small improvements</li>
+                <li>Maintain safety precautions at all times</li>
+            </ul>
+        </div>
+        {% endif %}
+        
+        <div class="wellness-tips">
+            <h3 style="color: #856404; margin-top: 0; margin-bottom: 15px;">💡 Wellness & Recovery Tips</h3>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #856404;">
+                <li><strong>Sleep Quality:</strong> Ensure 7-9 hours of quality sleep for optimal recovery</li>
+                <li><strong>Nutrition:</strong> Eat a balanced diet rich in protein, vitamins, and minerals</li>
+                <li><strong>Stress Management:</strong> Practice relaxation techniques like deep breathing or meditation</li>
+                <li><strong>Movement:</strong> Stay active with gentle activities like walking or swimming</li>
+                <li><strong>Hydration:</strong> Aim for 8-10 glasses of water daily</li>
+                <li><strong>Positive Mindset:</strong> Focus on your progress and recovery goals</li>
+            </ul>
+        </div>
+        
+        <div class="next-steps">
+            <h3 style="color: #721c24; margin-top: 0; margin-bottom: 15px;">📅 Next Steps & Follow-up</h3>
+            <ul style="margin: 10px 0; padding-left: 20px; color: #721c24;">
+                <li><strong>Next Appointment:</strong> Schedule your follow-up session as recommended</li>
+                <li><strong>Progress Tracking:</strong> Keep a journal of your symptoms and improvements</li>
+                <li><strong>Home Program:</strong> Continue your prescribed home exercises</li>
+                <li><strong>Questions:</strong> Contact us if you have concerns or questions</li>
+                <li><strong>Emergency:</strong> Seek immediate medical attention for severe symptoms</li>
+            </ul>
+        </div>
+        
+        <p style="font-size: 16px; color: #495057;"><strong>When to contact us:</strong></p>
+        <ul style="margin: 10px 0; padding-left: 20px; color: #495057;">
+            <li>Increased pain or swelling that doesn't improve</li>
+            <li>New symptoms or concerns</li>
+            <li>Difficulty performing prescribed exercises</li>
+            <li>Questions about your treatment plan</li>
+            <li>Need to reschedule your next appointment</li>
+        </ul>
+        
+        <div style="text-align: center; margin: 35px 0;">
+            {% if appointment.is_guest %}
+            <a href="http://localhost:3000/guest-lookup.html" class="btn">View Appointment Details</a>
+            {% else %}
+            <a href="http://localhost:3000/patient-dashboard.html" class="btn">View Dashboard</a>
+            {% endif %}
+            <a href="http://localhost:3000/book%20appointment/book.html" class="btn">Book Next Appointment</a>
+        </div>
+        
+        <div class="footer">
+            <p style="margin: 5px 0; font-weight: 600; color: #28a745;">AL-BOQAI Center</p>
+            <p style="margin: 5px 0;">📍 al-andlos road, Irbid, Jordan</p>
+            <p style="margin: 5px 0;">📞 +962775252444 | 📧 alboqaiworld@gmail.com</p>
+            <p style="margin: 5px 0;">🌐 <a href="http://localhost:3000" style="color: #28a745;">www.alboqai.com</a></p>
+            <p style="margin-top: 20px; font-size: 12px; color: #999;">
+                This is an automated follow-up care email. Please do not reply to this email.<br>
+                If you have questions, please contact us directly at +962775252444 or alboqaiworld@gmail.com
+            </p>
+            <p style="margin-top: 15px; font-size: 11px; color: #999;">
+                © 2025 AL-BOQAI Center. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

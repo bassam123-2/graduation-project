@@ -139,36 +139,45 @@ body {
   background: var(--background-color, #ffffff);
 }
 
+/* Ensure password toggle button is always visible */
+.toggle-password {
+  background: var(--gradient-secondary, linear-gradient(135deg, #e8f2ff 0%, #d0d8e8 100%)) !important;
+  color: var(--primary-color, #2a5d9f) !important;
+  border: 2px solid var(--border-color, #e1e8ed) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-size: 0.9em !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  min-width: 70px !important;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.toggle-password:hover {
+  background: linear-gradient(135deg, #d0d8e8 0%, #e8f2ff 100%) !important;
+  border-color: var(--primary-color, #2a5d9f) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px var(--shadow-color, rgba(42, 93, 159, 0.15)) !important;
+}
+
+/* Ensure password wrapper is properly positioned */
 .password-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-  gap: 8px;
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+  gap: 8px !important;
+  width: 100% !important;
 }
 
 .password-wrapper input[type="password"],
 .password-wrapper input[type="text"] {
-  flex: 1;
-}
-
-.toggle-password {
-  background: var(--gradient-secondary, linear-gradient(135deg, #e8f2ff 0%, #d0d8e8 100%));
-  color: var(--primary-color, #2a5d9f);
-  border: 2px solid var(--border-color, #e1e8ed);
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 0.9em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 70px;
-}
-
-.toggle-password:hover {
-  background: linear-gradient(135deg, #d0d8e8 0%, #e8f2ff 100%);
-  border-color: var(--primary-color, #2a5d9f);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px var(--shadow-color, rgba(42, 93, 159, 0.15));
+  flex: 1 !important;
+  min-width: 0 !important;
 }
 
 button[type="submit"] {

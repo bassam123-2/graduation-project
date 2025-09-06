@@ -16,7 +16,7 @@ class VoiceAssistant {
         this.setupSpeechSynthesis();
         this.createVoiceUI();
         this.loadLanguageModel();
-        console.log('🎤 Voice Assistant initialized');
+
     }
 
     setupSpeechRecognition() {
@@ -38,7 +38,7 @@ class VoiceAssistant {
             
             this.recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript.toLowerCase();
-                console.log('Voice transcript:', transcript);
+
                 this.processVoiceCommand(transcript);
             };
             
@@ -101,7 +101,7 @@ class VoiceAssistant {
                 this.recognition.lang = this.currentLanguage === 'ar' ? 'ar-SA' : 'en-US';
             }
             this.updateVoiceCommandsDisplay();
-            console.log('Voice assistant language updated to:', this.currentLanguage);
+
         });
 
         // Listen for page visibility changes
@@ -199,8 +199,7 @@ class VoiceAssistant {
     }
 
     processVoiceCommand(transcript) {
-        console.log('Voice command:', transcript);
-        
+
         const commands = this.commands[this.currentLanguage];
         let commandExecuted = false;
         
